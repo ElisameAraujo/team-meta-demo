@@ -1,0 +1,187 @@
+/** Estrutura **/
+.menu-mobile {
+    @apply flex gap-2 col-span-6 relative;
+}
+
+.menu-mobile .open-menu {
+    @apply block sm:block md:block lg:hidden;
+}
+
+.menu-mobile .user-greeting {
+    @apply flex flex-col;
+}
+
+.menu-mobile .user-greeting .username {
+    @apply text-sm font-bold;
+}
+
+.menu-mobile .user-greeting .date,
+.menu-mobile .user-greeting .time {
+    @apply text-xs text-gray-500;
+}
+
+/* Container do menu mobile: ocupa toda a tela, mas não tem mais bg nem blur */
+.menu-mobile nav.mobile-navigation {
+    @apply fixed top-0 left-0 h-full w-full z-30;
+    pointer-events: none;
+}
+.menu-mobile nav.mobile-navigation.open {
+    pointer-events: auto;
+}
+
+/* Backdrop com fade */
+.menu-mobile nav.mobile-navigation .mobile-backdrop {
+    @apply absolute top-0 left-0 w-full h-full bg-black/50 backdrop-blur-[5px] transition-opacity duration-300 cursor-pointer;
+    opacity: 0;
+    z-index: 10;
+}
+.menu-mobile nav.mobile-navigation.open .mobile-backdrop {
+    opacity: 1;
+}
+
+/* Menu lateral com slide */
+.menu-mobile nav.mobile-navigation .menu-navigation {
+    @apply flex flex-col h-screen max-w-[320px] bg-base-100 p-2 relative transition-transform duration-300;
+    transform: translateX(-100%);
+    z-index: 20;
+}
+.menu-mobile nav.mobile-navigation.open .menu-navigation {
+    transform: translateX(0);
+}
+
+.menu-mobile nav.mobile-navigation .menu-navigation {
+    @apply flex flex-col h-screen relative;
+}
+
+/*** Fechar Menu Mobile ***/
+.menu-mobile nav.mobile-navigation .menu-navigation .close-button {
+    @apply absolute right-2;
+}
+
+.menu-mobile nav.mobile-navigation .close-button button i,
+.menu-mobile nav.mobile-navigation .close-button button svg {
+    @apply text-[.8em];
+}
+
+.menu-mobile nav.mobile-navigation .close-button button {
+    @apply p-3 rounded-full h-4 w-4 cursor-pointer transicao-default border border-transparent flex items-center justify-center;
+}
+
+.menu-mobile nav.mobile-navigation .close-button button:hover {
+    @apply bg-gray-200 border border-gray-300;
+}
+
+.menu-mobile nav.mobile-navigation .menu-navigation {
+    @apply max-w-[320px] bg-base-100 h-full p-2;
+}
+
+.menu-mobile nav.mobile-navigation .menu-navigation .mobile-header {
+    @apply mt-9 flex flex-col gap-2 border-b border-b-gray-200;
+}
+
+/*** Cabeçalho ***/
+.mobile-header {
+    @apply border-b border-b-gray-200 pb-2;
+}
+
+.mobile-header .go-to-site a {
+    @apply btn btn-outline btn-primary w-full transicao-default;
+}
+
+.mobile-header .profile-menu .button-profile {
+    @apply p-1 flex border-default gap-2 cursor-pointer w-[304px] items-center transicao-default;
+}
+
+.mobile-header .profile-menu .button-profile:hover {
+    @apply bg-gray-200;
+}
+
+.mobile-header .profile-menu .button-profile img {
+    @apply size-12 rounded shrink-0 shadow object-cover;
+}
+
+.mobile-header .profile-menu .button-profile .profile {
+    @apply flex flex-col justify-start items-start;
+}
+
+.mobile-header .profile-menu .button-profile .username {
+    @apply font-bold;
+}
+.mobile-header .profile-menu .button-profile .email {
+    @apply text-sm block text-gray-500;
+}
+
+.mobile-header .profile-menu ul {
+    @apply bg-base-100 rounded-box z-1 w-76 p-2;
+    box-shadow: 0 0px 4px rgba(0, 0, 0, 0.35);
+}
+
+.mobile-header .profile-menu ul > li {
+    @apply p-1 cursor-pointer text-sm;
+}
+
+.mobile-header .profile-menu ul > li:hover {
+    @apply bg-primary text-white rounded;
+}
+
+/*** Menu ***/
+
+.mobile-navigation .menu-navigation ul.menu-list {
+    @apply pt-2 flex-1 overflow-y-scroll;
+}
+
+.menu-navigation .menu-list .menu-item {
+    @apply rounded p-2 bg-transparent text-gray-500 shadow-none cursor-pointer text-sm transicao-default relative mb-1;
+}
+
+.menu-navigation .menu-list .menu-item:last-child {
+    @apply mb-0;
+}
+
+.menu-navigation .menu-list .menu-item a {
+    @apply flex items-center gap-2;
+}
+
+.menu-navigation .menu-list .menu-item a .badge-total {
+    @apply badge badge-secondary absolute right-2;
+}
+
+.menu-navigation .menu-list .menu-item.active,
+.menu-navigation .menu-list .menu-item:hover {
+    @apply bg-primary text-white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+/** Submenu **/
+.menu-mobile .menu-list .submenu-mobile {
+    @apply mt-1 border-l-2 border-l-gray-400 ml-8 pl-4;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s linear;
+    display: block;
+}
+
+.menu-list .submenu-mobile a.submenu-item {
+    @apply rounded p-2 cursor-pointer text-sm text-gray-500 transicao-default  w-full flex flex-col mb-1;
+}
+
+.menu-list .submenu-mobile a.submenu-item:hover,
+.menu-list .submenu-mobile a.submenu-item.active {
+    @apply bg-secondary text-white;
+}
+
+.menu-list .submenu-mobile a.submenu-item:last-child {
+    @apply mb-0;
+}
+
+.menu-mobile .menu-list .submenu-mobile.open {
+    max-height: 500px;
+    opacity: 1;
+    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s linear;
+}
+
+.menu-mobile .menu-list .menu-item.has-sub::after {
+    @apply content-["\2b"] absolute top-[50%] right-2 text-xl;
+    transform: translateY(-50%);
+}

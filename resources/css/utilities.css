@@ -1,0 +1,73 @@
+/** Globais **/
+@utility tooltip {
+    font-weight: normal;
+    &:after {
+        content: none;
+    }
+}
+
+@utility glass-effect {
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+}
+
+@utility modal {
+    backdrop-filter: blur(4px);
+}
+
+@utility border-default {
+    @apply border rounded-md border-gray-300;
+}
+
+@utility grid-default {
+    @apply grid grid-cols-12 gap-2;
+}
+
+@utility transicao-default {
+    transition: ease-in-out 0.25s;
+}
+
+@utility text-transform-none {
+    text-transform: none;
+}
+
+@utility border-b-none {
+    border-bottom: none;
+}
+
+@utility header-after {
+    @apply content-empty block w-16 h-1 bg-primary mt-2;
+}
+
+/** Utilitários com Cor Terciária (#FFCC30) ***/
+@utility text-tertiary {
+    @apply text-[#FFCC30];
+}
+
+@utility bg-tertiary {
+    @apply bg-[#FFCC30];
+}
+
+@utility border-tertiary {
+    border-color: #ffcc30;
+}
+
+/** Utilitários Especiais **/
+@utility content-empty {
+    content: "";
+}
+
+@utility separator {
+    content: "";
+    display: inline-block;
+    height: 3px;
+    width: 3px;
+    margin: 0 5px;
+    border-radius: 100%;
+    bottom: 3px;
+    position: relative;
+    background-color: var(--color-gray-400);
+}

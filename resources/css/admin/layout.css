@@ -1,0 +1,424 @@
+body {
+    @apply bg-base-300 font-plex;
+}
+
+.main-container {
+    @apply grid-default min-h-[100vh] relative;
+}
+
+/*** Menu Lateral ***/
+.main-container aside {
+    @apply hidden p-4 pr-0 
+    lg:block lg:col-span-2
+    md:hidden 
+    sm:hidden;
+}
+
+.main-container aside .sticky-menu {
+    @apply sticky top-4 w-[102%];
+}
+
+aside > .sticky-menu > .sticky-menu-header {
+    @apply border-b border-b-gray-300 pb-2 flex flex-col gap-y-2;
+}
+
+/** Menu do Perfil **/
+aside > .sticky-menu > .sticky-menu-header > .profile-menu {
+    @apply mt-2 border-gray-300;
+}
+
+aside > .sticky-menu > .sticky-menu-header > .profile-menu > button {
+    @apply flex p-2 gap-2 rounded w-full
+    relative items-center cursor-pointer transicao-default 
+    border border-gray-300;
+}
+aside > .sticky-menu > .sticky-menu-header > .profile-menu > button:hover {
+    @apply bg-gray-300;
+}
+
+aside > .sticky-menu > .sticky-menu-header > .profile-menu > button img {
+    @apply size-12 rounded shrink-0 shadow object-cover;
+}
+
+aside > .sticky-menu > .sticky-menu-header > .profile-menu button .profile {
+    @apply text-start max-w-[160px] overflow-hidden;
+}
+
+aside > .sticky-menu > .sticky-menu-header > .profile-menu button .profile .username {
+    @apply font-bold;
+}
+
+aside > .sticky-menu > .sticky-menu-header > .profile-menu button .profile .username,
+aside > .sticky-menu > .sticky-menu-header > .profile-menu button .profile .email {
+    @apply max-w-[100%] whitespace-nowrap overflow-hidden text-ellipsis block w-full;
+}
+aside > .sticky-menu > .sticky-menu-header > .profile-menu button .profile .email {
+    @apply text-xs block text-gray-500;
+}
+
+aside > .sticky-menu > .sticky-menu-header > .profile-menu ul.dropdown {
+    @apply space-y-1;
+}
+
+aside > .sticky-menu > .sticky-menu-header > .profile-menu .dropdown li a {
+    @apply transicao-default text-gray-700;
+}
+
+aside > .sticky-menu > .sticky-menu-header > .profile-menu .dropdown li a:hover {
+    @apply bg-primary text-white;
+}
+
+/*** Outros componentes do header ***/
+.main-container aside .go-to-website a {
+    @apply btn btn-outline btn-primary w-full transicao-default;
+}
+.main-container aside .searchbar {
+    @apply relative rounded-md text-sm left-0;
+}
+
+/** Navegação **/
+.main-container aside nav {
+    @apply max-h-[83vh] overflow-y-auto pt-2;
+}
+
+.main-container aside nav ul .menu-item {
+    @apply rounded p-2 
+    bg-transparent text-gray-500 text-sm
+    shadow-none cursor-pointer transicao-default relative mb-1;
+}
+
+.main-container aside nav ul .menu-item:last-child {
+    @apply mb-0;
+}
+
+.main-container aside nav ul .menu-item a {
+    @apply flex items-center gap-2;
+}
+
+.main-container aside nav ul .menu-item.active,
+.main-container aside nav ul .menu-item:hover {
+    @apply bg-primary text-white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.main-container aside nav ul .menu-item a .badge-total {
+    @apply badge badge-secondary absolute right-2;
+}
+
+aside nav .divider,
+ul.menu-list .divider {
+    @apply uppercase font-bold text-gray-500 font-unbounded text-[13px];
+}
+
+/** Submenu **/
+aside nav ul .submenu-container {
+    @apply mt-1 ml-8 pl-4 max-h-0 opacity-0
+    border-l-2 border-l-gray-400 
+    overflow-hidden 
+    block;
+    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s linear;
+}
+
+aside nav ul .submenu-container a.submenu-item {
+    @apply rounded p-2 cursor-pointer text-sm text-gray-500 transicao-default w-full flex flex-col mb-1;
+}
+
+aside nav ul .submenu-container a.submenu-item:last-child {
+    @apply mb-0;
+}
+
+aside nav ul .submenu-container a.submenu-item:hover,
+aside nav ul .submenu-container a.submenu-item.active {
+    @apply bg-secondary text-white;
+}
+
+aside nav ul .submenu-container.open {
+    @apply max-h-[500px] opacity-100;
+    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s linear;
+}
+
+aside nav ul .menu-item.has-sub::after {
+    @apply content-["\2b"] absolute top-[50%] right-2 text-xl;
+    transform: translateY(-50%);
+}
+
+/** Main **/
+.main-container main {
+    @apply col-span-12 gap-4 p-4 mt-2
+    lg:col-span-10 
+    md:col-span-12 
+    sm:col-span-12;
+}
+
+.main-container main .main-content {
+    @apply bg-base-100 rounded-lg py-2 shadow;
+}
+
+main .main-content .header {
+    @apply border-b px-4 my-4 mt-2 pb-4 border-gray-200 grid-default;
+}
+
+main .main-content .header .right-header {
+    @apply flex items-center justify-end-safe p-0.5 gap-4 col-span-6;
+}
+
+main .main-content .header .right-header .tooltip {
+    @apply font-normal;
+}
+
+.main-content .header section.theme-selector label {
+    @apply swap swap-rotate relative btn btn-ghost border border-gray-300;
+}
+
+/** Noitificações **/
+.main-content .header .notifications .total-notificacoes {
+    @apply indicator;
+}
+
+.main-content .header .notifications .total-notificacoes {
+    @apply btn btn-ghost border border-gray-300;
+}
+
+.main-content .header .notifications .drop-content {
+    @apply bg-base-100 dropdown dropdown-end
+    rounded-box 
+    z-1 shadow-sm menu p-2
+    overflow-hidden
+    flex flex-col gap-2
+    w-80 lg:w-120 md:w-96 sm:w-80;
+}
+
+.notifications .notification-item {
+    @apply p-2.5 rounded cursor-pointer transicao-default relative;
+}
+
+.notifications .notification-item:last-of-type {
+    @apply mb-2;
+}
+
+.notifications .notification-item:hover {
+    @apply bg-gray-200;
+}
+
+.notifications .notification-item .notification-header {
+    @apply flex gap-2 items-center text-gray-500;
+}
+
+.notifications .notification-item .notification-content {
+    @apply text-gray-500;
+}
+
+.notifications .notification-item .notification-content span.username {
+    @apply font-bold text-gray-700;
+}
+
+.notifications .drop-content footer.dropdown-footer {
+    @apply text-center p-2 text-gray-500 text-sm flex items-center flex-col;
+}
+
+.notifications .drop-content footer.dropdown-footer::before {
+    @apply content-empty 
+    block w-[150%] 
+    h-[1px] mb-2 mt-[-16px] ml-[-25%]
+    bg-gray-200;
+}
+
+.notifications .drop-content footer.dropdown-footer a {
+    @apply transicao-default;
+}
+.notifications .drop-content footer.dropdown-footer a:hover {
+    @apply text-primary;
+}
+
+.page-content {
+    @apply p-2 col-span-12 grid-default gap-4;
+}
+
+/** Cabeçalho **/
+.page-content > .page-header {
+    @apply col-span-12;
+}
+
+.page-content > .page-header > h1 {
+    @apply text-2xl font-bold mb-4 font-unbounded;
+}
+
+.page-content > .page-header > h1::after {
+    @apply header-after;
+}
+
+.page-content > .page-header > h1 > .breadcrumbs {
+    @apply text-sm text-gray-500 font-plex;
+}
+
+.page-content > .page-header > h1 > .breadcrumbs li a {
+    @apply transicao-default text-gray-400 no-underline;
+}
+
+.page-content > .page-header > h1 > .breadcrumbs li span {
+    @apply transicao-default text-gray-400 no-underline cursor-default;
+}
+
+.page-content > .page-header > h1 > .breadcrumbs li a:hover {
+    @apply text-primary;
+}
+
+.page-content > .page-header > h1 > .breadcrumbs li span:hover,
+.page-content > .page-header > h1 > .breadcrumbs li a:hover {
+    @apply no-underline;
+}
+
+.page-content > .page-header > h1 > .breadcrumbs li.active span {
+    @apply text-primary;
+}
+
+.page-content > .page-actions {
+    @apply flex gap-2 mb-3 col-span-12;
+}
+
+/*** Novc Item ***/
+.page-content > .page-criar-item {
+    @apply col-span-12;
+}
+
+.page-content > .page-criar-item > form {
+    @apply grid-default gap-4;
+}
+
+.page-content > .page-criar-item > form > .upload-imagem {
+    @apply col-span-12 lg:col-span-4 flex items-center flex-col justify-center;
+}
+
+.page-content > .page-criar-item > form > .upload-imagem label {
+    @apply mt-2 w-full;
+}
+
+.page-content > .page-criar-item > form > .upload-imagem input[type="file"] {
+    @apply hidden;
+}
+
+.page-content > .page-criar-item > form > .upload-imagem > .preview {
+    @apply h-full w-full 
+    flex items-center justify-center 
+    border border-default border-dashed 
+    uppercase font-bold text-gray-400;
+}
+
+.page-content > .page-criar-item > form > .upload-imagem > .preview img {
+    @apply rounded;
+}
+
+.page-content > .page-criar-item > form > .formulario {
+    @apply col-span-12 lg:col-span-8 grid-default;
+}
+
+.page-content > .page-criar-item p {
+    @apply mb-4;
+}
+
+.page-content > .page-criar-item .bloco-detalhe {
+    @apply grid-default;
+}
+
+.page-content > .page-criar-item p a {
+    @apply underline text-primary;
+}
+
+/*** Abas ***/
+.page-tabs {
+    @apply col-span-12;
+}
+
+.page-tabs .tabs {
+    @apply transicao-default uppercase font-bold font-unbounded;
+}
+
+.page-tabs .tabs a.tab {
+    @apply border-b border-b-gray-300 border-t-1 border-t-transparent;
+}
+
+.page-tabs .tabs a.tab {
+    @apply transicao-default relative;
+}
+
+.page-tabs .tabs a.tab:hover {
+    @apply bg-gray-200;
+}
+
+.page-tabs .tabs a.tab:hover::before {
+    @apply content-empty absolute bg-gray-600 h-1 w-full top-0;
+}
+
+.page-tabs .tabs a.tab.tab-active:hover {
+    @apply bg-transparent;
+}
+
+.page-tabs .tabs a.tab.tab-active {
+    @apply border-b-none border-x-1 border-x-gray-200 border-t-1 border-t-gray-200;
+}
+
+.page-tabs .tabs a.tab.tab-active::before {
+    @apply content-empty absolute bg-primary h-1 w-full top-0;
+}
+
+/** Forms ***/
+.page-picture-update,
+.page-picture-update-multiple {
+    @apply col-span-12 lg:col-span-3 md:col-span-3 sm:col-span-12;
+}
+
+.page-picture-update img {
+    @apply h-full w-full rounded shadow;
+}
+
+.page-forms {
+    @apply col-span-12 lg:col-span-9 md:col-span-9 sm:col-span-12;
+}
+
+.page-forms > form > .form-items {
+    @apply grid-default;
+}
+
+.page-picture-update-multiple .product-images {
+    @apply grid-default gap-3;
+}
+
+.page-picture-update-multiple .product-images > .product-image {
+    @apply col-span-4 border-default overflow-hidden relative;
+}
+
+.page-picture-update-multiple .product-images > .product-image img {
+    @apply object-fill h-full;
+}
+
+.page-picture-update-multiple .product-images > .product-image > .check-image {
+    @apply absolute left-1 top-0;
+}
+
+.product-image > .check-image > input[type="checkbox"] {
+    @apply checkbox checkbox-xs checkbox-primary bg-secondary border-secondary;
+}
+
+/** Botões de Ação ***/
+.page-content .dropdown > li.aprovar-item:hover,
+.page-content .dropdown > li.lista-de-faixas:hover,
+.page-content .dropdown > li.ativo:hover {
+    @apply bg-success rounded text-white;
+}
+
+.page-content .dropdown > li.resumo:hover {
+    @apply bg-info rounded text-white;
+}
+
+.page-content .dropdown > li.inativo:hover,
+.page-content .dropdown > li.singles-album:hover {
+    @apply bg-warning rounded text-black;
+}
+
+.page-content .dropdown > li.editar-item:hover {
+    @apply bg-[#8a2ba2] rounded text-white;
+}
+
+.page-content .dropdown > li.excluir-item:hover {
+    @apply bg-error rounded text-white;
+}

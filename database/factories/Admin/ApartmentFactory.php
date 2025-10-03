@@ -1,0 +1,34 @@
+<?php
+
+namespace Database\Factories\Admin;
+
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
+
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Admin\Apartment>
+ */
+class ApartmentFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition(): array
+    {
+
+        static $counter = 1;
+        return [
+            'unit_code' => 'BC' . Str::padLeft($counter++, 3, 0),
+            'covered_area' => fake()->randomFloat(2, 50, 100),
+            'ambients' => fake()->numberBetween(1, 4),
+            'storage_size' => fake()->randomFloat(2, NULL, 10),
+            'floor' => fake()->numberBetween(0, 4),
+            'price' => fake()->randomFloat(2, 85000, 350000),
+            'apartment_status_id' => fake()->numberBetween(1, 3),
+            'direction' => fake()->numberBetween(1, 4),
+            'building_id' => fake()->numberBetween(1, 3),
+        ];
+    }
+}

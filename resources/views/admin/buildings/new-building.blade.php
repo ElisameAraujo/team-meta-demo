@@ -19,17 +19,17 @@
             </h1>
         </div>
         <div class="page-criar-item">
-            <form action="" method="post">
+            <form action="{{ route('admin.buildings.save-building') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="upload-imagem">
                     <div class="preview">
                         <div class="text" id="text">Preview</div>
                         <img id="file-preview">
                     </div>
-                    <label for="imagemUpload" id="foto-label" class="btn btn-secondary">
-                        <i class="fa-solid fa-cloud-arrow-up margem-icone"></i>
+                    <label for="background" id="foto-label" class="btn btn-secondary">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
                         Select Image/Video Slide</label>
-                    <input type="file" name="imagemUpload" id="imagemUpload">
+                    <input type="file" name="background" id="background" data-label="fileUpload">
                 </div>
 
                 <div class="formulario">

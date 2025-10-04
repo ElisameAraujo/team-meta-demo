@@ -12,7 +12,7 @@ class Building extends Model
     protected $table = "buildings";
     protected $fillable = [
         'building_name',
-        'background_image',
+        'background',
         'building_slug',
         'apartments_available'
     ];

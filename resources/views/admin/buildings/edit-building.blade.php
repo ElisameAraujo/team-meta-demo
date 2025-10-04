@@ -20,36 +20,47 @@
                 </div>
             </h1>
         </div>
+        @include('components.flash-messages')
         <div class="page-picture-update">
-            <form action="" method="post" enctype="multipart/form-data">
+            <form action="{{ route('admin.buildings.update-building-image', $building->id) }}" method="post"
+                enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
-                <div class="upload-foto">
-                    <!-- Imagem Atual -->
-                    <div class="foto-atual" id="foto-atual">
-                        <img src="{{ asset('img/temp/kanye-west-1.jpg') }}" alt="">
+                <div class="update-image-area">
+                    <div class="current-image">
+                        @if ($building->background == NULL || !File::exists('storage/buildings/' . $building->background))
+                            <div class="p-8 no-image" id="current-image-preview">
+                                Image Not Found
+                            </div>
+                        @else
+                            <img src="{{ asset('storage/buildings/' . $building->background) }}" id="current-image-preview">
+                        @endif
                     </div>
-                    <!-- Atualiza Imagem -->
-                    <div class="preview hidden" id="preview">
-                        <div class="text" id="text">Preview</div>
-                        <img id="file-preview">
+
+                    <div class="image-preview hidden">
+                        <img id="preview">
                     </div>
 
-                    <label for="imagemUpload" id="foto-label" class="btn btn-primary w-full">
-                        <i class="fa-solid fa-cloud-arrow-up"></i> Change Building Image/Video
-                    </label>
+                    <div class="change-current-image">
+                        <button id="change-image" class="btn btn-primary w-full">
+                            <i class="fa-solid fa-arrows-rotate"></i> Change Current Image/Video
+                        </button>
 
-                    <input type="file" name="imagemUpload" id="imagemUpload" class="form-control">
+                        <input type="file" name="background" id="background" data-label="update-image">
+                    </div>
 
-                    <button type="submit" class="btn btn-primary w-full hidden" id="enviar">
-                        <i class="fa-solid fa-arrows-rotate"></i> Update Building Image/Video
-                    </button>
+                    <div class="upload-new-image hidden">
+                        <button type="submit" id="upload-image" class="btn btn-primary w-full">
+                            <i class="fa-solid fa-cloud-arrow-up"></i> Update Image
+                        </button>
+                    </div>
                 </div>
             </form>
         </div>
         <div class="page-forms">
-            <form action="" method="POST">
+            <form action="{{ route('admin.buildings.update-building', $building->id) }}" method="POST">
                 @csrf
+                @method('PUT')
                 <div class="form-items">
                     <fieldset class="fieldset col-span-12">
                         <legend class="fieldset-legend">Building Name</legend>
@@ -63,8 +74,6 @@
                             name="apartments_available" />
                     </fieldset>
                 </div>
-
-                <input type="hidden" name="id" value="{{ $building->id }}">
 
                 <button type="submit" class="btn btn-success mt-4">
                     <i class="fa-solid fa-arrows-rotate"></i> Update Building

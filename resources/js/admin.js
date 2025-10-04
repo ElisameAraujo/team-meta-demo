@@ -2,6 +2,8 @@ import { mobileMenu } from "./admin/nav/mobile";
 import { subMenu } from "./admin/nav/submenu";
 import { updateClock } from "./admin/clock";
 import { themeChange } from "theme-change";
+import { fileUploadPreview } from "./admin/fileUploadImagePreview";
+import { fileUploadUpdatePreview } from "./admin/fileUpdateImagePreview";
 
 /**
  * Axios
@@ -28,3 +30,30 @@ new updateClock();
  */
 
 new themeChange();
+
+/**
+ * Global
+ */
+new fileUploadPreview();
+new fileUploadUpdatePreview();
+
+/**
+ * Hide Notifications
+ */
+document.addEventListener("DOMContentLoaded", function () {
+    setTimeout(() => {
+        const notifications = document.querySelectorAll(".notification");
+
+        notifications.forEach((el) => {
+            // Aplica transições
+            el.style.transition = "opacity 0.5s ease, max-height 0.5s ease";
+            el.style.opacity = "0";
+            el.style.maxHeight = "0";
+
+            // Remove após a transição
+            setTimeout(() => {
+                el.remove();
+            }, 500);
+        });
+    }, 5000);
+});

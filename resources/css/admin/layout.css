@@ -422,3 +422,29 @@ main .main-content .header .right-header .tooltip {
 .page-content .dropdown > li.excluir-item:hover {
     @apply bg-error rounded text-white;
 }
+
+.notification {
+    max-height: 200px;
+    overflow: hidden;
+}
+
+/*** Upload With Updated Image ***/
+.update-image-area {
+    @apply col-span-3;
+}
+
+.update-image-area > .current-image > .no-image {
+    @apply border border-dashed min-h-fit rounded-md border-gray-300 flex items-center justify-center;
+}
+
+.update-image-area > .change-current-image {
+    @apply mt-2;
+}
+
+.update-image-area > .change-current-image > input[type="file"] {
+    @apply hidden;
+}
+
+.update-image-area > .upload-new-image {
+    @apply mt-2;
+}

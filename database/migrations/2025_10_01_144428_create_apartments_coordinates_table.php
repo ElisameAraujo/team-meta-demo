@@ -17,10 +17,13 @@ return new class extends Migration
             $table->double('y_position')->unsigned();
             $table->double('width')->unsigned();
             $table->double('height')->unsigned();
+
+            $table->unique('apartment_id');
             $table->foreignId('apartment_id')
                 ->references('id')
                 ->on('apartments')
                 ->onDelete('cascade');
+
             $table->timestamps();
         });
     }
@@ -30,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('apartments_coordinates');
+        Schema::dropIfExists('apartment_coordinates');
     }
 };

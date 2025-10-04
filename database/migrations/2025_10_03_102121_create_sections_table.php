@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('directions', function (Blueprint $table) {
+        Schema::create('sections', function (Blueprint $table) {
             $table->id();
-            $table->string('direction_name');
-            $table->string('direction_slug');
+            $table->string('section_name');
+            $table->string('section_slug');
         });
     }
 
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('directions');
+        Schema::dropIfExists('sections');
     }
 };

@@ -19,18 +19,13 @@ return new class extends Migration
             $table->decimal('storage_size', 10, 2)->nullable();
             $table->integer('floor');
             $table->decimal('price', 20, 2);
-
-            $table->foreignId('apartment_status_id')
-                ->references('id')
-                ->on('apartment_status')
-                ->onDelete('cascade');
-
-            $table->integer('direction');
+            $table->integer('apartment_status_id');
+            $table->integer('section_id');
 
             $table->foreignId('building_id')
-                ->references('id')
-                ->on('buildings')
+                ->constrained('buildings')
                 ->onDelete('cascade');
+
             $table->timestamps();
         });
     }

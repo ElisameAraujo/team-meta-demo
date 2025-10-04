@@ -9,11 +9,11 @@ class HousingComplexController extends Controller
 {
     public function homeConfiguration()
     {
-        return view('admin.home-configuration');
+        return view('admin.configuration.home-configuration');
     }
 
     public function newSlide()
     {
-        return view('admin.new-slide');
+        return view('admin.configuration.new-slide');
     }
 }

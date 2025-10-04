@@ -4,9 +4,9 @@ namespace App\Models\Admin;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Direction extends Model
+class Section extends Model
 {
-    protected $table = "directions";
+    protected $table = "sections";
     public $timestamps = false;
 
     public function apartments()

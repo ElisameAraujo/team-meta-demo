@@ -24,7 +24,7 @@ class BuildingFactory extends Factory
         return [
             'building_name' => $building_name,
             'apartments_available' => fake()->numberBetween(32, 76),
-            'background_image' => 'default_image',
+            'background' => 'default_background',
             'building_slug' => Str::slug($building_name)
         ];
     }

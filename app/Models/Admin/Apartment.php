@@ -19,7 +19,7 @@ class Apartment extends Model
         'floor',
         'price',
         'apartment_status_id',
-        'direction',
+        'direction_id',
         'building_id'
     ];
 
@@ -28,9 +28,9 @@ class Apartment extends Model
         return $this->belongsTo(Building::class);
     }
 
-    public function direction()
+    public function section()
     {
-        return $this->belongsTo(Direction::class);
+        return $this->belongsTo(Section::class);
     }
 
     public function status()
@@ -40,7 +40,7 @@ class Apartment extends Model
 
     public function coordinates()
     {
-        return $this->belongsTo(ApartmentCoordinates::class, 'id', 'apartment_id');
+        return $this->hasOne(ApartmentCoordinate::class);
     }
 
     public function getFormattedPriceAttribute()

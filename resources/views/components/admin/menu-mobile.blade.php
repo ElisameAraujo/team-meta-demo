@@ -45,24 +45,19 @@
 
         </div>
         <ul class="menu-list">
-            <li class="menu-item  {{ request()->is('admin') ? 'active' : '' }}">
-                <a href="{{-- {{ route('admin.dashboard') }} --}}">
+            <li
+                class="menu-item {{ request()->is('admin/home-configuration/*') || request()->is('admin/home-configuration') ? 'active' : '' }}">
+                <a href="{{ route('admin.home-configuration') }}">
                     <i class="fa-solid fa-house"></i>
                     <span>Home Configuration</span>
                 </a>
             </li>
 
-            <li class="menu-item {{ request()->is('admin/buildings') ? 'active' : '' }}">
-                <a href="{{-- {{ route('admin.dashboard') }} --}}">
+            <li
+                class="menu-item {{ request()->is('admin/buildings') || request()->is('admin/buildings/*') ? 'active' : '' }}">
+                <a href="{{ route('admin.buildings') }}">
                     <i class="fa-solid fa-building"></i>
                     <span>Buildings</span>
-                </a>
-            </li>
-
-            <li class="menu-item {{ request()->is('admin/apartments') ? 'active' : '' }}">
-                <a href="{{-- {{ route('admin.dashboard') }} --}}">
-                    <i class="fa-solid fa-border-top-left"></i>
-                    <span>Apartments</span>
                 </a>
             </li>
         </ul>

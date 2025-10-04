@@ -18,17 +18,17 @@ class BuildingSeeder extends Seeder
     {
         Building::create([
             'building_name' => 'El Muelle I',
-            'background_image' => 'default_image',
+            'background' => 'default_image',
             'building_slug' => 'el-muelle-i',
             'apartments_available' => 57
         ])->create([
             'building_name' => 'El Muelle II',
-            'background_image' => 'default_image',
+            'background' => 'default_image',
             'building_slug' => 'el-muelle-ii',
             'apartments_available' => 76
         ])->create([
             'building_name' => 'El Muelle III',
-            'background_image' => 'default_image',
+            'background' => 'default_image',
             'building_slug' => 'el-muelle-iii',
             'apartments_available' => 86
         ]);

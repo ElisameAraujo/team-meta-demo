@@ -15,15 +15,15 @@ class StatusApartmentSeeder extends Seeder
     {
         ApartmentStatus::create([
             'id' => 1,
-            'status' => 'Available',
+            'status_name' => 'Available',
             'css_class' => 'badge-success',
         ])->create([
             'id' => 2,
-            'status' => 'Reserved',
+            'status_name' => 'Reserved',
             'css_class' => 'badge-warning',
         ])->create([
             'id' => 3,
-            'status' => 'Sold',
+            'status_name' => 'Sold',
             'css_class' => 'badge-error',
         ]);
     }

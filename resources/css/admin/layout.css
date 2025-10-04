@@ -252,7 +252,7 @@ main .main-content .header .right-header .tooltip {
 }
 
 .page-content > .page-header > h1 > .breadcrumbs li a {
-    @apply transicao-default text-gray-400 no-underline;
+    @apply transicao-default text-primary/50 no-underline;
 }
 
 .page-content > .page-header > h1 > .breadcrumbs li span {

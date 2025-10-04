@@ -27,7 +27,7 @@ class ApartmentFactory extends Factory
             'floor' => fake()->numberBetween(0, 4),
             'price' => fake()->randomFloat(2, 85000, 350000),
             'apartment_status_id' => fake()->numberBetween(1, 3),
-            'direction' => fake()->numberBetween(1, 4),
+            'section_id' => fake()->numberBetween(1, 4),
             'building_id' => fake()->numberBetween(1, 3),
         ];
     }

@@ -4,7 +4,7 @@ namespace App\Models\Admin;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ApartmentCoordinates extends Model
+class ApartmentCoordinate extends Model
 {
     protected $table = "apartments_coordinates";
 
@@ -18,6 +18,6 @@ class ApartmentCoordinates extends Model
 
     public function apartment()
     {
-        return $this->hasOne(Apartment::class);
+        return $this->belongsTo(Apartment::class);
     }
 }

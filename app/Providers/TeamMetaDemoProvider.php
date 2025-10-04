@@ -8,7 +8,7 @@ use Illuminate\Support\ServiceProvider;
 
 class TeamMetaDemoProvider extends ServiceProvider
 {
-    public $bindings = [
+    public array $bindings = [
         ApartmentInterface::class => ApartmentRepository::class,
         ApartmentCoordinatesInterface::class => ApartmentCoordinatesRepository::class,
         BuildingInterface::class => BuildingRepository::class

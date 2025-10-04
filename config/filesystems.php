@@ -41,10 +41,26 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
             'throw' => false,
             'report' => false,
+        ],
+
+        'buildings' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/buildings'),
+            'url' => env('APP_URL') . '/storage/public/',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
+        'home-slider' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/home-slider'),
+            'url' => env('APP_URL') . '/storage/public/',
+            'visibility' => 'public',
+            'throw' => false,
         ],
 
         's3' => [

@@ -26,8 +26,11 @@
             </h1>
         </div>
         <div class="col-span-12">
-            <form action="{{-- {{ route('apartments.save-apartment') }} --}}" method="POST">
+            @include('components.flash-messages')
+            <form action="{{ route('admin.buildings.apartments.update-apartment', ['apartment' => $apartment->id]) }}"
+                method="POST">
                 @csrf
+                @method('PUT')
                 <div class="grid-default">
 
                     <fieldset class="fieldset col-span-6">
@@ -59,7 +62,8 @@
                         <legend class="fieldset-legend">Storage Size (m²)</legend>
                         <label class="input w-full">
                             <span class="label"><i class="fa-solid fa-warehouse"></i></span>
-                            <input type="number" step="0.01" class="input w-full" name="storage_size" />
+                            <input type="number" step="0.01" name="storage_size"
+                                value="{{ old('unit_code', $apartment->storage_size) }}" />
                         </label>
                     </fieldset>
 
@@ -67,7 +71,7 @@
                         <legend class="fieldset-legend">Floor</legend>
                         <label class="input w-full">
                             <span class="label"><i class="fa-solid fa-elevator"></i></span>
-                            <input type="number" class="input w-full" name="floor" />
+                            <input type="number" name="floor" value="{{ old('unit_code', $apartment->floor) }}" />
                         </label>
                     </fieldset>
 
@@ -75,7 +79,8 @@
                         <legend class="fieldset-legend">Price</legend>
                         <label class="input w-full">
                             <span class="label">US$</span>
-                            <input type="number" step="0.01" name="price" />
+                            <input type="number" step="0.01" name="price"
+                                value="{{ old('unit_code', $apartment->price) }}" />
                         </label>
                     </fieldset>
 
@@ -105,8 +110,6 @@
                         </select>
                     </fieldset>
                 </div>
-
-                <input type="hidden" name="building_id" value="{{ $building->id }}">
 
                 <button class="btn btn-primary mt-2" type="submit">
                     <i class="fa-solid fa-arrows-rotate"></i>

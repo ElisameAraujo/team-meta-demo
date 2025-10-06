@@ -25,7 +25,8 @@
             </h1>
         </div>
         <div class="col-span-12">
-            <form action="{{-- {{ route('apartments.save-apartment') }} --}}" method="POST">
+            <form action="{{ route('admin.buildings.apartments.save-apartment', ['building' => $building->id]) }}"
+                method="POST">
                 @csrf
                 <div class="grid-default">
                     <fieldset class="fieldset col-span-6">
@@ -101,10 +102,9 @@
                     </fieldset>
                 </div>
 
-                <input type="hidden" name="building_id" value="{{ $building->id }}">
-
-                <button class="btn btn-primary mt-2" type="submit"><i class="fa-solid fa-floppy-disk"></i> Save
-                    Apartment</button>
+                <button class="btn btn-primary mt-2" type="submit">
+                    <i class="fa-solid fa-floppy-disk"></i> Save Apartment
+                </button>
             </form>
         </div>
     </div>

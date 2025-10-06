@@ -15,6 +15,7 @@
                 New Apartment
             </a>
         </div>
+        @include('components.flash-messages')
         @if ($apartments->count() < 1)
             <div class="col-span-12 text-center">
                 <p>No apartments found for this building. Create one using the <strong>'New Apartment'</strong> button.</p>
@@ -68,11 +69,15 @@
 
                                             <a href="{{-- {{ route('apartments.edit-coordinates', ['building' => $building->id, 'apartment' => $apartment->id]) }} --}}"
                                                 class="btn btn-warning btn-sm text-white join-item tooltip font-normal"
-                                                data-tip="Edit SVG Coordinates">
+                                                data-tip="Edit Coordinates">
                                                 <i class="fa-solid fa-location-dot"></i>
                                             </a>
 
-                                            <form action="{{-- {{ route('apartments.delete-apartment') }} --}}">
+                                            <form
+                                                action="{{ route('admin.buildings.apartments.delete-apartment', ['apartment' => $apartment->id]) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('DELETE')
                                                 <input type="hidden" name="id" value="{{ $apartment->id }}">
                                                 <button type="submit"
                                                     class="btn btn-error btn-sm text-white join-item tooltip font-normal"

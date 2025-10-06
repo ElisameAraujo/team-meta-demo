@@ -19,7 +19,7 @@ class Apartment extends Model
         'floor',
         'price',
         'apartment_status_id',
-        'direction_id',
+        'section_id',
         'building_id'
     ];
 

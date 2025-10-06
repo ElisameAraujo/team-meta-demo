@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Interfaces\ApartmentInterface;
 use App\Models\Admin\Apartment;
 use App\Models\Admin\ApartmentStatus;
 use App\Models\Admin\Building;
@@ -11,6 +12,8 @@ use Illuminate\Http\Request;
 
 class ApartmentController extends Controller
 {
+
+    public function __construct(private ApartmentInterface $apartment) {}
     public function index(Building $building)
     {
         $apartments = Apartment::with('section')
@@ -46,5 +49,28 @@ class ApartmentController extends Controller
             'sections',
             'apartmentStatus'
         ));
+    }
+
+    public function saveApartment(Building $building, Request $request)
+    {
+        $data = $request->except('_token');
+        $this->apartment->saveApartment($building, $data);
+
+        return redirect()->route('admin.buildings.apartments', ['building' => $building->id])->with('success', 'Apartment added successfully');
+    }
+
+    public function updateApartment(Apartment $apartment, Request $request)
+    {
+        $data = $request->except('_token');
+        $this->apartment->updateApartment($apartment, $data);
+
+        return redirect()->back()->with('update', 'Apartment updated successfully');
+    }
+
+    public function deleteApartment(Apartment $apartment)
+    {
+        $this->apartment->deleteApartment($apartment);
+
+        return redirect()->back()->with('delete', 'Apartment e coordinates delete successfully');
     }
 }

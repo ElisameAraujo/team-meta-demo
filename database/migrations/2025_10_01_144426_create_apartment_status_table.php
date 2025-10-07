@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('apartment_status', function (Blueprint $table) {
             $table->id();
             $table->string('status_name');
+            $table->string('status_slug');
             $table->string('css_class');
         });
     }

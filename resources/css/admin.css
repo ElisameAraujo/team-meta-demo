@@ -29,6 +29,8 @@
 }
 
 @import "./admin/layout.css";
-@import "./components.css";
 @import "./admin/mobile-menu.css";
+@import "./admin/coordinates-toolbar.css";
+@import "./admin/interactive-building.css";
+@import "./components.css";
 @import "./utilities.css";

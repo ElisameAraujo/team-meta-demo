@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('apartments_coordinates', function (Blueprint $table) {
             $table->id();
-            $table->double('x_position')->unsigned();
-            $table->double('y_position')->unsigned();
-            $table->double('width')->unsigned();
-            $table->double('height')->unsigned();
+            $table->double('x_position')->unsigned()->nullable();
+            $table->double('y_position')->unsigned()->nullable();
+            $table->double('width')->unsigned()->nullable();
+            $table->double('height')->unsigned()->nullable();
 
-            $table->unique('apartment_id');
+            $table->unique('apartment_id')->nullable();
             $table->foreignId('apartment_id')
                 ->references('id')
                 ->on('apartments')

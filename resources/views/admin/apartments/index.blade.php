@@ -36,6 +36,7 @@
                                 <th>Section</th>
                                 <th>Price</th>
                                 <th>Unit Status</th>
+                                <th>Mapped</th>
                                 <th>Created at</th>
                                 <th>Updated at</th>
                                 <th>Actions</th>
@@ -53,9 +54,15 @@
                                     <td>{{ $apartment->section->section_name }}</td>
                                     <td>{{ $apartment->formatted_price }}</td>
                                     <td>
-                                        <div class="badge {{ $apartment->status->css_class }} text-white">
+                                        <div class="badge badge-sm {{ $apartment->status->css_class }} text-white">
                                             {{ $apartment->status->status_name }}
                                         </div>
+                                    </td>
+                                    <td>@if ($apartment->mapped_coordinates)
+                                        <span class="badge badge-sm badge-success text-white">Mapped</span>
+                                    @else
+                                            <span class="badge badge-sm badge-error text-white">Not Mapped</span>
+                                        @endif
                                     </td>
                                     <td>{{ $apartment->formatted_created_at }}</td>
                                     <td>{{ $apartment->formatted_updated_at }}</td>
@@ -67,7 +74,7 @@
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </a>
 
-                                            <a href="{{-- {{ route('apartments.edit-coordinates', ['building' => $building->id, 'apartment' => $apartment->id]) }} --}}"
+                                            <a href="{{ route('admin.buildings.apartments.edit-coordinates', ['building' => $building->id, 'apartment' => $apartment->id]) }}"
                                                 class="btn btn-warning btn-sm text-white join-item tooltip font-normal"
                                                 data-tip="Edit Coordinates">
                                                 <i class="fa-solid fa-location-dot"></i>

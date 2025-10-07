@@ -2,10 +2,12 @@
 
 namespace App\Models\Admin;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class ApartmentCoordinate extends Model
 {
+    use HasFactory;
     protected $table = "apartments_coordinates";
 
     protected $fillable = [
@@ -18,6 +20,6 @@ class ApartmentCoordinate extends Model
 
     public function apartment()
     {
-        return $this->belongsTo(Apartment::class);
+        return $this->belongsTo(Apartment::class, 'apartment_id', 'id');
     }
 }

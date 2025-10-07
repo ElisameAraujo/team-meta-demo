@@ -29,7 +29,7 @@ aside > .sticky-menu > .sticky-menu-header > .profile-menu {
 
 aside > .sticky-menu > .sticky-menu-header > .profile-menu > button {
     @apply flex p-2 gap-2 rounded w-full
-    relative items-center cursor-pointer transicao-default 
+    relative items-center cursor-pointer transition-default 
     border border-gray-300;
 }
 aside > .sticky-menu > .sticky-menu-header > .profile-menu > button:hover {
@@ -61,7 +61,7 @@ aside > .sticky-menu > .sticky-menu-header > .profile-menu ul.dropdown {
 }
 
 aside > .sticky-menu > .sticky-menu-header > .profile-menu .dropdown li a {
-    @apply transicao-default text-gray-700;
+    @apply transition-default text-gray-700;
 }
 
 aside > .sticky-menu > .sticky-menu-header > .profile-menu .dropdown li a:hover {
@@ -70,7 +70,7 @@ aside > .sticky-menu > .sticky-menu-header > .profile-menu .dropdown li a:hover 
 
 /*** Outros componentes do header ***/
 .main-container aside .go-to-website a {
-    @apply btn btn-outline btn-primary w-full transicao-default;
+    @apply btn btn-outline btn-primary w-full transition-default;
 }
 .main-container aside .searchbar {
     @apply relative rounded-md text-sm left-0;
@@ -84,7 +84,7 @@ aside > .sticky-menu > .sticky-menu-header > .profile-menu .dropdown li a:hover 
 .main-container aside nav ul .menu-item {
     @apply rounded p-2 
     bg-transparent text-gray-500 text-sm
-    shadow-none cursor-pointer transicao-default relative mb-1;
+    shadow-none cursor-pointer transition-default relative mb-1;
 }
 
 .main-container aside nav ul .menu-item:last-child {
@@ -120,7 +120,7 @@ aside nav ul .submenu-container {
 }
 
 aside nav ul .submenu-container a.submenu-item {
-    @apply rounded p-2 cursor-pointer text-sm text-gray-500 transicao-default w-full flex flex-col mb-1;
+    @apply rounded p-2 cursor-pointer text-sm text-gray-500 transition-default w-full flex flex-col mb-1;
 }
 
 aside nav ul .submenu-container a.submenu-item:last-child {
@@ -189,7 +189,7 @@ main .main-content .header .right-header .tooltip {
 }
 
 .notifications .notification-item {
-    @apply p-2.5 rounded cursor-pointer transicao-default relative;
+    @apply p-2.5 rounded cursor-pointer transition-default relative;
 }
 
 .notifications .notification-item:last-of-type {
@@ -224,7 +224,7 @@ main .main-content .header .right-header .tooltip {
 }
 
 .notifications .drop-content footer.dropdown-footer a {
-    @apply transicao-default;
+    @apply transition-default;
 }
 .notifications .drop-content footer.dropdown-footer a:hover {
     @apply text-primary;
@@ -252,11 +252,11 @@ main .main-content .header .right-header .tooltip {
 }
 
 .page-content > .page-header > h1 > .breadcrumbs li a {
-    @apply transicao-default text-primary/50 no-underline;
+    @apply transition-default text-primary/50 no-underline;
 }
 
 .page-content > .page-header > h1 > .breadcrumbs li span {
-    @apply transicao-default text-gray-400 no-underline cursor-default;
+    @apply transition-default text-gray-400 no-underline cursor-default;
 }
 
 .page-content > .page-header > h1 > .breadcrumbs li a:hover {
@@ -330,7 +330,7 @@ main .main-content .header .right-header .tooltip {
 }
 
 .page-tabs .tabs {
-    @apply transicao-default uppercase font-bold font-unbounded;
+    @apply transition-default uppercase font-bold font-unbounded;
 }
 
 .page-tabs .tabs a.tab {
@@ -338,7 +338,7 @@ main .main-content .header .right-header .tooltip {
 }
 
 .page-tabs .tabs a.tab {
-    @apply transicao-default relative;
+    @apply transition-default relative;
 }
 
 .page-tabs .tabs a.tab:hover {

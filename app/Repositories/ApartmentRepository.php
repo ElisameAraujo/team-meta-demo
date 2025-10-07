@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Interfaces\ApartmentInterface;
 use App\Models\Admin\Apartment;
+use App\Models\Admin\ApartmentCoordinate;
 
 class ApartmentRepository implements ApartmentInterface
 {
@@ -20,6 +21,11 @@ class ApartmentRepository implements ApartmentInterface
     public function updateApartment($apartment, $data)
     {
         return $apartment->update($data);
+    }
+
+    public function updateCoordinates($coordinates)
+    {
+        return ApartmentCoordinate::updateOrCreate(['apartment_id' => $coordinates['apartment_id']], $coordinates);
     }
 
     public function deleteApartment($apartment)

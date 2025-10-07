@@ -70,4 +70,9 @@ class Apartment extends Model
         }
         return number_format($this->storage_size, 2, ',', '.') . ' m²';
     }
+
+    public function getMappedCoordinatesAttribute(): bool
+    {
+        return $this->coordinates()->exists();
+    }
 }

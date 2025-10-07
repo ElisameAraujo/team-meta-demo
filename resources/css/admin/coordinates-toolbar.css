@@ -1,0 +1,23 @@
+.coordinates-area {
+    @apply relative;
+}
+
+.coordinates-area svg {
+    @apply rounded-md;
+}
+
+.coordinates-area label.glass-effect {
+    @apply border border-white/30 transition-default;
+}
+
+.coordinates-area label.glass-effect:hover {
+    @apply bg-white/30;
+}
+
+.toolbar {
+    @apply absolute left-2 top-2 z-10;
+}
+
+.toolbar details li {
+    @apply flex gap-2;
+}

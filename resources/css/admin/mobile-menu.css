@@ -64,7 +64,7 @@
 }
 
 .menu-mobile nav.mobile-navigation .close-button button {
-    @apply p-3 rounded-full h-4 w-4 cursor-pointer transicao-default border border-transparent flex items-center justify-center;
+    @apply p-3 rounded-full h-4 w-4 cursor-pointer transition-default border border-transparent flex items-center justify-center;
 }
 
 .menu-mobile nav.mobile-navigation .close-button button:hover {
@@ -85,11 +85,11 @@
 }
 
 .mobile-header .go-to-site a {
-    @apply btn btn-outline btn-primary w-full transicao-default;
+    @apply btn btn-outline btn-primary w-full transition-default;
 }
 
 .mobile-header .profile-menu .button-profile {
-    @apply p-1 flex border-default gap-2 cursor-pointer w-[304px] items-center transicao-default;
+    @apply p-1 flex border-default gap-2 cursor-pointer w-[304px] items-center transition-default;
 }
 
 .mobile-header .profile-menu .button-profile:hover {
@@ -131,7 +131,7 @@
 }
 
 .menu-navigation .menu-list .menu-item {
-    @apply rounded p-2 bg-transparent text-gray-500 shadow-none cursor-pointer text-sm transicao-default relative mb-1;
+    @apply rounded p-2 bg-transparent text-gray-500 shadow-none cursor-pointer text-sm transition-default relative mb-1;
 }
 
 .menu-navigation .menu-list .menu-item:last-child {
@@ -163,7 +163,7 @@
 }
 
 .menu-list .submenu-mobile a.submenu-item {
-    @apply rounded p-2 cursor-pointer text-sm text-gray-500 transicao-default  w-full flex flex-col mb-1;
+    @apply rounded p-2 cursor-pointer text-sm text-gray-500 transition-default  w-full flex flex-col mb-1;
 }
 
 .menu-list .submenu-mobile a.submenu-item:hover,

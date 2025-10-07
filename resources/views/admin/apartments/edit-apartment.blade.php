@@ -46,7 +46,7 @@
                         <label class="input w-full">
                             <span class="label"><i class="fa-solid fa-ruler-combined"></i></span>
                             <input type="number" step="0.01" name="covered_area"
-                                value="{{ old('unit_code', $apartment->covered_area) }}" />
+                                value="{{ old('covered_area', $apartment->covered_area) }}" />
                         </label>
                     </fieldset>
 
@@ -54,7 +54,7 @@
                         <legend class="fieldset-legend">Ambients</legend>
                         <label class="input w-full">
                             <span class="label"><i class="fa-solid fa-bed"></i></span>
-                            <input type="number" name="ambients" value="{{ old('unit_code', $apartment->ambients) }}" />
+                            <input type="number" name="ambients" value="{{ old('ambients', $apartment->ambients) }}" />
                         </label>
                     </fieldset>
 
@@ -63,7 +63,7 @@
                         <label class="input w-full">
                             <span class="label"><i class="fa-solid fa-warehouse"></i></span>
                             <input type="number" step="0.01" name="storage_size"
-                                value="{{ old('unit_code', $apartment->storage_size) }}" />
+                                value="{{ old('storage_size', $apartment->storage_size) }}" />
                         </label>
                     </fieldset>
 
@@ -71,7 +71,7 @@
                         <legend class="fieldset-legend">Floor</legend>
                         <label class="input w-full">
                             <span class="label"><i class="fa-solid fa-elevator"></i></span>
-                            <input type="number" name="floor" value="{{ old('unit_code', $apartment->floor) }}" />
+                            <input type="number" name="floor" value="{{ old('floor', $apartment->floor) }}" />
                         </label>
                     </fieldset>
 
@@ -79,8 +79,7 @@
                         <legend class="fieldset-legend">Price</legend>
                         <label class="input w-full">
                             <span class="label">US$</span>
-                            <input type="number" step="0.01" name="price"
-                                value="{{ old('unit_code', $apartment->price) }}" />
+                            <input type="number" step="0.01" name="price" value="{{ old('price', $apartment->price) }}" />
                         </label>
                     </fieldset>
 

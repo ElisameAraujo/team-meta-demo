@@ -26,7 +26,7 @@
     @apply grid grid-cols-12 gap-2;
 }
 
-@utility transicao-default {
+@utility transition-default {
     transition: ease-in-out 0.25s;
 }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Interfaces\ApartmentInterface;
 use App\Models\Admin\Apartment;
+use App\Models\Admin\ApartmentCoordinate;
 use App\Models\Admin\ApartmentStatus;
 use App\Models\Admin\Building;
 use App\Models\Admin\Section;
@@ -65,6 +66,27 @@ class ApartmentController extends Controller
         $this->apartment->updateApartment($apartment, $data);
 
         return redirect()->back()->with('update', 'Apartment updated successfully');
+    }
+
+    public function editCoordinates(Building $building, Apartment $apartment)
+    {
+        $apartmentsCoordinates = ApartmentCoordinate::with('apartment')
+            ->whereHas('apartment', function ($query) use ($apartment) {
+                $query->where('section_id', $apartment->section_id)
+                    ->where('building_id', $apartment->building_id);
+            })
+            ->get();
+
+
+        return view('admin.apartments.edit-coordinates', compact('building', 'apartment', 'apartmentsCoordinates'));
+    }
+
+    public function updateCoordinates(Request $request)
+    {
+        $data = $request->except('_token', '_method');
+        $this->apartment->updateCoordinates($data);
+
+        return redirect()->back()->with('update', 'Apartment coordinates updated successfully');
     }
 
     public function deleteApartment(Apartment $apartment)

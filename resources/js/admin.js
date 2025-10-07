@@ -4,6 +4,7 @@ import { updateClock } from "./admin/clock";
 import { themeChange } from "theme-change";
 import { fileUploadPreview } from "./admin/fileUploadImagePreview";
 import { fileUploadUpdatePreview } from "./admin/fileUpdateImagePreview";
+import { interactiveBuildingPolygon, interactiveBuildingRect } from "./admin/interactive-building";
 
 /**
  * Axios
@@ -36,6 +37,8 @@ new themeChange();
  */
 new fileUploadPreview();
 new fileUploadUpdatePreview();
+new interactiveBuildingPolygon();
+new interactiveBuildingRect();
 
 /**
  * Hide Notifications

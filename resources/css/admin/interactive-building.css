@@ -1,0 +1,52 @@
+/** Interactive Building **/
+.interactive-building rect,
+.interactive-building polygon {
+    @apply stroke-transparent cursor-pointer fill-white/15;
+    z-index: 1000;
+    pointer-events: all;
+    transition: stroke 0.3s ease, fill 0.3s ease;
+}
+
+.interactive-building rect:hover,
+.interactive-building polygon:hover {
+    @apply stroke-green-600 stroke-2 fill-green-400/50;
+}
+
+.interactive-building rect.sold,
+.interactive-building rect.sold:hover,
+.interactive-building polygon.sold,
+.interactive-building polygon.sold:hover {
+    @apply border-white/30 fill-red-500/20 stroke-red-600 stroke-2;
+}
+
+.interactive-building rect.actual-position {
+    @apply fill-green-500/20 stroke-2 stroke-green-600;
+}
+
+.interactive-building rect.reserved,
+.interactive-building polygon.reserved {
+    @apply border-white/30 fill-yellow-500/20;
+}
+
+.interactive-building rect.reserved:hover,
+.interactive-building polygon.reserved:hover {
+    @apply stroke-yellow-600 stroke-2;
+}
+
+.tooltip-card {
+    @apply absolute z-[1000] px-4 py-3 text-white border border-white/30 pointer-events-none glass-effect;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.2s ease;
+}
+
+.tooltip-card span {
+    @apply flex gap-1 font-bold;
+}
+
+.tooltip-card span p {
+    @apply font-normal;
+}
+
+.tooltip-card h3.label-tooltip {
+    @apply font-bold;
+}

@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call(StatusApartmentSeeder::class);
         $this->call(BuildingSeeder::class);
         $this->call(ApartmentSeeder::class);
+        $this->call(ApartmentCoordinatesSeeder::class);
         $this->call(SectionSeeder::class);
     }
 }

@@ -1,0 +1,261 @@
+body {
+    font-family: "Poppins", sans-serif;
+}
+
+.container-app {
+    @apply absolute h-screen w-screen overflow-hidden;
+}
+
+/*** Buildings ***/
+.building-overview {
+    @apply absolute cursor-pointer border border-white/30 w-fit p-2 px-6 rounded text-white uppercase glass-effect;
+}
+
+.building-overview p {
+    @apply font-bold text-base;
+}
+
+.building-overview h4 {
+    @apply text-sm;
+}
+
+/*** Navigation ***/
+.navigation {
+    @apply w-fit text-white absolute z-10 top-10 left-20;
+}
+
+.navigation h1 {
+    @apply text-2xl font-semibold uppercase text-gray-300 flex items-center gap-2 cursor-pointer;
+}
+
+.navigation h1 i,
+.navigation h1 svg {
+    @apply text-[16px];
+}
+
+.navigation > .complex-name a {
+    @apply transition-default;
+
+    &:hover {
+        @apply text-white;
+    }
+}
+
+.navigation .buildings-pills {
+    @apply flex items-center gap-2 mt-4;
+}
+
+.navigation .buildings-pills > .building-pill {
+    @apply glass-effect px-4 py-3 rounded-full text-xs cursor-pointer transition-default uppercase border border-white/30;
+}
+
+.navigation .buildings-pills > .building-pill:hover,
+.navigation .buildings-pills > .building-pill.active,
+.navigation .apartments-available > .section:hover,
+.navigation .apartments-available > .section.active {
+    @apply bg-white/20 border-white;
+}
+
+.navigation .apartments-available {
+    @apply flex items-center gap-2 mt-4;
+}
+
+.navigation .apartments-available > .section {
+    @apply glass-effect border border-white/30 px-4 py-2 rounded-full text-[9.5px] cursor-pointer transition-default uppercase z-100;
+}
+
+/*** Arrow Navigation ***/
+.arrow-nav {
+    @apply absolute top-1/2 left-0 w-full flex items-center justify-between px-4 text-white z-10 text-xl;
+}
+
+.arrow-nav .arrow-left,
+.arrow-nav .arrow-right {
+    @apply border border-transparent p-1 rounded-full transition-default;
+}
+
+.arrow-nav .arrow-left:hover,
+.arrow-nav .arrow-right:hover {
+    @apply glass-effect border border-white/30 p-1 rounded-full transition-default cursor-pointer shadow-md;
+}
+
+/*** Side Menu ***/
+.side-menu {
+    @apply text-white absolute transition-all duration-500 ease-in-out;
+}
+
+.side-menu.show {
+    @apply z-10 top-40 left-20;
+}
+
+.side-menu.hide {
+    @apply z-10 top-40 -left-140;
+}
+
+.side-menu .menu-context {
+    @apply flex items-center gap-2 uppercase text-xs font-bold relative left-138 w-fit top-23 cursor-pointer;
+}
+
+.side-menu .arrow-menu {
+    @apply glass-effect border border-white/30 px-1 py-2 rounded-r-full text-xs cursor-pointer transition-default;
+}
+
+.arrow-menu::before {
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.side-menu .arrow-menu.right-arrow::before {
+    content: "\f054";
+    font-family: "FontAwesome";
+    @apply font-normal px-1.5;
+}
+
+.side-menu .arrow-menu.left-arrow::before {
+    content: "\f053";
+    font-family: "FontAwesome";
+    @apply font-normal px-1.5;
+}
+
+.side-menu .arrow-menu:hover {
+    @apply bg-white/30 border-white;
+}
+
+.side-menu .side-menu-container {
+    @apply glass-effect rounded-xl w-fit min-h-80 border border-white/30;
+}
+
+.side-menu .side-menu-container .side-menu-header {
+    @apply p-4 rounded-t-xl text-xs flex items-center justify-between border-b border-b-white/30 uppercase;
+}
+
+.side-menu .side-menu-container .side-menu-header .favorites {
+    @apply flex items-center gap-2 cursor-pointer;
+}
+
+.side-menu .side-menu-container .side-menu-content {
+    @apply p-4;
+}
+
+.side-menu-header .filters {
+    @apply text-gray-400 transition-default flex items-center gap-1;
+}
+
+.side-menu-header .filters:hover {
+    @apply cursor-pointer text-white;
+}
+
+.side-menu-header .favorites input[type="checkbox"] {
+    @apply border-white bg-transparent;
+
+    &:checked {
+        @apply border-white bg-white;
+    }
+
+    &::before {
+        @apply bg-white;
+    }
+
+    &:checked::before {
+        @apply bg-black;
+    }
+}
+
+.side-menu .side-menu-container .side-menu-content h1 {
+    @apply flex justify-between uppercase items-center text-xs;
+}
+
+.side-menu .side-menu-container .side-menu-content h1 > .content-header {
+    @apply flex items-center gap-2;
+}
+/*** Side Menu filters ***/
+.side-menu-filters {
+    @apply default-grid p-4 border-b border-b-white/30 overflow-hidden transition-all duration-500 ease-in-out py-0;
+    max-height: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.side-menu-filters.open {
+    max-height: 500px;
+    opacity: 1;
+    pointer-events: auto;
+    @apply py-4;
+}
+
+.side-menu-filters h1 {
+    @apply uppercase text-xs mb-2 text-gray-300;
+}
+
+/** Dropdown **/
+.content-header .dropdown .btn-open {
+    @apply mb-4 cursor-pointer!;
+}
+
+.content-header .dropdown ul.dropdown-content {
+    @apply bg-white text-black z-1 w-52 p-2 shadow-sm mt-2;
+}
+
+.content-header .dropdown ul.dropdown-content li.menu-header {
+    @apply text-xs font-bold uppercase text-gray-500 mb-2;
+}
+
+.content-header .dropdown ul.dropdown-content li.last {
+    @apply border-b border-b-gray-300 pb-2 mb-2;
+}
+
+/** Apartments List **/
+.apartments-list {
+    @apply mt-4 overflow-y-scroll h-80 text-sm p-0.5;
+}
+
+.apartments-list > .apartment-item {
+    @apply flex items-center mb-1 cursor-pointer w-full justify-between border border-white/30 p-4 rounded transition-default;
+}
+
+.apartments-list > .apartment-item:hover {
+    @apply bg-white/20 border-white/75;
+}
+
+.apartment-item .details {
+    @apply text-gray-200 flex justify-self-end gap-6;
+}
+
+.apartment-item .detail-item {
+    @apply col-span-2;
+}
+
+.apartment-item .detail-item > .detail-label {
+    @apply uppercase text-xs font-normal;
+}
+
+.apartments-list > .apartment-item .detail-item > .detail-value {
+    @apply text-sm font-bold;
+}
+
+/*** Utilities ***/
+.tag {
+    @apply bg-white/15 px-2 rounded font-normal uppercase text-[11px];
+}
+
+.tag-alt {
+    @apply glass-effect px-2.5 py-1 rounded-full text-xs cursor-pointer transition-default uppercase border border-white/30;
+    &:hover {
+        @apply bg-white/20 border-white;
+    }
+}
+
+.page-background img {
+    @apply w-screen h-screen object-cover;
+}
+
+#transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 1);
+    z-index: 9999;
+    pointer-events: none;
+    transform: translateY(100%);
+}

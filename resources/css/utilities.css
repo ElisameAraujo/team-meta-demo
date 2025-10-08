@@ -42,20 +42,10 @@
     @apply content-empty block w-16 h-1 bg-primary mt-2;
 }
 
-/** Utilitários com Cor Terciária (#FFCC30) ***/
-@utility text-tertiary {
-    @apply text-[#FFCC30];
+@utility default-grid {
+    @apply grid grid-cols-12 gap-4;
 }
 
-@utility bg-tertiary {
-    @apply bg-[#FFCC30];
-}
-
-@utility border-tertiary {
-    border-color: #ffcc30;
-}
-
-/** Utilitários Especiais **/
 @utility content-empty {
     content: "";
 }

@@ -399,35 +399,6 @@ main .main-content .header .right-header .tooltip {
     @apply checkbox checkbox-xs checkbox-primary bg-secondary border-secondary;
 }
 
-/** Botões de Ação ***/
-.page-content .dropdown > li.aprovar-item:hover,
-.page-content .dropdown > li.lista-de-faixas:hover,
-.page-content .dropdown > li.ativo:hover {
-    @apply bg-success rounded text-white;
-}
-
-.page-content .dropdown > li.resumo:hover {
-    @apply bg-info rounded text-white;
-}
-
-.page-content .dropdown > li.inativo:hover,
-.page-content .dropdown > li.singles-album:hover {
-    @apply bg-warning rounded text-black;
-}
-
-.page-content .dropdown > li.editar-item:hover {
-    @apply bg-[#8a2ba2] rounded text-white;
-}
-
-.page-content .dropdown > li.excluir-item:hover {
-    @apply bg-error rounded text-white;
-}
-
-.notification {
-    max-height: 200px;
-    overflow: hidden;
-}
-
 /*** Upload With Updated Image ***/
 .update-image-area {
     @apply col-span-3;
@@ -447,4 +418,25 @@ main .main-content .header .right-header .tooltip {
 
 .update-image-area > .upload-new-image {
     @apply mt-2;
+}
+
+/** Gallery **/
+.image-gallery {
+    @apply grid-default;
+}
+
+.image-gallery .image-item {
+    @apply col-span-12 lg:col-span-3 md:col-span-4 sm:col-span-6 border border-black/10 rounded-md p-2;
+}
+
+.image-gallery .image-item h1 {
+    @apply font-normal py-2 font-unbounded tracking-wide;
+}
+
+.image-gallery .image-item .image-thumb img {
+    @apply rounded-md;
+}
+
+.image-gallery .image-item button {
+    @apply btn btn-primary w-full;
 }

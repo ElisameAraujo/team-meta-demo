@@ -26,7 +26,12 @@ Route::prefix('admin/buildings')->group(function () {
 
 Route::prefix('admin/buildings')->group(function () {
     Route::put('update-building/{building}', [BuildingController::class, 'updateBuilding'])->name('admin.buildings.update-building');
-    Route::put('update-building-image/{building}', [BuildingController::class, 'updateBuildingImage'])->name('admin.buildings.update-building-image');
+
+    Route::put('update-building-image-overview/{building}', [BuildingController::class, 'buildingOverviewImage'])
+        ->name('admin.buildings.update-building-image-overview');
+
+    Route::put('update-building-gallery/{building}', [BuildingController::class, 'buildingGalleryImageUpdate'])
+        ->name('admin.buildings.update-building-gallery');
 });
 
 /**

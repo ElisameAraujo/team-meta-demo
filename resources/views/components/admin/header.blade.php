@@ -1,6 +1,3 @@
-@php
-    use App\Helpers\DateHelper;
-@endphp
 <div class="header">
     <div class="menu-mobile">
         <button class="btn btn-ghost open-menu" id="open-menu">

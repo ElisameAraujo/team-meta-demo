@@ -5,7 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Interfaces\BuildingInterface;
 use App\Models\Admin\Building;
+use App\Models\Admin\BuildingGallery;
+use App\Models\Admin\Section;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Bus;
+use Illuminate\Support\Str;
 
 class BuildingController extends Controller
 {
@@ -25,8 +29,25 @@ class BuildingController extends Controller
 
     public function editBuilding(Building $building)
     {
-        return view('admin.buildings.edit-building', compact('building'));
+        $sections = Section::all();
+        $gallery = BuildingGallery::where('building_id', $building->id)->get();
+
+        // Mapeia cada seção com sua imagem correspondente
+        $sectionGallery = $sections->map(function ($section) use ($gallery) {
+            $image = $gallery->firstWhere('section_id', $section->id);
+            return [
+                'section' => $section,
+                'image' => $image,
+            ];
+        });
+
+        return view('admin.buildings.edit-building', [
+            'building' => $building,
+            'sectionGallery' => $sectionGallery,
+        ]);
     }
+
+
 
     /**
      * Management
@@ -35,9 +56,7 @@ class BuildingController extends Controller
     public function saveBuilding(Request $request)
     {
         $data = $request->except('_token', 'background');
-        $image = $request->background;
-
-        $this->building->saveBuilding($data, $image);
+        $this->building->saveBuilding($data);
 
         return redirect()->route('admin.buildings')->with('success', 'Building added successfully.');
     }
@@ -50,15 +69,29 @@ class BuildingController extends Controller
         return redirect()->back()->with('success', 'Building updated successfully.');
     }
 
-    public function updateBuildingImage(Building $building, Request $request)
+    public function buildingOverviewImage(Building $building, Request $request)
     {
-        if ($request->hasFile('background')) {
-            $this->building->updateBuildingImage($building, $request->background);
+
+        if ($request->hasFile('building_image')) {
+            $this->building->updateBuildingOverviewImage($building, $request->building_image);
         } else {
             return redirect()->back()->with('error', 'No image file selected');
         }
 
-        return redirect()->back()->with('update', 'Building image updated successfully.');
+        return redirect()->back()->with('update', 'Building overview image updated successfully.');
+    }
+
+    public function buildingGalleryImageUpdate(Building $building, Request $request)
+    {
+        $data = (object) $request->except('_token');
+
+        if ($request->hasFile('building_section')) {
+            $this->building->updateSectionImage($building, $data);
+        } else {
+            return redirect()->back()->with('error', 'No image file selected');
+        }
+
+        return redirect()->back()->with('update', 'Building image of ' . Str::ucfirst($request->type) . ' updated successfully.');
     }
 
     public function removeBuilding(Building $building)

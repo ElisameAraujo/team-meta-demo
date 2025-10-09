@@ -22,6 +22,23 @@ class Building extends Model
         return $this->hasMany(Apartment::class);
     }
 
+    public function gallery()
+    {
+        return $this->hasMany(BuildingGallery::class);
+    }
+
+    public function overviewImage()
+    {
+        return $this->hasOne(BuildingGallery::class)->whereNull('section_id')
+            ->where('type', 'overview');
+    }
+
+    public function sectionImages()
+    {
+        return $this->hasMany(BuildingGallery::class)->whereNotNull('section_id');
+    }
+
+
     public function getFormattedCreatedAtAttribute()
     {
         return Carbon::parse($this->created_at)->format('d/m/Y H:i:s');

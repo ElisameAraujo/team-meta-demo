@@ -28,7 +28,6 @@
                             <tr>
                                 <th>#</th>
                                 <th>Building Name</th>
-                                <th>Slide File</th>
                                 <th>Slug</th>
                                 <th>Apartments</th>
                                 <th>Created at</th>
@@ -41,7 +40,6 @@
                                 <tr>
                                     <th>{{ $building->id }}</th>
                                     <td>{{ $building->building_name }}</td>
-                                    <td>{{ $building->background }}</td>
                                     <td>{{ $building->building_slug }}</td>
                                     <td>{{ $building->apartments_available }}</td>
                                     <td>{{ $building->formatted_created_at }}</td>

@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('buildings', function (Blueprint $table) {
             $table->id();
             $table->string('building_name')->unique();
-            $table->string('background');
             $table->string('building_slug');
             $table->integer('apartments_available')->unsigned();
             $table->timestamps();

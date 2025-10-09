@@ -6,6 +6,8 @@ import { fileUploadPreview } from "./admin/fileUploadImagePreview";
 import { fileUploadUpdatePreview } from "./admin/fileUpdateImagePreview";
 import { interactiveBuildingPolygon, interactiveBuildingRect } from "./admin/interactive-building";
 
+import { setupGalleryModal } from "./admin/dataFromGallery";
+
 /**
  * Axios
  */
@@ -36,7 +38,8 @@ new themeChange();
  * Global
  */
 new fileUploadPreview();
-new fileUploadUpdatePreview();
+new setupGalleryModal();
+//new fileUploadUpdatePreview();
 new interactiveBuildingPolygon();
 new interactiveBuildingRect();
 

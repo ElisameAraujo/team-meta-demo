@@ -21,43 +21,10 @@
             </h1>
         </div>
         @include('components.flash-messages')
-        <div class="page-picture-update">
-            <form action="{{ route('admin.buildings.update-building-image', $building->id) }}" method="post"
-                enctype="multipart/form-data">
-                @csrf
-                @method('PUT')
-                <div class="update-image-area">
-                    <div class="current-image">
-                        @if ($building->background == NULL || !File::exists('storage/buildings/' . $building->background))
-                            <div class="p-8 no-image" id="current-image-preview">
-                                Image Not Found
-                            </div>
-                        @else
-                            <img src="{{ asset('storage/buildings/' . $building->background) }}" id="current-image-preview">
-                        @endif
-                    </div>
-
-                    <div class="image-preview hidden">
-                        <img id="preview">
-                    </div>
-
-                    <div class="change-current-image">
-                        <button id="change-image" class="btn btn-primary w-full">
-                            <i class="fa-solid fa-arrows-rotate"></i> Change Current Image/Video
-                        </button>
-
-                        <input type="file" name="background" id="background" data-label="update-image">
-                    </div>
-
-                    <div class="upload-new-image hidden">
-                        <button type="submit" id="upload-image" class="btn btn-primary w-full">
-                            <i class="fa-solid fa-cloud-arrow-up"></i> Update Image
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="page-forms">
+        @include('components.admin.building-overview-image')
+        @include('components.admin.building-gallery')
+        <div class="col-span-12 page-header">
+            <h1>Building Details</h1>
             <form action="{{ route('admin.buildings.update-building', $building->id) }}" method="POST">
                 @csrf
                 @method('PUT')
@@ -79,6 +46,57 @@
                     <i class="fa-solid fa-arrows-rotate"></i> Update Building
                 </button>
             </form>
+        </div>
+        <div class="col-span-12 page-header mt-4">
+            <h1>Building Gallery</h1>
+            <div class="image-gallery">
+                <div class="image-item">
+                    <div class="image-thumb">
+                        @if (!Utilities::exists('buildings', $building->overviewImage->building_image ?? null))
+                            <img src="{{ asset('img/placeholders/building-image-not-found.jpg') }}" alt="">
+                        @else
+                            <img src="{{ Utilities::url('buildings', $building->overviewImage->building_image ?? null) }}"
+                                id="current-image-preview">
+                        @endif
+                    </div>
+                    <div class="image-actions">
+                        <h1>Overview</h1>
+                        <button onclick="building_overview.showModal()">
+                            <i class="fa-solid fa-arrows-rotate"></i> Change Image/Video
+                        </button>
+                    </div>
+                </div>
+                @foreach ($sectionGallery as $item)
+                    @php
+                        $section = $item['section'];
+                        $image = $item['image'];
+                        $imagePath = $image?->building_image;
+                        $imageExists = Utilities::exists('buildings', $imagePath);
+                    @endphp
+
+                    <div class="image-item">
+                        <div class="image-thumb">
+                            @if ($imageExists)
+                                <img src="{{ Utilities::url('buildings', $imagePath) }}" />
+                            @else
+                                <img src="{{ asset('img/placeholders/building-image-not-found.jpg') }}" />
+                            @endif
+                        </div>
+
+                        <div class="image-actions">
+                            <h1>{{ $section->section_name }}</h1>
+                            <button data-building-id="{{ $building->id }}" data-section-id="{{ $section->id }}"
+                                data-section-slug="{{ $section->section_slug }}"
+                                data-image-url="{{ $imageExists ? Utilities::url('buildings', $imagePath) : '' }}"
+                                data-gallery-id="{{ $image?->id }}" onclick="building_gallery.showModal()"
+                                class="open-gallery-modal">
+                                <i class="fa-solid fa-arrows-rotate"></i> Change Image/Video
+                            </button>
+                        </div>
+                    </div>
+                @endforeach
+
+            </div>
         </div>
     </div>
 @endsection

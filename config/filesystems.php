@@ -55,9 +55,17 @@ return [
             'throw' => false,
         ],
 
-        'home-slider' => [
+        'apartments' => [
             'driver' => 'local',
-            'root' => storage_path('app/public/home-slider'),
+            'root' => storage_path('app/public/apartments'),
+            'url' => env('APP_URL') . '/storage/public/',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
+        'complex' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/complex'),
             'url' => env('APP_URL') . '/storage/public/',
             'visibility' => 'public',
             'throw' => false,

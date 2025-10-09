@@ -123,4 +123,15 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Aliases
+    |--------------------------------------------------------------------------
+    */
+    'aliases' => [
+        'Utilities' => App\Helpers\Utilities::class,
+        'DateHelper' => App\Helpers\DateHelper::class
+    ],
+
+
 ];

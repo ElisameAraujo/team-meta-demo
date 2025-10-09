@@ -3,7 +3,6 @@ import { subMenu } from "./admin/nav/submenu";
 import { updateClock } from "./admin/clock";
 import { themeChange } from "theme-change";
 import { fileUploadPreview } from "./admin/fileUploadImagePreview";
-import { fileUploadUpdatePreview } from "./admin/fileUpdateImagePreview";
 import { interactiveBuildingPolygon, interactiveBuildingRect } from "./admin/interactive-building";
 
 import { setupGalleryModal } from "./admin/dataFromGallery";
@@ -39,7 +38,6 @@ new themeChange();
  */
 new fileUploadPreview();
 new setupGalleryModal();
-//new fileUploadUpdatePreview();
 new interactiveBuildingPolygon();
 new interactiveBuildingRect();
 

@@ -29,27 +29,6 @@ class BuildingRepository implements BuildingInterface
         return $building->update($dataArray);
     }
 
-    public function updateBuildingOverviewImage(Building $building, $image): bool
-    {
-        $oldOverview = $building->gallery()->where('type', 'overview')->first();
-
-        if ($oldOverview && Storage::disk('buildings')->exists($oldOverview->building_image)) {
-            Storage::disk('buildings')->delete($oldOverview->building_image);
-        }
-
-        // Salva nova imagem no disco
-        $newPath = $this->storeImage($image, 'buildings', $building->building_slug);
-
-        // Atualiza ou cria o registro na galeria
-        $building->gallery()->updateOrCreate(
-            ['type' => 'overview'], // Condição de busca
-            ['building_image' => $newPath] // Dados a atualizar ou criar
-        );
-
-        return true;
-    }
-
-
     public function updateSectionImage(Building $building, object $data): bool
     {
         // Validação mínima dos dados esperados

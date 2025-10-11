@@ -21,7 +21,6 @@
             </h1>
         </div>
         @include('components.flash-messages')
-        @include('components.admin.building-overview-image')
         @include('components.admin.building-gallery')
         <div class="col-span-12 page-header">
             <h1>Building Details</h1>
@@ -48,24 +47,8 @@
             </form>
         </div>
         <div class="col-span-12 page-header mt-4">
-            <h1>Building Gallery</h1>
+            <h1>Building Overview Gallery</h1>
             <div class="image-gallery">
-                <div class="image-item">
-                    <div class="image-thumb">
-                        @if (!Utilities::exists('buildings', $building->overviewImage->building_image ?? null))
-                            <img src="{{ asset('img/placeholders/building-image-not-found.jpg') }}" alt="">
-                        @else
-                            <img src="{{ Utilities::url('buildings', $building->overviewImage->building_image ?? null) }}"
-                                id="current-image-preview">
-                        @endif
-                    </div>
-                    <div class="image-actions">
-                        <h1>Overview</h1>
-                        <button onclick="building_overview.showModal()">
-                            <i class="fa-solid fa-arrows-rotate"></i> Change Image/Video
-                        </button>
-                    </div>
-                </div>
                 @foreach ($sectionGallery as $item)
                     @php
                         $section = $item['section'];

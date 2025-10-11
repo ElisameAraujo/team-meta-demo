@@ -69,18 +69,6 @@ class BuildingController extends Controller
         return redirect()->back()->with('success', 'Building updated successfully.');
     }
 
-    public function buildingOverviewImage(Building $building, Request $request)
-    {
-
-        if ($request->hasFile('building_image')) {
-            $this->building->updateBuildingOverviewImage($building, $request->building_image);
-        } else {
-            return redirect()->back()->with('error', 'No image file selected');
-        }
-
-        return redirect()->back()->with('update', 'Building overview image updated successfully.');
-    }
-
     public function buildingGalleryImageUpdate(Building $building, Request $request)
     {
         $data = (object) $request->except('_token');

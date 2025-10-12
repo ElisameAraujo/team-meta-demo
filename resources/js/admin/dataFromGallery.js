@@ -1,32 +1,36 @@
 export function setupGalleryModal() {
     const buttons = document.querySelectorAll(".open-gallery-modal");
-    const modal = document.getElementById("building_gallery");
-
-    const currentImageContainer = modal.querySelector(".current-image");
-    const sectionIdInput = modal.querySelector("#modal-section-id");
-    const sectionSlugInput = modal.querySelector("#modal-section-slug");
-    const galleryIdInput = modal.querySelector("#modal-gallery-id");
 
     buttons.forEach((button) => {
         button.addEventListener("click", () => {
-            const sectionId = button.dataset.sectionId;
-            const sectionSlug = button.dataset.sectionSlug;
-            const imageUrl = button.dataset.imageUrl;
-            const galleryID = button.dataset.galleryId;
+            const targetId = button.dataset.target;
+            const modal = document.getElementById(targetId);
+            const mode = button.dataset.mode || "update"; // default para update
 
-            // Atualiza imagem atual
-            if (imageUrl) {
-                currentImageContainer.innerHTML = `<img src="${imageUrl}" id="current-image-preview">`;
-            } else {
-                currentImageContainer.innerHTML = `<div class="p-8 no-image" id="current-image-preview">Image Not Selected</div>`;
+            if (!modal) return;
+
+            const currentImageContainer = modal.querySelector(".current-image");
+            const sectionIdInput = modal.querySelector("[data-field='section-id']");
+            const sectionSlugInput = modal.querySelector("[data-field='section-slug']");
+            const galleryIdInput = modal.querySelector("[data-field='gallery-id']");
+
+            if (mode === "update") {
+                const sectionId = button.dataset.sectionId;
+                const sectionSlug = button.dataset.sectionSlug;
+                const imageUrl = button.dataset.imageUrl;
+                const galleryID = button.dataset.galleryId;
+
+                currentImageContainer.innerHTML = imageUrl ? `<img src="${imageUrl}" data-preview>` : `<div class="p-8 no-image" data-preview>Image Not Selected</div>`;
+
+                if (sectionIdInput) sectionIdInput.value = sectionId;
+                if (sectionSlugInput) sectionSlugInput.value = sectionSlug;
+                if (galleryIdInput) galleryIdInput.value = galleryID;
+            } else if (mode === "add") {
+                currentImageContainer.innerHTML = `<div class="p-8 no-image" data-preview>Image Not Selected</div>`;
+                if (sectionIdInput) sectionIdInput.value = "";
+                if (sectionSlugInput) sectionSlugInput.value = "";
+                if (galleryIdInput) galleryIdInput.value = "";
             }
-
-            // Atualiza campos ocultos
-            if (sectionIdInput) sectionIdInput.value = sectionId;
-            if (sectionSlugInput) sectionSlugInput.value = sectionSlug;
-            if (galleryIdInput) galleryIdInput.value = galleryID;
-
-            // Atualiza action do form se necessário
         });
     });
 }

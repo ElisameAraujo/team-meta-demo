@@ -47,9 +47,9 @@
         <ul class="menu-list">
             <li
                 class="menu-item {{ request()->is('admin/home-configuration/*') || request()->is('admin/home-configuration') ? 'active' : '' }}">
-                <a href="{{ route('admin.home-configuration') }}">
-                    <i class="fa-solid fa-house"></i>
-                    <span>Home Configuration</span>
+                <a href="{{ route('admin.complex-configuration') }}">
+                    <i class="fa-solid fa-city"></i>
+                    <span>Complex Configuration</span>
                 </a>
             </li>
 

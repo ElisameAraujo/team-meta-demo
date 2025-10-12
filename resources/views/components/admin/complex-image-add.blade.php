@@ -1,9 +1,22 @@
-<dialog id="building_gallery" class="modal">
+<dialog id="complex_image_add" class="modal">
     <div class="modal-box">
-        <form action="{{ route('admin.buildings.update-building-gallery', ['building' => $building->id]) }}"
-            method="post" enctype="multipart/form-data">
-            @method('PUT')
+        <form action="{{ route('admin.complex.add-complex-image-overview') }}" method="post"
+            enctype="multipart/form-data">
             @csrf
+            <fieldset class="fieldset">
+                <legend class="fieldset-legend">Section</legend>
+                <select class="select w-full" name="type">
+                    <option value="complex">Complex Overview</option>
+                    @foreach ($sections as $section)
+                        <option value="{{ $section->section_slug }}">{{ $section->section_name }}</option>
+                    @endforeach
+                </select>
+            </fieldset>
+
+            <fieldset class="fieldset">
+                <legend class="fieldset-legend">Image Complex</legend>
+            </fieldset>
+
             <div class="update-image-area" data-gallery>
                 <div class="current-image">
                     <div class="p-8 no-image" data-preview>Image Not Selected</div>
@@ -17,7 +30,7 @@
                     <button type="button" class="btn btn-primary w-full" data-change-trigger>
                         Select an Image/Video
                     </button>
-                    <input type="file" name="building_section" data-file-input data-gallery>
+                    <input type="file" name="complex_overview" data-file-input data-gallery>
                 </div>
 
                 <div class="upload-new-image hidden">
@@ -26,10 +39,6 @@
                     </button>
                 </div>
             </div>
-
-            <input type="hidden" name="section_id" data-field="section-id">
-            <input type="hidden" name="type" data-field="section-slug">
-            <input type="hidden" name="gallery_id" data-field="gallery-id">
         </form>
     </div>
     <form method="dialog" class="modal-backdrop">

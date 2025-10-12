@@ -8,13 +8,24 @@ use Illuminate\Support\Facades\Storage;
 class Utilities
 {
 
-    public static function exists(string $disk, ?string $path): bool
+    public static function imageExists(string $disk, ?string $path): bool
     {
         return !empty($path) && Storage::disk($disk)->exists($path);
     }
 
-    public static function url(string $disk, ?string $path): ?string
+    /**
+     * Summary of assetURL
+     * @param string $disk Represents the disk defined in 'filesystems.php' file
+     * @param mixed $path Receive a full path of image from 'storage' folder
+     * @param mixed $placeholder Defines a fallback when a image not found in the $path variable
+     * @return string
+     */
+    public static function assetURL(string $disk, ?string $path, ?string $placeholder = NULL): ?string
     {
-        return self::exists($disk, $path) ? asset('storage/' . $disk . '/' . $path) : null;
+        if (self::imageExists($disk, $path)) {
+            return asset("storage/{$disk}/{$path}");
+        }
+
+        return asset($placeholder);
     }
 }

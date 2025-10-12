@@ -39,9 +39,9 @@
         <nav>
             <ul class="menu-list">
                 <li class="menu-item {{ request()->is('admin') || request()->is('admin/new-slide') ? 'active' : '' }}">
-                    <a href="{{ route('admin.home-configuration') }}">
-                        <i class="fa-solid fa-house"></i>
-                        <span>Home Configuration</span>
+                    <a href="{{ route('admin.complex-configuration') }}">
+                        <i class="fa-solid fa-city"></i>
+                        <span>Complex Configuration</span>
                     </a>
                 </li>
 

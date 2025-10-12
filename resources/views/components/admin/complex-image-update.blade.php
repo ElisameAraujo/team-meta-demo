@@ -1,7 +1,7 @@
-<dialog id="building_gallery" class="modal">
+<dialog id="complex_image_update" class="modal">
     <div class="modal-box">
-        <form action="{{ route('admin.buildings.update-building-gallery', ['building' => $building->id]) }}"
-            method="post" enctype="multipart/form-data">
+        <form action="{{ route('admin.complex.update-complex-image-overview') }}" method="post"
+            enctype="multipart/form-data">
             @method('PUT')
             @csrf
             <div class="update-image-area" data-gallery>
@@ -17,7 +17,7 @@
                     <button type="button" class="btn btn-primary w-full" data-change-trigger>
                         Select an Image/Video
                     </button>
-                    <input type="file" name="building_section" data-file-input data-gallery>
+                    <input type="file" name="complex_overview" data-file-input data-gallery>
                 </div>
 
                 <div class="upload-new-image hidden">

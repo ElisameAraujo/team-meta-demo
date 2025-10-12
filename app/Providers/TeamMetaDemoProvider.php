@@ -4,8 +4,8 @@ namespace App\Providers;
 
 use App\Interfaces\Web\BuildingInterfaceWeb;
 use App\Repositories\Web\BuildingRepositoryWeb;
-use App\Interfaces\{ApartmentInterface, ApartmentCoordinatesInterface, BuildingInterface};
-use App\Repositories\{ApartmentCoordinatesRepository, ApartmentRepository, BuildingRepository};
+use App\Interfaces\{ApartmentInterface, ApartmentCoordinatesInterface, BuildingInterface, ComplexInterface};
+use App\Repositories\{ApartmentCoordinatesRepository, ApartmentRepository, BuildingRepository, ComplexRepository};
 use Illuminate\Support\ServiceProvider;
 
 class TeamMetaDemoProvider extends ServiceProvider
@@ -14,6 +14,7 @@ class TeamMetaDemoProvider extends ServiceProvider
         ApartmentInterface::class => ApartmentRepository::class,
         ApartmentCoordinatesInterface::class => ApartmentCoordinatesRepository::class,
         BuildingInterface::class => BuildingRepository::class,
-        BuildingInterfaceWeb::class => BuildingRepositoryWeb::class
+        BuildingInterfaceWeb::class => BuildingRepositoryWeb::class,
+        ComplexInterface::class => ComplexRepository::class
     ];
 }

@@ -1,10 +1,10 @@
 <div class="navigation">
     <h1 class="complex-name">
-        @if (!request()->is('/'))
+        @if (request()->is(''))
             <a href="{{ route('web.index') }}">
                 <i class="fa-solid fa-arrow-left"></i> {{ $building->building_name }}
             </a>
-        @else
+        @elseif(request()->is('complex/section/*/overview') || request()->is('/'))
             {{ config('complex-config.complex-name') }}
         @endif
     </h1>
@@ -18,8 +18,14 @@
         @endforeach
     </div>
     <div class="apartments-available">
+        <span class="section {{ (request()->is('/')) ? 'active' : '' }}">
+            <a href="{{ route('web.index') }}">
+                Overview
+            </a>
+        </span>
         @foreach ($sections as $section)
-            <span class="section">
+            <span
+                class="section {{ (request()->is('complex/section/' . $section->section_slug . '/overview')) ? 'active' : '' }}">
                 <a href="{{ route('web.section-overview', ['section' => $section->section_slug]) }}">{{ $section->section_name }}
                 </a>
             </span>

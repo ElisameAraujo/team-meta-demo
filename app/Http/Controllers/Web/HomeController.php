@@ -13,18 +13,13 @@ class HomeController extends Controller
     public function index()
     {
         $buildings = Building::select('building_name', 'building_slug')->get();
+
+        $ambients = Apartment::ambients();
+        $floors = Apartment::floors();
+
         $sections = Section::all();
         $apartments = Apartment::all();
         $status = ApartmentStatus::all();
-        $ambients = Apartment::select('ambients')
-            ->distinct()
-            ->orderBy('ambients')
-            ->pluck('ambients');
-
-        $floors = Apartment::select('floor')
-            ->distinct()
-            ->orderBy('floor')
-            ->pluck('floor');
 
         return view('web.index', compact(
             'buildings',
@@ -45,7 +40,6 @@ class HomeController extends Controller
         $status = ApartmentStatus::all();
         $floors = $this->building->floors($slug);
         $ambients = $this->building->ambients($slug);
-        //dd($buildings);
 
         return view('web.overview.building', compact('building', 'apartments', 'buildings', 'sections', 'floors', 'ambients', 'status'));
     }
@@ -60,7 +54,17 @@ class HomeController extends Controller
         $ambients = $this->building->ambients($slug);
         $status = ApartmentStatus::all();
         $apartments = $this->building->apartmentsPerSection($slug, $section);
+        $sectionImage = $this->building->sectionImage($building->id, $section);
 
-        return view('web.building-sections.section', compact('building', 'buildings', 'sections', 'floors', 'ambients', 'status', 'apartments', 'currentSection'));
+        return view('web.building-sections.section', compact(
+            'building',
+            'buildings',
+            'sections',
+            'floors',
+            'ambients',
+            'status',
+            'apartments',
+            'currentSection'
+        ));
     }
 }

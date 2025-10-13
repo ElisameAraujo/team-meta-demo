@@ -48,4 +48,9 @@ class Building extends Model
     {
         return Carbon::parse($this->updated_at)->format('d/m/Y H:i:s');
     }
+
+    public static function buildingsList()
+    {
+        return self::select('building_name', 'building_slug')->get();
+    }
 }

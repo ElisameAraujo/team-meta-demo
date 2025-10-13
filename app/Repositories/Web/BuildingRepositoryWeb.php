@@ -5,6 +5,7 @@ namespace App\Repositories\Web;
 use App\Interfaces\Web\BuildingInterfaceWeb;
 use App\Models\Admin\Apartment;
 use App\Models\Admin\Building;
+use App\Models\Admin\BuildingGallery;
 use App\Models\Admin\Section;
 
 class BuildingRepositoryWeb implements BuildingInterfaceWeb
@@ -51,11 +52,7 @@ class BuildingRepositoryWeb implements BuildingInterfaceWeb
             $building = Building::where('building_slug', $slug)->first();
         }
 
-        $floors = Apartment::where('building_id', $building->id)
-            ->select('floor')
-            ->distinct()
-            ->orderBy('floor')
-            ->pluck('floor');
+        $floors = Apartment::floors($building->id);
 
         return $floors;
     }
@@ -66,12 +63,17 @@ class BuildingRepositoryWeb implements BuildingInterfaceWeb
             $building = Building::where('building_slug', $slug)->first();
         }
 
-        $ambients = Apartment::where('building_id', $building->id)
-            ->select('ambients')
-            ->distinct()
-            ->orderBy('ambients')
-            ->pluck('ambients');
+        $ambients = Apartment::ambients($building->id);
 
         return $ambients;
+    }
+
+    public function sectionImage($building_id, $section_id)
+    {
+        $image = BuildingGallery::where('building_id', $building_id)
+            ->where('type', $section_id)
+            ->first();
+
+        return $image;
     }
 }

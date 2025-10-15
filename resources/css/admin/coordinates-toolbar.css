@@ -1,9 +1,22 @@
 .coordinates-area {
-    @apply relative;
+    @apply relative max-w-[1860px];
+    margin: 0 auto;
 }
 
-.coordinates-area svg {
-    @apply rounded-md;
+#coordinates_modal .modal-box {
+    @apply p-0 h-auto max-w-screen w-full;
+}
+
+.coordinates-area .interactive-draw {
+    @apply absolute w-full h-full z-10 top-0 left-0;
+}
+
+.coordinates-area .interactive-draw canvas {
+    @apply absolute w-full h-full top-0 left-0;
+}
+
+.coordinates-area img {
+    @apply rounded-md z-15;
 }
 
 .coordinates-area label.glass-effect {
@@ -20,4 +33,13 @@
 
 .toolbar details li {
     @apply flex gap-2;
+}
+
+.toolbar details ul {
+    @apply flex flex-col gap-2;
+}
+
+.coordinates-area .button-disable,
+.coordinates-area .button-disable a:hover {
+    @apply bg-gray-200 text-black rounded cursor-not-allowed;
 }

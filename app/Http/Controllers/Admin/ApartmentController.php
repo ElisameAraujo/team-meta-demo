@@ -8,6 +8,7 @@ use App\Models\Admin\Apartment;
 use App\Models\Admin\ApartmentCoordinate;
 use App\Models\Admin\ApartmentStatus;
 use App\Models\Admin\Building;
+use App\Models\Admin\BuildingGallery;
 use App\Models\Admin\Section;
 use Illuminate\Http\Request;
 
@@ -77,12 +78,14 @@ class ApartmentController extends Controller
             })
             ->get();
 
+        $buildingBackground = BuildingGallery::where('building_id', $building->id)->where('section_id', $apartment->section_id)->first();
 
-        return view('admin.apartments.edit-coordinates', compact('building', 'apartment', 'apartmentsCoordinates'));
+        return view('admin.apartments.edit-coordinates', compact('building', 'apartment', 'apartmentsCoordinates', 'buildingBackground'));
     }
 
     public function updateCoordinates(Request $request)
     {
+        //dd($request->all());
         $data = $request->except('_token', '_method');
         $this->apartment->updateCoordinates($data);
 

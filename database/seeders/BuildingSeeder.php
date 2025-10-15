@@ -13,14 +13,12 @@ class BuildingSeeder extends Seeder
     public function run(): void
     {
         Building::create([
-            'building_name' => 'El Muelle I',
-            'building_slug' => 'el-muelle-i',
-            'apartments_available' => 57
-        ])->create([
+            'id' => 2,
             'building_name' => 'El Muelle II',
             'building_slug' => 'el-muelle-ii',
             'apartments_available' => 76
         ])->create([
+            'id' => 1,
             'building_name' => 'El Muelle III',
             'building_slug' => 'el-muelle-iii',
             'apartments_available' => 86

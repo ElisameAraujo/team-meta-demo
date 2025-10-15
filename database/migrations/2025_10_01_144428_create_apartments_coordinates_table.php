@@ -17,11 +17,12 @@ return new class extends Migration
             $table->double('y_position')->unsigned()->nullable();
             $table->double('width')->unsigned()->nullable();
             $table->double('height')->unsigned()->nullable();
+            $table->text('points')->nullable();
+            $table->string('type')->default('rect');
 
             $table->unique('apartment_id')->nullable();
             $table->foreignId('apartment_id')
-                ->references('id')
-                ->on('apartments')
+                ->constrained('apartments')
                 ->onDelete('cascade');
 
             $table->timestamps();

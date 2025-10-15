@@ -3,6 +3,7 @@ import { setupToolSelector } from "./ui/toolSelector";
 import { setupRectangleTool } from "./tools/rectangleTool";
 import { setupPolylineTool } from "./tools/polylineTool";
 import { setupRemoveTool } from "./tools/removeTool";
+import { setupClearTool } from "./tools/clearTool";
 
 const canvas = setupCanvas();
 if (canvas) {
@@ -10,4 +11,5 @@ if (canvas) {
     setupRectangleTool(canvas);
     setupPolylineTool(canvas);
     setupRemoveTool(canvas);
+    setupClearTool(canvas);
 }

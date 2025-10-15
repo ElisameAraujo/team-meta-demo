@@ -1,3 +1,5 @@
+import { showToolToast } from "./toolToast";
+
 let currentTool = null;
 
 export function getCurrentTool() {
@@ -12,7 +14,26 @@ export function setupToolSelector() {
                 return;
             }
             currentTool = el.dataset.tool;
+            showToolToast(currentTool);
         });
+    });
+
+    document.addEventListener("keydown", (e) => {
+        if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") return;
+
+        if (e.key.toLowerCase() === "r") {
+            const rectBtn = document.querySelector("[data-tool='rectangle']");
+            if (rectBtn && !rectBtn.classList.contains("disabled")) {
+                rectBtn.click();
+            }
+        }
+
+        if (e.key.toLowerCase() === "l") {
+            const lineBtn = document.querySelector("[data-tool='polyline']");
+            if (lineBtn && !lineBtn.classList.contains("disabled")) {
+                lineBtn.click();
+            }
+        }
     });
 }
 

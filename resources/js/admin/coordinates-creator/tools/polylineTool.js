@@ -44,11 +44,38 @@ export function setupPolylineTool(canvas) {
             canvas.add(polygon);
             canvas.setActiveObject(polygon);
             polygon.setCoords();
+
+            // Atualiza campos X/Y com bounding box
             updateCoordinateFields(polygon);
+
+            // 🔹 Preenche campo de pontos
+            const pointsField = document.getElementById("points");
+            if (pointsField) {
+                const svgPoints = polygon.points.map((p) => `${p.x.toFixed(2)},${p.y.toFixed(2)}`).join(" ");
+                pointsField.value = svgPoints;
+            }
+
+            // 🔹 Define tipo como polygon
+            const typeField = document.getElementById("coordinate_type");
+            if (typeField) {
+                typeField.value = "polygon";
+            }
+
+            // 🔹 Limpa width e height
+            ["width", "height"].forEach((id) => {
+                const field = document.getElementById(id);
+                if (field) field.value = "";
+            });
 
             polylinePoints = [];
             polylinePreview = null;
             toggleToolButtons(false);
         }
     });
+}
+
+export function resetPolylineTool() {
+    polygon = null;
+    polylinePoints = [];
+    polylinePreview = null;
 }

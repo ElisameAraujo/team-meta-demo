@@ -43,3 +43,37 @@
 .coordinates-area .button-disable a:hover {
     @apply bg-gray-200 text-black rounded cursor-not-allowed;
 }
+
+@keyframes toastIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes toastOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+.toast-animate-in {
+    animation: toastIn 0.4s ease-out forwards;
+}
+
+.toast-animate-out {
+    animation: toastOut 0.4s ease-in forwards;
+}
+
+dialog .toast {
+    @apply text-xl!;
+}

@@ -71,9 +71,19 @@
                                 value="{{ old('height', $apartment->coordinates?->height) }}" />
                         </label>
                     </fieldset>
+
+                    <fieldset class="fieldset col-span-12">
+                        <legend class="fieldset-legend">Points</legend>
+                        <label class="input w-full">
+                            <span class="label"><i class="fa-solid fa-ellipsis"></i></span>
+                            <input type="string" name="points" id="points"
+                                value="{{ old('points', $apartment->coordinates?->points) }}" />
+                        </label>
+                    </fieldset>
                 </div>
 
                 <input type="hidden" name="apartment_id" value="{{ $apartment->id }}">
+                <input type="hidden" name="type" id="coordinate_type">
 
                 <button class="btn btn-primary mt-2" type="submit">
                     <i class="fa-solid fa-arrows-rotate"></i>
@@ -92,21 +102,23 @@
                                     <label tabindex=0 class="btn glass-effect text-white rounded-md">
                                         Menu
                                     </label>
-                                    <ul tabIndex="0" class="menu bg-base-200 w-64 rounded-box dropdown-content z-[1]">
+                                    <ul tabIndex="0" class="menu bg-base-200 w-72 rounded-box dropdown-content z-[1]">
                                         <li>
                                             <details>
                                                 <summary>
-                                                    <i class="fa-solid fa-location-dot"></i> Mark Coordinates Using
+                                                    <i class="fa-solid fa-location-dot"></i> Create Object Using
                                                 </summary>
                                                 <ul>
                                                     <li>
                                                         <a data-tool="rectangle">
                                                             <i class="fa-solid fa-rectangle-xmark"></i>Rectangle
+                                                            <kbd class="kbd kbd-sm">R</kbd>
                                                         </a>
                                                     </li>
                                                     <li>
                                                         <a data-tool="polyline">
                                                             <i class="fa-solid fa-bezier-curve"></i>Line
+                                                            <kbd class="kbd kbd-sm">L</kbd>
                                                         </a>
                                                     </li>
                                                 </ul>
@@ -114,13 +126,22 @@
                                         </li>
                                         <li>
                                             <a data-tool="remove">
-                                                <i class="fa-solid fa-eraser"></i> Remove Coordinates
+                                                <i class="fa-solid fa-trash-can"></i>
+                                                Remove Selected Object <kbd class="kbd kbd-sm">Delete</kbd>
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a data-tool="clear">
+                                                <i class="fa-solid fa-eraser"></i>
+                                                Clear All Objects <kbd class="kbd kbd-sm">C</kbd>
                                             </a>
                                         </li>
                                         <form method="dialog">
                                             <li>
                                                 <button href="#" class="cursor-pointer!">
-                                                    <i class="fa-solid fa-xmark"></i> Close Tool
+                                                    <i class="fa-solid fa-xmark"></i>
+                                                    Close Tool <kbd class="kbd kbd-sm">Esc</kbd>
                                                 </button>
                                             </li>
                                         </form>
@@ -132,27 +153,26 @@
                         <svg class="interactive-building" width="100%" height="100%" viewBox="0 0 1860 917">
                             <g>
                                 <image x="0%" y="0%"
-                                    xlink:href="{{ Utilities::assetURL('buildings', $buildingBackground->building_image) }}" />
+                                    xlink:href="{{ Utilities::assetURL('buildings', $buildingBackground?->building_image, 'img/placeholders/building-image-not-found.jpg') }}" />
 
-                                <rect class="sold" x="{{ $apartment->coordinates?->x_position }}"
-                                    y="{{ $apartment->coordinates?->y_position }}"
-                                    width="{{ $apartment->coordinates?->width }}"
-                                    height="{{ $apartment->coordinates?->height }}" data-label="Apartamento 301 (Sold)"
-                                    data-tooltip="true" data-price="$85.000" data-area="96 m²" />
+                                @if($apartment->coordinates->type === 'polygon')
+                                    <polygon class="sold" points="{{$apartment->coordinates?->points}}" />
+                                @else
+                                    <rect class="sold" x="{{ $apartment->coordinates?->x_position }}"
+                                        y="{{ $apartment->coordinates?->y_position }}"
+                                        width="{{ $apartment->coordinates?->width }}"
+                                        height="{{ $apartment->coordinates?->height }}" />
+                                @endif
                             </g>
                         </svg>
-                        <div id="apartment-tooltip" class="tooltip-card" style="display: none;">
-                            <h3 id="tooltip-label" class="label-tooltip"></h3>
-                            <span>Price: <p id="tooltip-price"></p></span>
-                            <span>Area: <p id="tooltip-area"></p></span>
-                        </div>
-                        {{-- <img src="{{ Utilities::assetURL('buildings', $buildingBackground->building_image) }}" alt="">
-                        --}}
                     </div>
                 </div>
                 <form method="dialog" class="modal-backdrop">
                     <button>close</button>
                 </form>
+                <div id="tool-toast-container"
+                    class="toast toast-end fixed z-[9999] bottom-4 right-4 flex flex-col items-end gap-2 pointer-events-none">
+                </div>
             </dialog>
         </div>
     </div>

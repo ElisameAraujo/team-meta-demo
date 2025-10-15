@@ -10,7 +10,6 @@ class Apartment extends Model
 {
     use HasFactory;
     protected $table = "apartments";
-
     protected $fillable = [
         'unit_code',
         'covered_area',
@@ -41,6 +40,11 @@ class Apartment extends Model
     public function coordinates()
     {
         return $this->hasOne(ApartmentCoordinate::class);
+    }
+
+    public function gallery()
+    {
+        return $this->hasOne(ApartmentGallery::class);
     }
 
     public function getFormattedPriceAttribute()
@@ -74,5 +78,31 @@ class Apartment extends Model
     public function getMappedCoordinatesAttribute(): bool
     {
         return $this->coordinates()->exists();
+    }
+
+    public static function ambients($building = null)
+    {
+        $query = self::select('ambients')
+            ->distinct()
+            ->orderBy('ambients');
+
+        if ($building) {
+            $query->where('building_id', $building);
+        }
+
+        return $query->pluck('ambients');
+    }
+
+    public static function floors($building = null)
+    {
+        $query = self::select('floor')
+            ->distinct()
+            ->orderBy('floor');
+
+        if ($building) {
+            $query->where('building_id', $building);
+        }
+
+        return $query->pluck('floor');
     }
 }

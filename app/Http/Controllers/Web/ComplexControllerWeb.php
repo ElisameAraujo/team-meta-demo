@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Interfaces\Web\ComplexOverviewInterface;
-use App\Models\Admin\Apartment;
-use App\Models\Admin\ApartmentStatus;
-use App\Models\Admin\Building;
-use App\Models\Admin\Section;
+use App\Models\Admin\{
+    Apartment,
+    ApartmentStatus,
+    Building,
+    Section
+};
 use Illuminate\Http\Request;
 
 class ComplexControllerWeb extends Controller

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Interfaces\Web\BuildingInterfaceWeb;
-use App\Models\Admin\{Apartment, ApartmentStatus, Building, BuildingGallery, Section};
+use App\Models\Admin\{ApartmentStatus, Building, Section};
 use Illuminate\Http\Request;
 
 class BuildingControllerWeb extends Controller

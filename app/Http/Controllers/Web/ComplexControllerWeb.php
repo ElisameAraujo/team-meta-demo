@@ -4,14 +4,40 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Interfaces\Web\ComplexOverviewInterface;
-use App\Models\Admin\{Apartment, ApartmentStatus, Building, Section};
+use App\Models\Admin\Apartment;
+use App\Models\Admin\ApartmentStatus;
+use App\Models\Admin\Building;
+use App\Models\Admin\Section;
 use Illuminate\Http\Request;
 
-class SectionOverviewController extends Controller
+class ComplexControllerWeb extends Controller
 {
-
     public function __construct(private ComplexOverviewInterface $complex) {}
-    public function sectionOverview($section)
+    public function index()
+    {
+        $buildings = Building::select('building_name', 'building_slug')->get();
+
+        $ambients = Apartment::ambients();
+        $floors = Apartment::floors();
+
+        $sections = Section::all();
+        $apartments = Apartment::all();
+        $status = ApartmentStatus::all();
+
+        $complexBackground = $this->complex->complexOverviewImage();
+
+        return view('web.index', compact(
+            'buildings',
+            'sections',
+            'apartments',
+            'status',
+            'ambients',
+            'floors',
+            'complexBackground'
+        ));
+    }
+
+    public function sectionComplexOverview($section)
     {
         $section = Section::where('section_slug', $section)->first();
         $buildings = Building::buildingsList();

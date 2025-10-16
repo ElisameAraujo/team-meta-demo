@@ -76,4 +76,14 @@ class BuildingRepositoryWeb implements BuildingInterfaceWeb
 
         return $image;
     }
+
+    public function overviewImage($building_id)
+    {
+        $image = BuildingGallery::where('building_id', $building_id)
+            ->where('type', 'west')
+            ->first();
+
+        $overviewSection = $image->building_image;
+        return $overviewSection;
+    }
 }

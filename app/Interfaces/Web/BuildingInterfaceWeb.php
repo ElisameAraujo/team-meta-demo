@@ -10,4 +10,5 @@ interface BuildingInterfaceWeb
     public function floors($slug);
     public function ambients($slug);
     public function sectionImage($building_id, $section_id);
+    public function overviewImage($building_id);
 }

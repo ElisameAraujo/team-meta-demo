@@ -1,20 +1,17 @@
 <?php
 
-use App\Http\Controllers\Web\HomeController;
+use App\Http\Controllers\Web\ComplexControllerWeb;
+use App\Http\Controllers\Web\BuildingControllerWeb;
 use Illuminate\Support\Facades\Route;
 
 /**
  * GET
  */
 Route::prefix('/')->group(function () {
-    Route::get('', [HomeController::class, 'index'])->name('web.index');
 
-    Route::get('complex/section/{section}/overview', [HomeController::class, 'sectionOverview'])
-        ->name('web.section-overview');
-
-    Route::get('building/{building}/overview', [HomeController::class, 'buildingOverview'])
+    Route::get('building/{building}/overview', [BuildingControllerWeb::class, 'buildingOverview'])
         ->name('web.building-overview');
 
-    Route::get('building/{building}/section/{section}', [HomeController::class, 'buildingSection'])
+    Route::get('building/{building}/section/{section}', [BuildingControllerWeb::class, 'buildingSection'])
         ->name('web.building.section');
 });

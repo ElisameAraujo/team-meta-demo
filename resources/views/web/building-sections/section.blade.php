@@ -5,7 +5,6 @@
     @include('components.web.building-navigation')
     @include('components.web.side-menu')
     <div class="page-background">
-        <img src="{{ asset('img/' . $building->building_slug . '/background-example-' . $currentSection->section_slug . '.jpg') }}"
-            alt="">
+        <img src="{{ Utilities::assetURL('buildings', $sectionImage->building_image) }}" alt="">
     </div>
 @endsection

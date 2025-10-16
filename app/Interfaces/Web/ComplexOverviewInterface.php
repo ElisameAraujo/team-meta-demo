@@ -5,4 +5,5 @@ namespace App\Interfaces\Web;
 interface ComplexOverviewInterface
 {
     public function complexSectionImage($section_id);
+    public function complexOverviewImage();
 }

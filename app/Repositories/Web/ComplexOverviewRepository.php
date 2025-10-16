@@ -15,4 +15,15 @@ class ComplexOverviewRepository implements ComplexOverviewInterface
 
         return $image;
     }
+
+    public function complexOverviewImage()
+    {
+        $complex = BuildingGallery::where('type', 'complex')
+            ->select('building_image')
+            ->first();
+
+        $image = $complex->building_image;
+
+        return $image;
+    }
 }

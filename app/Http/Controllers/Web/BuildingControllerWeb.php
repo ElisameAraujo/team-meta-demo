@@ -4,32 +4,12 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Interfaces\Web\BuildingInterfaceWeb;
-use App\Models\Admin\{Apartment, ApartmentStatus, Building, Section};
+use App\Models\Admin\{Apartment, ApartmentStatus, Building, BuildingGallery, Section};
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class BuildingControllerWeb extends Controller
 {
     public function __construct(private BuildingInterfaceWeb $building) {}
-    public function index()
-    {
-        $buildings = Building::select('building_name', 'building_slug')->get();
-
-        $ambients = Apartment::ambients();
-        $floors = Apartment::floors();
-
-        $sections = Section::all();
-        $apartments = Apartment::all();
-        $status = ApartmentStatus::all();
-
-        return view('web.index', compact(
-            'buildings',
-            'sections',
-            'apartments',
-            'status',
-            'ambients',
-            'floors'
-        ));
-    }
 
     public function buildingOverview($slug)
     {
@@ -40,8 +20,9 @@ class HomeController extends Controller
         $status = ApartmentStatus::all();
         $floors = $this->building->floors($slug);
         $ambients = $this->building->ambients($slug);
+        $overviewBackground = $this->building->overviewImage($building->id);
 
-        return view('web.overview.building', compact('building', 'apartments', 'buildings', 'sections', 'floors', 'ambients', 'status'));
+        return view('web.overview.building', compact('building', 'apartments', 'buildings', 'sections', 'floors', 'ambients', 'status', 'overviewBackground'));
     }
 
     public function buildingSection($slug, $section)
@@ -64,7 +45,8 @@ class HomeController extends Controller
             'ambients',
             'status',
             'apartments',
-            'currentSection'
+            'currentSection',
+            'sectionImage'
         ));
     }
 }

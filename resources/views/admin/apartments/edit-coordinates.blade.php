@@ -153,7 +153,7 @@
                         <svg class="interactive-building" width="100%" height="100%" viewBox="0 0 1860 917">
                             <g>
                                 <image x="0%" y="0%"
-                                    xlink:href="{{ Utilities::assetURL('buildings', $buildingBackground?->building_image, 'img/placeholders/building-image-not-found.jpg') }}" />
+                                    xlink:href="{{ AssetHelper::assetURL('buildings', $buildingBackground?->building_image, 'img/placeholders/building-image-not-found.jpg') }}" />
 
                                 @if($apartment->coordinates->type === 'polygon')
                                     <polygon class="sold" points="{{$apartment->coordinates?->points}}" />

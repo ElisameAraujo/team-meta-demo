@@ -54,13 +54,13 @@
                         $section = $item['section'];
                         $image = $item['image'];
                         $imagePath = $image?->building_image;
-                        $imageExists = Utilities::imageExists('buildings', $imagePath);
+                        $imageExists = AssetHelper::assetExists('buildings', $imagePath);
                     @endphp
 
                     <div class="image-item">
                         <div class="image-thumb">
                             @if ($imageExists)
-                                <img src="{{ Utilities::assetURL('buildings', $imagePath) }}" />
+                                <img src="{{ AssetHelper::assetURL('buildings', $imagePath) }}" />
                             @else
                                 <img src="{{ asset('img/placeholders/building-image-not-found.jpg') }}" />
                             @endif
@@ -70,7 +70,7 @@
                             <h1>{{ $section->section_name }}</h1>
                             <button data-mode="update" data-target="building_gallery" data-building-id="{{ $building->id }}"
                                 data-section-id="{{ $section->id }}" data-section-slug="{{ $section->section_slug }}"
-                                data-image-url="{{ $imageExists ? Utilities::assetURL('buildings', $imagePath) : '' }}"
+                                data-image-url="{{ $imageExists ? AssetHelper::assetURL('buildings', $imagePath) : '' }}"
                                 data-gallery-id="{{ $image?->id }}" onclick="building_gallery.showModal()"
                                 class="open-gallery-modal">
                                 <i class="fa-solid fa-arrows-rotate"></i> Change Image/Video

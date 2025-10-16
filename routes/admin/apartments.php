@@ -26,6 +26,7 @@ Route::prefix('admin/buildings/{building}/apartments')->group(function () {
 Route::prefix('admin/buildings/apartments')->group(function () {
     Route::put('update-apartment/{apartment}', [ApartmentController::class, 'updateApartment'])->name('admin.buildings.apartments.update-apartment');
     Route::put('update-coordinates', [ApartmentController::class, 'updateCoordinates'])->name('admin.buildings.apartments.update-coordinates');
+    Route::put('update-floor-plan-image', [ApartmentController::class, 'floorPlanImage'])->name('admin.buildings.apartments.update-floor-plan-image');
 });
 
 

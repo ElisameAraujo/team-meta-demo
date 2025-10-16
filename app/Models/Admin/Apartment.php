@@ -42,9 +42,9 @@ class Apartment extends Model
         return $this->hasOne(ApartmentCoordinate::class);
     }
 
-    public function gallery()
+    public function floorPlan()
     {
-        return $this->hasOne(ApartmentGallery::class);
+        return $this->hasOne(ApartmentFloorPlan::class);
     }
 
     public function getFormattedPriceAttribute()

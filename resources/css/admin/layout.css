@@ -442,6 +442,10 @@ main .main-content .header .right-header .tooltip {
     @apply rounded-md;
 }
 
+.image-gallery .image-item .image-actions {
+    @apply flex flex-col gap-2 items-center;
+}
+
 .image-gallery .image-item button {
     @apply btn btn-primary w-full;
 }

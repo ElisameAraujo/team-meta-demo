@@ -25,10 +25,12 @@
                 </div>
             </h1>
         </div>
-        <div class="col-span-12">
+        <div class="page-header">
+            <h1>Base Details</h1>
+        </div>
+        <div class="col-span-12 mb-4">
             @include('components.flash-messages')
-            <form action="{{ route('admin.buildings.apartments.update-apartment', ['apartment' => $apartment->id]) }}"
-                method="POST">
+            <form action="{{ route('admin.buildings.apartments.update-apartment', ['apartment' => $apartment->id]) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="grid-default">
@@ -45,8 +47,7 @@
                         <legend class="fieldset-legend">Covered Area (m²)</legend>
                         <label class="input w-full">
                             <span class="label"><i class="fa-solid fa-ruler-combined"></i></span>
-                            <input type="number" step="0.01" name="covered_area"
-                                value="{{ old('covered_area', $apartment->covered_area) }}" />
+                            <input type="number" step="0.01" name="covered_area" value="{{ old('covered_area', $apartment->covered_area) }}" />
                         </label>
                     </fieldset>
 
@@ -62,8 +63,7 @@
                         <legend class="fieldset-legend">Storage Size (m²)</legend>
                         <label class="input w-full">
                             <span class="label"><i class="fa-solid fa-warehouse"></i></span>
-                            <input type="number" step="0.01" name="storage_size"
-                                value="{{ old('storage_size', $apartment->storage_size) }}" />
+                            <input type="number" step="0.01" name="storage_size" value="{{ old('storage_size', $apartment->storage_size) }}" />
                         </label>
                     </fieldset>
 
@@ -88,8 +88,7 @@
                         <select class="select w-full" name="apartment_status_id">
                             <option disabled selected>-- Select an Option --</option>
                             @foreach ($apartmentStatus as $status)
-                                <option value="{{ $status->id }}"
-                                    {{ $apartment->apartment_status_id == $status->id ? 'selected' : '' }}>
+                                <option value="{{ $status->id }}" {{ $apartment->apartment_status_id == $status->id ? 'selected' : '' }}>
                                     {{ $status->status_name }}
                                 </option>
                             @endforeach
@@ -101,8 +100,7 @@
                         <select class="select w-full" name="section_id">
                             <option disabled selected>-- Select an Option --</option>
                             @foreach ($sections as $section)
-                                <option value="{{ $section->id }}"
-                                    {{ $apartment->section_id == $section->id ? 'selected' : '' }}>
+                                <option value="{{ $section->id }}" {{ $apartment->section_id == $section->id ? 'selected' : '' }}>
                                     {{ $section->section_name }}
                                 </option>
                             @endforeach
@@ -115,6 +113,28 @@
                     Update Apartment
                 </button>
             </form>
+        </div>
+
+        <div class="page-header">
+            <h1>Floor Plan</h1>
+        </div>
+        @include('components.admin.floor-plan-apartment')
+        <div class="col-span-12">
+            <div class="image-gallery">
+
+                <div class="image-item">
+                    <div class="image-thumb">
+                        <img src="{{ AssetHelper::assetURL('apartments', $apartment->floorPlan?->floor_plan_image, 'img/placeholders/building-image-not-found.jpg')}}" />
+                    </div>
+
+                    <div class="image-actions mt-4">
+                        <button data-mode="update" data-target="floor_plan" data-image-url="{{ AssetHelper::assetURL('apartments', $apartment->floorPlan?->floor_plan_image) }}" onclick="floor_plan.showModal()" class="open-gallery-modal">
+                            <i class="fa-solid fa-arrows-rotate"></i> Change Image/Video
+                        </button>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 @endsection

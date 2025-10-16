@@ -80,24 +80,35 @@ class ApartmentController extends Controller
             })
             ->get();
 
-        $buildingBackground = BuildingGallery::where('building_id', $building->id)->where('section_id', $apartment->section_id)->first();
+        $buildingBackground = $this->apartment->buildingBackground($building->id, $apartment->section_id);
 
         return view('admin.apartments.edit-coordinates', compact('building', 'apartment', 'apartmentsCoordinates', 'buildingBackground'));
     }
 
     public function updateCoordinates(Request $request)
     {
-        //dd($request->all());
         $data = $request->except('_token', '_method');
         $this->apartment->updateCoordinates($data);
 
         return redirect()->back()->with('update', 'Apartment coordinates updated successfully');
     }
 
+    public function floorPlanImage(Request $request)
+    {
+        if (!$request->hasFile('floor_plan_image')) {
+            return redirect()->back()->with('error', 'No image file selected');
+        }
+        $data = (object) $request->except('_token', '_method');
+
+        $this->apartment->floorPlanImage($data);
+
+        return redirect()->back()->with('update', 'Apartment floor plan updated successfully');
+    }
+
     public function deleteApartment(Apartment $apartment)
     {
         $this->apartment->deleteApartment($apartment);
 
-        return redirect()->back()->with('delete', 'Apartment e coordinates delete successfully');
+        return redirect()->back()->with('delete', 'Apartment e coordinates deleted successfully');
     }
 }

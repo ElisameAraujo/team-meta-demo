@@ -6,6 +6,7 @@ use App\Helpers\DiskHelper;
 use App\Interfaces\Admin\ApartmentInterface;
 use App\Models\Admin\Apartment;
 use App\Models\Admin\ApartmentCoordinate;
+use App\Models\Admin\ApartmentFloorPlan;
 use App\Models\Admin\Building;
 use App\Models\Admin\BuildingGallery;
 use Illuminate\Support\Facades\Storage;
@@ -44,8 +45,8 @@ class ApartmentRepository implements ApartmentInterface
     public function floorPlanImage(object $data)
     {
         // Busca o registro existente na galeria
-        $floorPlan = BuildingGallery::find($data->gallery_id);
-
+        $floorPlan = ApartmentFloorPlan::find($data->gallery_id);
+        //dd($floorPlan);
         //Encontra o apartamento e o Prédio
         $apartment = Apartment::findOrFail($data->apartment_id);
         $building = Building::findOrFail($apartment->building->id);

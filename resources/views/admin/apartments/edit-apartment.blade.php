@@ -128,7 +128,7 @@
                     </div>
 
                     <div class="image-actions mt-4">
-                        <button data-mode="update" data-target="floor_plan" data-image-url="{{ AssetHelper::assetURL('apartments', $apartment->floorPlan?->floor_plan_image) }}" onclick="floor_plan.showModal()" class="open-gallery-modal">
+                        <button data-mode="update" data-target="floor_plan" data-image-url="{{ AssetHelper::assetURL('apartments', $apartment->floorPlan?->floor_plan_image) }}" data-gallery-id="{{ $apartment->floorPlan?->id }}" onclick="floor_plan.showModal()" class="open-gallery-modal">
                             <i class="fa-solid fa-arrows-rotate"></i> Change Image/Video
                         </button>
                     </div>

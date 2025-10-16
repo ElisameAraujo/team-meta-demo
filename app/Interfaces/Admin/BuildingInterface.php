@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Interfaces;
+namespace App\Interfaces\Admin;
 
 use App\Models\Admin\Building;
-use App\Models\Admin\BuildingGallery;
 
 interface BuildingInterface
 {

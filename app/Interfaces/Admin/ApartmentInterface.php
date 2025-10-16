@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Interfaces;
+namespace App\Interfaces\Admin;
 
 use App\Models\Admin\Apartment;
-use App\Models\Admin\ApartmentCoordinate;
 use App\Models\Admin\Building;
 
 interface ApartmentInterface

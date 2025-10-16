@@ -3,13 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Interfaces\ApartmentInterface;
-use App\Models\Admin\Apartment;
-use App\Models\Admin\ApartmentCoordinate;
-use App\Models\Admin\ApartmentStatus;
-use App\Models\Admin\Building;
-use App\Models\Admin\BuildingGallery;
-use App\Models\Admin\Section;
+use App\Interfaces\Admin\ApartmentInterface;
+use App\Models\Admin\{
+    Apartment,
+    ApartmentCoordinate,
+    ApartmentStatus,
+    Building,
+    BuildingGallery,
+    Section
+};
 use Illuminate\Http\Request;
 
 class ApartmentController extends Controller

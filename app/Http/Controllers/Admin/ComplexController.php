@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Interfaces\ComplexInterface;
+use App\Interfaces\Admin\ComplexInterface;
 use App\Models\Admin\BuildingGallery;
 use App\Models\Admin\Section;
 use Illuminate\Http\Request;

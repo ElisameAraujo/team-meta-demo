@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Admin;
 
-use App\Interfaces\BuildingInterface;
+use App\Interfaces\Admin\BuildingInterface;
 use App\Models\Admin\Building;
 use App\Models\Admin\BuildingGallery;
 use Illuminate\Support\Facades\Storage;

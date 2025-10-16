@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Admin;
 
-use App\Interfaces\ComplexInterface;
+use App\Interfaces\Admin\ComplexInterface;
 use Illuminate\Support\Str;
 use App\Models\Admin\BuildingGallery;
 use App\Models\Admin\Section;

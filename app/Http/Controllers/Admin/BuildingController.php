@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Interfaces\BuildingInterface;
+use App\Interfaces\Admin\BuildingInterface;
 use App\Models\Admin\Building;
 use App\Models\Admin\BuildingGallery;
 use App\Models\Admin\Section;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Str;
 
 class BuildingController extends Controller

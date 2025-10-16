@@ -15,6 +15,8 @@ class ApartmentCoordinate extends Model
         'y_position',
         'width',
         'height',
+        'points',
+        'type',
         'apartment_id',
     ];
 

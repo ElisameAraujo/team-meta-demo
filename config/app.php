@@ -129,8 +129,9 @@ return [
     |--------------------------------------------------------------------------
     */
     'aliases' => [
-        'Utilities' => App\Helpers\Utilities::class,
-        'DateHelper' => App\Helpers\DateHelper::class
+        'AssetHelper' => App\Helpers\AssetHelper::class,
+        'DateHelper' => App\Helpers\DateHelper::class,
+        'DiskHelper' => App\Helpers\DiskHelper::class
     ],
 
 

@@ -2,13 +2,12 @@
 
 namespace App\Helpers;
 
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
-class Utilities
+class AssetHelper
 {
 
-    public static function imageExists(string $disk, ?string $path): bool
+    public static function assetExists(string $disk, ?string $path): bool
     {
         return !empty($path) && Storage::disk($disk)->exists($path);
     }
@@ -22,7 +21,7 @@ class Utilities
      */
     public static function assetURL(string $disk, ?string $path, ?string $placeholder = NULL): ?string
     {
-        if (self::imageExists($disk, $path)) {
+        if (self::assetExists($disk, $path)) {
             return asset("storage/{$disk}/{$path}");
         }
 

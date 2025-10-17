@@ -11,9 +11,10 @@
 </head>
 
 <body>
-    <div id="transition-overlay"></div>
     <div class="container-app">
-        @yield('content')
+        <div class="page-background">
+            @yield('content')
+        </div>
     </div>
 </body>
 

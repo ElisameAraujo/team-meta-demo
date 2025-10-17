@@ -2,9 +2,9 @@
 @section('title', $building->building_name)
 
 @section('content')
-    @include('components.web.building-navigation')
-    @include('components.web.side-menu')
-    <div class="page-background">
-        <img src="{{ AssetHelper::assetURL('buildings', $sectionImage->building_image) }}" alt="">
+    <div class="side-content">
+        @include('components.web.building-navigation')
+        @include('components.web.side-menu')
     </div>
+    <img src="{{ AssetHelper::assetURL('buildings', $sectionImage->building_image) }}" alt="">
 @endsection

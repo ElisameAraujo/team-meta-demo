@@ -8,6 +8,8 @@ import "@fortawesome/fontawesome-free/css/all.css";
  * Side Menu
  */
 import { sideMenu } from "./web/side-menu";
-import { pageTransition } from "./web/page-transition";
 new sideMenu();
-new pageTransition();
+
+if (!document.startViewTransition) {
+    document.body.classList.add("no-transitions");
+}

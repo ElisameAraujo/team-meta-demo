@@ -42,3 +42,10 @@ setupGalleryModal();
 interactiveBuildingPolygon();
 interactiveBuildingRect();
 hideNotifications();
+
+/**
+ * Check if has support to ::view-transition API
+ */
+if (!document.startViewTransition) {
+    document.body.classList.add("no-transitions");
+}

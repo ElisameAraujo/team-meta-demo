@@ -8,3 +8,4 @@ require base_path('routes/admin/buildings.php');
 /** Web **/
 require base_path('routes/web/home.php');
 require base_path('routes/web/complex.php');
+require base_path('routes/web/apartments.php');

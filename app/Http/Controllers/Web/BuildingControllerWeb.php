@@ -15,7 +15,7 @@ class BuildingControllerWeb extends Controller
     {
         $building = $this->building->buildingOverview($slug);
         $apartments = $this->building->apartments($slug);
-        $buildings = Building::select(['building_name', 'building_slug'])->get();
+        $buildings = Building::buildingsList();
         $sections = Section::all();
         $status = ApartmentStatus::all();
         $floors = $this->building->floors($slug);
@@ -28,7 +28,7 @@ class BuildingControllerWeb extends Controller
     public function buildingSection($slug, $section)
     {
         $building = $this->building->buildingOverview($slug);
-        $buildings = Building::select(['building_name', 'building_slug'])->get();
+        $buildings = Building::buildingsList();
         $sections = Section::all();
         $currentSection = Section::where('section_slug', $section)->firstOrFail();
         $floors = $this->building->floors($slug);

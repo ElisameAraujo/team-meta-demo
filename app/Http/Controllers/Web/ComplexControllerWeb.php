@@ -17,7 +17,7 @@ class ComplexControllerWeb extends Controller
     public function __construct(private ComplexOverviewInterface $complex) {}
     public function index()
     {
-        $buildings = Building::select('building_name', 'building_slug')->get();
+        $buildings = Building::buildingsList();
 
         $ambients = Apartment::ambients();
         $floors = Apartment::floors();

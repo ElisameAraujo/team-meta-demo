@@ -44,8 +44,7 @@
         <div class="side-menu-content">
             <h1>
                 <span class="content-header">
-                    <p class="text-sm font-bold">Available</p> <span
-                        class="badge badge-xs bg-white">{{ $apartments->filter(fn($available) => $available->apartment_status_id === 1)->count() }}</span>
+                    <p class="text-sm font-bold">Available</p> <span class="badge badge-xs bg-white">{{ $apartments->filter(fn($available) => $available->apartment_status_id === 1)->count() }}</span>
                     </p>
                 </span>
                 <span class="content-header">
@@ -71,51 +70,53 @@
             </h1>
             <div class="apartments-list">
                 @foreach ($apartments as $apartment)
-                    <div class="apartment-item">
-                        <div class="details">
-                            <div class="detail-item">
-                                <p class="detail-label">Unit</p>
-                                <p class="detail-value">{{ $apartment->unit_code }}</p>
-                            </div>
-                            <div class="detail-item">
-                                <p class="detail-label">Cov. Area</p>
-                                <p class="detail-value">{{ $apartment->formatted_covered_area }}</p>
-                            </div>
-                            <div class="detail-item">
-                                <p class="detail-label">Floor</p>
-                                <p class="detail-value">{{ $apartment->floor }}</p>
-                            </div>
-                            <div class="detail-item">
-                                <p class="detail-label">Ambients</p>
-                                <p class="detail-value">{{ $apartment->ambients }}</p>
-                            </div>
+                    <a href="{{ route('web.buildings.apartments.overview', ['building' => $apartment->building->building_slug, 'unit' => $apartment->unit_code]) }}">
+                        <div class="apartment-item">
+                            <div class="details">
+                                <div class="detail-item">
+                                    <p class="detail-label">Unit</p>
+                                    <p class="detail-value">{{ $apartment->unit_code }}</p>
+                                </div>
+                                <div class="detail-item">
+                                    <p class="detail-label">Cov. Area</p>
+                                    <p class="detail-value">{{ $apartment->formatted_covered_area }}</p>
+                                </div>
+                                <div class="detail-item">
+                                    <p class="detail-label">Floor</p>
+                                    <p class="detail-value">{{ $apartment->floor }}</p>
+                                </div>
+                                <div class="detail-item">
+                                    <p class="detail-label">Ambients</p>
+                                    <p class="detail-value">{{ $apartment->ambients }}</p>
+                                </div>
 
-                            <div class="detail-item">
-                                <p class="detail-label">Storage</p>
-                                <p class="detail-value">{{ $apartment->formatted_storage_size }}</p>
-                            </div>
+                                <div class="detail-item">
+                                    <p class="detail-label">Storage</p>
+                                    <p class="detail-value">{{ $apartment->formatted_storage_size }}</p>
+                                </div>
 
-                            <div class="detail-item">
-                                <p class="detail-label">Value</p>
-                                @if($apartment->apartment_status_id == 2)
-                                    <p class="detail-value">
-                                        <span class="tag">
-                                            {{ $apartment->status->status_name }}
-                                        </span>
-                                    </p>
-                                @elseif ($apartment->apartment_status_id == 3)
-                                    <p class="detail-value">
-                                        <span class="tag">
-                                            {{ $apartment->status->status_name }}
-                                        </span>
-                                    </p>
-                                @else
-                                    <p class="detail-value">{{ $apartment->formatted_price }}</p>
-                                @endif
+                                <div class="detail-item">
+                                    <p class="detail-label">Value</p>
+                                    @if($apartment->apartment_status_id == 2)
+                                        <p class="detail-value">
+                                            <span class="tag">
+                                                {{ $apartment->status->status_name }}
+                                            </span>
+                                        </p>
+                                    @elseif ($apartment->apartment_status_id == 3)
+                                        <p class="detail-value">
+                                            <span class="tag">
+                                                {{ $apartment->status->status_name }}
+                                            </span>
+                                        </p>
+                                    @else
+                                        <p class="detail-value">{{ $apartment->formatted_price }}</p>
+                                    @endif
 
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 @endforeach
             </div>
         </div>

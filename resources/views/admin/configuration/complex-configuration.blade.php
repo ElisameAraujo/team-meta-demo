@@ -27,18 +27,12 @@
                 @foreach ($complexGallery as $item)
                     <div class="image-item">
                         <div class="image-thumb">
-                            <img
-                                src="{{ Utilities::assetURL('complex', $item->building_image, 'img/placeholders/building-image-not-found.jpg') }}" />
+                            <img src="{{ AssetHelper::assetURL('complex', $item->building_image, 'img/placeholders/building-image-not-found.jpg') }}" />
                         </div>
 
                         <div class="image-actions">
                             <h1>{{ optional($item->section)->section_name ?? 'Overview' }}</h1>
-                            <button data-mode="update" data-target="complex_image_update"
-                                data-section-id="{{ optional($item->section)->id }}"
-                                data-section-slug="{{ optional($item->section)->section_slug }}"
-                                data-image-url="{{ Utilities::assetURL('complex', $item->building_image) }}"
-                                data-gallery-id="{{ $item?->id }}" onclick="complex_image_update.showModal()"
-                                class="open-gallery-modal">
+                            <button data-mode="update" data-target="complex_image_update" data-section-id="{{ optional($item->section)->id }}" data-section-slug="{{ optional($item->section)->section_slug }}" data-image-url="{{ AssetHelper::assetURL('complex', $item->building_image) }}" data-gallery-id="{{ $item?->id }}" onclick="complex_image_update.showModal()" class="open-gallery-modal">
                                 <i class="fa-solid fa-arrows-rotate"></i> Change Image/Video
                             </button>
                         </div>

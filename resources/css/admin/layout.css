@@ -443,7 +443,7 @@ main .main-content .header .right-header .tooltip {
 }
 
 .image-gallery .image-item .image-actions {
-    @apply flex flex-col gap-2 items-center;
+    @apply flex flex-col gap-2;
 }
 
 .image-gallery .image-item button {

@@ -51,6 +51,8 @@ class Building extends Model
 
     public static function buildingsList()
     {
-        return self::select('building_name', 'building_slug')->get();
+        return self::select('building_name', 'building_slug')
+            ->orderBy('building_name', 'asc')
+            ->get();
     }
 }

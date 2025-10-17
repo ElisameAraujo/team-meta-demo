@@ -21,7 +21,7 @@ body {
 
 /*** Navigation ***/
 .navigation {
-    @apply w-fit text-white absolute z-10 top-10 left-20;
+    @apply w-fit text-white z-10 top-10 left-20 pl-20 pt-10;
 }
 
 .navigation h1 {
@@ -79,113 +79,6 @@ body {
     @apply glass-effect border border-white/30 p-1 rounded-full transition-default cursor-pointer shadow-md;
 }
 
-/*** Side Menu ***/
-.side-menu {
-    @apply text-white absolute transition-all duration-500 ease-in-out;
-}
-
-.side-menu.show {
-    @apply z-10 top-40 left-20;
-}
-
-.side-menu.hide {
-    @apply z-10 top-40 -left-140;
-}
-
-.side-menu .menu-context {
-    @apply flex items-center gap-2 uppercase text-xs font-bold relative left-138 w-fit top-23 cursor-pointer;
-}
-
-.side-menu .arrow-menu {
-    @apply glass-effect border border-white/30 px-1 py-2 rounded-r-full text-xs cursor-pointer transition-default;
-}
-
-.arrow-menu::before {
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-}
-
-.side-menu .arrow-menu.right-arrow::before {
-    content: "\f054";
-    font-family: "FontAwesome";
-    @apply font-normal px-1.5;
-}
-
-.side-menu .arrow-menu.left-arrow::before {
-    content: "\f053";
-    font-family: "FontAwesome";
-    @apply font-normal px-1.5;
-}
-
-.side-menu .arrow-menu:hover {
-    @apply bg-white/30 border-white;
-}
-
-.side-menu .side-menu-container {
-    @apply glass-effect rounded-xl w-fit min-h-80 border border-white/30;
-}
-
-.side-menu .side-menu-container .side-menu-header {
-    @apply p-4 rounded-t-xl text-xs flex items-center justify-between border-b border-b-white/30 uppercase;
-}
-
-.side-menu .side-menu-container .side-menu-header .favorites {
-    @apply flex items-center gap-2 cursor-pointer;
-}
-
-.side-menu .side-menu-container .side-menu-content {
-    @apply p-4;
-}
-
-.side-menu-header .filters {
-    @apply text-gray-400 transition-default flex items-center gap-1;
-}
-
-.side-menu-header .filters:hover {
-    @apply cursor-pointer text-white;
-}
-
-.side-menu-header .favorites input[type="checkbox"] {
-    @apply border-white bg-transparent;
-
-    &:checked {
-        @apply border-white bg-white;
-    }
-
-    &::before {
-        @apply bg-white;
-    }
-
-    &:checked::before {
-        @apply bg-black;
-    }
-}
-
-.side-menu .side-menu-container .side-menu-content h1 {
-    @apply flex justify-between uppercase items-center text-xs;
-}
-
-.side-menu .side-menu-container .side-menu-content h1 > .content-header {
-    @apply flex items-center gap-2;
-}
-/*** Side Menu filters ***/
-.side-menu-filters {
-    @apply default-grid p-4 border-b border-b-white/30 overflow-hidden transition-all duration-500 ease-in-out py-0;
-    max-height: 0;
-    opacity: 0;
-    pointer-events: none;
-}
-
-.side-menu-filters.open {
-    max-height: 500px;
-    opacity: 1;
-    pointer-events: auto;
-    @apply py-4;
-}
-
-.side-menu-filters h1 {
-    @apply uppercase text-xs mb-2 text-gray-300;
-}
-
 /** Dropdown **/
 .content-header .dropdown .btn-open {
     @apply mb-4 cursor-pointer!;
@@ -208,11 +101,11 @@ body {
     @apply mt-4 overflow-y-scroll h-80 text-sm p-0.5;
 }
 
-.apartments-list > .apartment-item {
+.apartments-list .apartment-item {
     @apply flex items-center mb-1 cursor-pointer w-full justify-between border border-white/30 p-4 rounded transition-default;
 }
 
-.apartments-list > .apartment-item:hover {
+.apartments-list .apartment-item:hover {
     @apply bg-white/20 border-white/75;
 }
 
@@ -244,8 +137,12 @@ body {
     }
 }
 
+.page-background .side-content {
+    @apply w-5/12 h-screen bg-transparent absolute z-1000;
+}
+
 .page-background img {
-    @apply w-screen h-screen object-cover;
+    @apply w-screen h-screen object-cover -z-1000;
 }
 
 #transition-overlay {
@@ -258,4 +155,8 @@ body {
     z-index: 9999;
     pointer-events: none;
     transform: translateY(100%);
+}
+
+@view-transition {
+    navigation: auto;
 }

@@ -1,0 +1,196 @@
+/*** Side Menu ***/
+.side-menu {
+    @apply text-white transition-all duration-500 ease-in-out;
+}
+
+.side-menu.show,
+.side-menu.hide {
+    @apply absolute z-10;
+}
+
+.side-menu.show {
+    @apply left-20;
+}
+
+.side-menu.hide {
+    @apply -left-138;
+}
+
+.side-menu .menu-context {
+    @apply flex items-center gap-2 uppercase text-xs font-bold relative left-137 w-fit top-23 cursor-pointer;
+}
+
+.side-menu .arrow-menu {
+    @apply glass-effect border border-white/30 px-1 py-2 rounded-r-full text-xs cursor-pointer transition-default;
+}
+
+.arrow-menu::before {
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.side-menu .arrow-menu.right-arrow::before {
+    content: "\f054";
+    font-family: "FontAwesome";
+    @apply font-normal px-1.5;
+}
+
+.side-menu .arrow-menu.left-arrow::before {
+    content: "\f053";
+    font-family: "FontAwesome";
+    @apply font-normal px-1.5;
+}
+
+.side-menu .arrow-menu:hover {
+    @apply bg-white/30 border-white;
+}
+
+.side-menu .side-menu-container {
+    @apply glass-effect rounded-xl min-w-138 min-h-80 border border-white/30;
+}
+
+.side-menu .side-menu-container .side-menu-header {
+    @apply p-4 rounded-t-xl text-xs flex items-center justify-between border-b border-b-white/30 uppercase;
+}
+
+.side-menu .side-menu-container .side-menu-header .favorites {
+    @apply flex items-center gap-2 cursor-pointer;
+}
+
+.side-menu .side-menu-container .side-menu-content {
+    @apply p-4;
+}
+
+.side-menu-header .filters {
+    @apply text-gray-400 transition-default flex items-center gap-1;
+}
+
+.side-menu-header .filters:hover {
+    @apply cursor-pointer text-white;
+}
+
+.side-menu-header .favorites input[type="checkbox"] {
+    @apply border-white bg-transparent;
+
+    &:checked {
+        @apply border-white bg-white;
+    }
+
+    &::before {
+        @apply bg-white;
+    }
+
+    &:checked::before {
+        @apply bg-black;
+    }
+}
+
+.side-menu .side-menu-container .side-menu-content h1 {
+    @apply flex justify-between uppercase items-center text-xs;
+}
+
+.side-menu .side-menu-container .side-menu-content h1 > .content-header {
+    @apply flex items-center gap-2;
+}
+
+/*** Side Menu filters ***/
+.side-menu-filters {
+    @apply default-grid p-4 border-b border-b-white/30 overflow-hidden transition-all duration-500 ease-in-out py-0;
+    max-height: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.side-menu-filters.open {
+    max-height: 500px;
+    opacity: 1;
+    pointer-events: auto;
+    @apply py-4;
+}
+
+.side-menu-filters h1 {
+    @apply uppercase text-xs mb-2 text-gray-300;
+}
+
+/*** Apartment Side Menu ***/
+.side-menu .side-menu-container .apartment-container {
+    @apply p-4 text-white relative;
+}
+
+.side-menu-container > .apartment-container .apartment-header {
+    @apply flex justify-between pb-2 text-xl;
+}
+
+.apartment-header .actions {
+    @apply flex flex-row gap-2 cursor-pointer;
+}
+
+.apartment-header .actions span {
+    @apply transition-default text-white/50;
+}
+
+.apartment-header .actions span:hover {
+    @apply text-white;
+}
+
+.apartment-container > .apartment-header h1 {
+    @apply uppercase font-medium;
+}
+
+.apartment-container > .apartment-details {
+    @apply py-2 border-y border-y-white/30 mb-2;
+}
+
+.apartment-container > .apartment-details .detail-item {
+    @apply col-span-3;
+}
+
+.apartment-container > .apartment-ambients-sizes {
+    @apply py-2 border-b border-b-white/30 mb-2;
+}
+
+.apartment-container > .apartment-actions {
+    @apply flex justify-between items-center bottom-0 mt-3;
+}
+
+.apartment-actions .documentation {
+    @apply flex flex-col gap-1;
+}
+
+.apartment-actions .download {
+    @apply text-xs uppercase cursor-pointer;
+}
+
+.apartment-actions .apartment-action button {
+    @apply bg-white/50 text-black rounded-full px-5 py-1 text-xs uppercase transition-default cursor-pointer flex gap-1 items-center;
+}
+
+.apartment-actions .apartment-action .not-available {
+    @apply bg-white/50 text-black rounded-full px-5 py-1 text-xs uppercase cursor-not-allowed;
+}
+
+.apartment-actions .apartment-action button:hover {
+    @apply bg-white;
+}
+
+.apartment-ambients-sizes > .ambients-columns,
+.apartment-container > .apartment-details .details {
+    @apply default-grid;
+}
+
+.apartment-ambients-sizes > .ambients-columns > .ambient-column {
+    @apply col-span-4 flex flex-col gap-2;
+}
+
+.ambients-columns > .ambient-column > .size-area {
+    @apply flex flex-col;
+}
+
+.ambient-column .title,
+.apartment-container > .apartment-details .detail-item .detail-label,
+.apartment-actions .title {
+    @apply uppercase text-xs text-gray-300;
+}
+.ambient-column .size,
+.apartment-container > .apartment-details .detail-item .detail-value {
+    @apply font-[500];
+}

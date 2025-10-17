@@ -98,17 +98,68 @@
     max-height: 0;
     opacity: 0;
     pointer-events: none;
+    visibility: hidden;
 }
 
 .side-menu-filters.open {
-    max-height: 500px;
+    max-height: 600px;
     opacity: 1;
     pointer-events: auto;
+    visibility: visible;
     @apply py-4;
 }
 
 .side-menu-filters h1 {
     @apply uppercase text-xs mb-2 text-gray-300;
+}
+
+/** Apartments List **/
+.apartments-list {
+    @apply mt-4 overflow-y-scroll h-80 text-sm p-0.5;
+}
+
+.apartments-list .apartment-item {
+    @apply flex items-center mb-1 cursor-pointer w-full justify-between border border-white/30 p-4 rounded transition-default;
+}
+
+.apartments-list .apartment-item-no-results {
+    @apply flex items-center justify-center mb-1 cursor-pointer w-full pt-4;
+}
+
+.apartments-list .apartment-item:hover {
+    @apply bg-white/20 border-white/75;
+}
+
+.apartment-item .details {
+    @apply text-gray-200 flex justify-self-end gap-6;
+}
+
+.apartment-item .detail-item {
+    @apply col-span-2;
+}
+
+.apartment-item .detail-item > .detail-label {
+    @apply uppercase text-xs font-normal;
+}
+
+.apartments-list > .apartment-item .detail-item > .detail-value {
+    @apply text-sm font-bold;
+}
+
+/*** Utilities ***/
+.tag {
+    @apply bg-white/15 px-2 rounded font-normal uppercase text-[11px];
+}
+
+.tag-alt {
+    @apply glass-effect px-2.5 py-1 rounded-full text-xs cursor-pointer transition-default uppercase border border-white/30 inline-block text-ellipsis whitespace-nowrap overflow-hidden max-w-[100%];
+    &:hover {
+        @apply bg-white/20 border-white;
+    }
+}
+
+.tag-alt.active {
+    @apply bg-white/20 border-white;
 }
 
 /*** Apartment Side Menu ***/

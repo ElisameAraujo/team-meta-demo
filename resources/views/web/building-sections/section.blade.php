@@ -4,7 +4,12 @@
 @section('content')
     <div class="side-content">
         @include('components.web.building-navigation')
-        @include('components.web.side-menu')
-    </div>
-    <img src="{{ AssetHelper::assetURL('buildings', $sectionImage->building_image) }}" alt="">
+        @livewire('apartment-filter', [
+            'apartments' => $apartments,
+            'floors' => $floors,
+            'ambients' => $ambients,
+            'status' => $status
+        ])
+        </div>
+        <img src="{{ AssetHelper::assetURL('buildings', $sectionImage->building_image) }}" alt="">
 @endsection

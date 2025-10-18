@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Interfaces\Admin\ComplexInterface;
 use App\Models\Admin\BuildingGallery;
 use App\Models\Admin\Section;
+use App\Models\Admin\TransitionsGallery;
 use Illuminate\Http\Request;
 
 class ComplexController extends Controller
@@ -16,8 +17,9 @@ class ComplexController extends Controller
     {
         $sections = Section::all();
         $complexGallery = BuildingGallery::with('section')->whereNull('building_id')->get();
+        $transitions = TransitionsGallery::where('type', 'complex')->paginate(20);
 
-        return view('admin.configuration.complex-configuration', compact('sections', 'complexGallery'));
+        return view('admin.configuration.complex-configuration', compact('sections', 'complexGallery', 'transitions'));
     }
 
     public function addOverviewComplexImage(Request $request)

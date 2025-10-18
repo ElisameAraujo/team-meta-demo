@@ -39,14 +39,9 @@ class ComplexRepository implements ComplexInterface
     }
     public function updateOverviewComplexImage(object $data)
     {
-        // Validação mínima dos dados esperados
-        if (!isset($data->complex_overview, $data->section_id, $data->type)) {
-            throw new \InvalidArgumentException('Dados incompletos para atualizar imagem da seção.');
-        }
 
         // Busca o registro existente na galeria
         $sectionImage = BuildingGallery::findOrFail($data->gallery_id);
-        //dd($sectionImage);
 
         // Armazena nova imagem
         $newPath = $this->storeImage($data->complex_overview, 'complex');
@@ -64,8 +59,6 @@ class ComplexRepository implements ComplexInterface
 
         return true;
     }
-
-
 
     private function storeImage($image, string $disk): string
     {

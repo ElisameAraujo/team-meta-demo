@@ -16,6 +16,11 @@
 /public/build
 /public/hot
 /public/storage
+/public/img/apartments
+/public/img/el-muelle-ii
+/public/img/el-muelle-iii
+/public/img/videos
+/public/img/complex
 /storage/*.key
 /storage/pail
 /vendor

@@ -24,9 +24,9 @@
             </a>
         </span>
         @foreach ($sections as $section)
-            <span
-                class="section {{ (request()->is('complex/section/' . $section->section_slug . '/overview')) ? 'active' : '' }}">
-                <a href="{{ route('web.section-overview', ['section' => $section->section_slug]) }}">{{ $section->section_name }}
+            <span class="section {{ (request()->is('complex/section/' . $section->section_slug . '/overview')) ? 'active' : '' }}">
+                <a href="{{ route('web.section-overview', ['section' => $section->section_slug]) }}" onclick="sessionStorage.setItem('lastSide', '{{ $currentSide }}')">
+                    {{ $section->section_name }}
                 </a>
             </span>
         @endforeach

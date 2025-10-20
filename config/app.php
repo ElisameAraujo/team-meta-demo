@@ -131,7 +131,8 @@ return [
     'aliases' => [
         'AssetHelper' => App\Helpers\AssetHelper::class,
         'DateHelper' => App\Helpers\DateHelper::class,
-        'DiskHelper' => App\Helpers\DiskHelper::class
+        'DiskHelper' => App\Helpers\DiskHelper::class,
+        'CoordinateHelper' => App\Helpers\CoordinateHelper::class,
     ],
 
 

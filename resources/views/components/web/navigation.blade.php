@@ -18,16 +18,16 @@
         @endforeach
     </div>
     <div class="apartments-available">
-        <span class="section {{ (request()->is('/')) ? 'active' : '' }}">
-            <a href="{{ route('web.index') }}">
+        <span class="section {{ $currentSide === 'complex:overview' ? 'active' : '' }}">
+            <button wire:click="changeSection(null)">
                 Overview
-            </a>
+            </button>
         </span>
         @foreach ($sections as $section)
-            <span class="section {{ (request()->is('complex/section/' . $section->section_slug . '/overview')) ? 'active' : '' }}">
-                <a href="{{ route('web.section-overview', ['section' => $section->section_slug]) }}" onclick="sessionStorage.setItem('lastSide', '{{ $currentSide }}')">
+            <span class="section {{ $currentSide === 'complex:' . $section->section_slug ? 'active' : '' }}">
+                <button wire:click="changeSection('{{ $section->section_slug }}')">
                     {{ $section->section_name }}
-                </a>
+                </button>
             </span>
         @endforeach
     </div>

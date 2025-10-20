@@ -1,20 +1,41 @@
+function buildTooltipContent(element) {
+    const label = element.dataset.label;
+    const tooltip = document.getElementById("apartment-tooltip");
+
+    let html = "";
+
+    if (label) {
+        html += `<h3 class="label-tooltip">${label}</h3>`;
+    }
+
+    Object.entries(element.dataset).forEach(([key, value]) => {
+        if (key === "label" || key === "tooltip") return;
+
+        html += `
+            <span class="flex gap-1 font-bold">
+                ${capitalize(key)}: <p class="font-normal">${value}</p>
+            </span>
+        `;
+    });
+
+    tooltip.innerHTML = html;
+}
+
+function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
 export function interactiveBuildingAdminRect() {
     const tooltip = document.getElementById("apartment-tooltip");
-    const label = document.getElementById("tooltip-label");
-    const price = document.getElementById("tooltip-price");
-    const area = document.getElementById("tooltip-area");
-
     const wrapper = document.querySelector(".video-canvas-wrapper");
 
-    if (!tooltip || !label || !price || !area || !wrapper) return;
+    if (!tooltip || !wrapper) return;
 
     document.querySelectorAll(".interactive-overlay rect").forEach((rect) => {
         if (rect.dataset.tooltip !== "true") return;
 
         rect.addEventListener("mouseenter", () => {
-            label.textContent = rect.dataset.label || "";
-            price.textContent = rect.dataset.price || "";
-            area.textContent = rect.dataset.area || "";
+            buildTooltipContent(rect);
             tooltip.style.display = "block";
         });
 
@@ -35,21 +56,15 @@ export function interactiveBuildingAdminRect() {
 
 export function interactiveBuildingAdminPolygon() {
     const tooltip = document.getElementById("apartment-tooltip");
-    const label = document.getElementById("tooltip-label");
-    const price = document.getElementById("tooltip-price");
-    const area = document.getElementById("tooltip-area");
-
     const wrapper = document.querySelector(".video-canvas-wrapper");
 
-    if (!tooltip || !label || !price || !area || !wrapper) return;
+    if (!tooltip || !wrapper) return;
 
     document.querySelectorAll(".interactive-overlay polygon").forEach((polygon) => {
         if (polygon.dataset.tooltip !== "true") return;
 
         polygon.addEventListener("mouseenter", () => {
-            label.textContent = polygon.dataset.label || "";
-            price.textContent = polygon.dataset.price || "";
-            area.textContent = polygon.dataset.area || "";
+            buildTooltipContent(polygon);
             tooltip.style.display = "block";
         });
 

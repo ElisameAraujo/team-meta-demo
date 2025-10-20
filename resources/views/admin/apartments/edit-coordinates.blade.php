@@ -96,75 +96,99 @@
             <dialog id="coordinates_modal" class="modal">
                 <div class="modal-box">
                     <div class="coordinates-area">
-                        <div class="interactive-draw">
-                            <div class="toolbar">
-                                <div class="dropdown">
-                                    <label tabindex=0 class="btn glass-effect text-white rounded-md">
-                                        Menu
-                                    </label>
-                                    <ul tabIndex="0" class="menu bg-base-200 w-72 rounded-box dropdown-content z-[1]">
-                                        <li>
-                                            <details>
-                                                <summary>
-                                                    <i class="fa-solid fa-location-dot"></i> Create Object Using
-                                                </summary>
-                                                <ul>
-                                                    <li>
-                                                        <a data-tool="rectangle">
-                                                            <i class="fa-solid fa-rectangle-xmark"></i>Rectangle
-                                                            <kbd class="kbd kbd-sm">R</kbd>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a data-tool="polyline">
-                                                            <i class="fa-solid fa-bezier-curve"></i>Line
-                                                            <kbd class="kbd kbd-sm">L</kbd>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </details>
-                                        </li>
-                                        <li>
-                                            <a data-tool="remove">
-                                                <i class="fa-solid fa-trash-can"></i>
-                                                Remove Selected Object <kbd class="kbd kbd-sm">Delete</kbd>
-                                            </a>
-                                        </li>
+                        <div class="video-canvas-wrapper">
+                            <video id="video-background"
+                                src="{{ AssetHelper::assetURL('buildings', $buildingBackground?->building_image) }}"
+                                width="100%" height="100%" preload="auto" muted playsinline></video>
+                            <svg class="interactive-overlay" viewBox="0 0 1920 1080">
+                                <g>
+                                    @foreach ($apartmentsCoordinates as $coord)
+                                        @php
+                                            $data = CoordinateHelper::getApartmentRenderData($coord, $apartment->id);
+                                        @endphp
 
-                                        <li>
-                                            <a data-tool="clear">
-                                                <i class="fa-solid fa-eraser"></i>
-                                                Clear All Objects <kbd class="kbd kbd-sm">C</kbd>
-                                            </a>
-                                        </li>
-                                        <form method="dialog">
+                                        @if ($coord->type === 'polygon')
+                                            <polygon class="{{ $data['class'] }}" points="{{ $coord->points }}"
+                                                data-floor="{{ $coord->apartment->floor }}"
+                                                data-status="{{ $coord->apartment->status->status_name }}"
+                                                data-tooltip="true" />
+                                        @elseif ($coord->type === 'rect')
+                                            <rect class="{{ $data['class'] }}" x="{{ $coord->x_position }}"
+                                                y="{{ $coord->y_position }}" width="{{ $coord->width }}"
+                                                height="{{ $coord->height }}" data-floor="{{ $coord->apartment->floor }}"
+                                                data-status="{{ $coord->apartment->status->status_name }}"
+                                                data-tooltip="true" />
+
+                                            <foreignObject x="{{ $data['centerX'] - 50 }}" y="{{ $data['centerY'] - 20 }}"
+                                                width="100" height="40">
+                                                <div xmlns="http://www.w3.org/1999/xhtml" class="unit-badge-glass">
+                                                    {{ $data['unitCode'] }}
+                                                </div>
+                                            </foreignObject>
+                                        @endif
+                                    @endforeach
+
+                                </g>
+                            </svg>
+
+                            <div id="apartment-tooltip" class="tooltip-card" style="display: none;"></div>
+
+                            <div class="interactive-draw">
+                                <div class="toolbar">
+                                    <div class="dropdown">
+                                        <label tabindex=0 class="btn glass-effect text-white rounded-md">
+                                            Menu
+                                        </label>
+                                        <ul tabIndex="0"
+                                            class="menu bg-base-200 w-72 rounded-box dropdown-content z-[1]">
                                             <li>
-                                                <button href="#" class="cursor-pointer!">
-                                                    <i class="fa-solid fa-xmark"></i>
-                                                    Close Tool <kbd class="kbd kbd-sm">Esc</kbd>
-                                                </button>
+                                                <details>
+                                                    <summary>
+                                                        <i class="fa-solid fa-location-dot"></i> Create Object Using
+                                                    </summary>
+                                                    <ul>
+                                                        <li>
+                                                            <a data-tool="rectangle">
+                                                                <i class="fa-solid fa-rectangle-xmark"></i>Rectangle
+                                                                <kbd class="kbd kbd-sm">R</kbd>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a data-tool="polyline">
+                                                                <i class="fa-solid fa-bezier-curve"></i>Line
+                                                                <kbd class="kbd kbd-sm">L</kbd>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </details>
                                             </li>
-                                        </form>
-                                    </ul>
-                                </div>
-                            </div>
-                            <canvas id="draw-area"></canvas>
-                        </div>
-                        <svg class="interactive-building" width="100%" height="100%" viewBox="0 0 1860 917">
-                            <g>
-                                <image x="0%" y="0%"
-                                    xlink:href="{{ AssetHelper::assetURL('buildings', $buildingBackground?->building_image, 'img/placeholders/building-image-not-found.jpg') }}" />
+                                            <li>
+                                                <a data-tool="remove">
+                                                    <i class="fa-solid fa-trash-can"></i>
+                                                    Remove Selected Object <kbd class="kbd kbd-sm">Delete</kbd>
+                                                </a>
+                                            </li>
 
-                                @if($apartment->coordinates->type === 'polygon')
-                                    <polygon class="sold" points="{{$apartment->coordinates?->points}}" />
-                                @else
-                                    <rect class="sold" x="{{ $apartment->coordinates?->x_position }}"
-                                        y="{{ $apartment->coordinates?->y_position }}"
-                                        width="{{ $apartment->coordinates?->width }}"
-                                        height="{{ $apartment->coordinates?->height }}" />
-                                @endif
-                            </g>
-                        </svg>
+                                            <li>
+                                                <a data-tool="clear">
+                                                    <i class="fa-solid fa-eraser"></i>
+                                                    Clear All Objects <kbd class="kbd kbd-sm">C</kbd>
+                                                </a>
+                                            </li>
+                                            <form method="dialog">
+                                                <li>
+                                                    <button href="#" class="cursor-pointer!">
+                                                        <i class="fa-solid fa-xmark"></i>
+                                                        Close Tool <kbd class="kbd kbd-sm">Esc</kbd>
+                                                    </button>
+                                                </li>
+                                            </form>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <canvas id="draw-area"></canvas>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <form method="dialog" class="modal-backdrop">

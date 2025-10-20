@@ -10,7 +10,7 @@ export function setupPolylineTool(canvas) {
     canvas.on("mouse:down", (e) => {
         if (getCurrentTool() !== "polyline" || polygon) return;
 
-        const pointer = canvas.getViewportPoint(e.e);
+        const pointer = canvas.getPointer(e.e);
         polylinePoints.push({ x: pointer.x, y: pointer.y });
 
         if (polylinePreview) canvas.remove(polylinePreview);

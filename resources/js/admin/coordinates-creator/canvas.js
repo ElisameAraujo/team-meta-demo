@@ -1,15 +1,21 @@
 import { Canvas } from "fabric";
 
-const BASE_WIDTH = 1860;
-const BASE_HEIGHT = 917;
+const BASE_WIDTH = 1920;
+const BASE_HEIGHT = 1080;
 
 export function setupCanvas() {
     const canvasElement = document.getElementById("draw-area");
     if (!canvasElement) return null;
 
     const container = canvasElement.parentElement;
-    canvasElement.width = container.offsetWidth;
-    canvasElement.height = container.offsetHeight;
+    const wrapper = container.closest(".video-canvas-wrapper") || container;
+
+    // Define tamanho inicial do canvas com base no wrapper
+    const wrapperWidth = wrapper.offsetWidth;
+    const scale = wrapperWidth / BASE_WIDTH;
+
+    canvasElement.width = wrapperWidth;
+    canvasElement.height = BASE_HEIGHT * scale;
 
     const canvas = new Canvas("draw-area", {
         selection: false,
@@ -17,15 +23,25 @@ export function setupCanvas() {
         height: BASE_HEIGHT,
     });
 
-    const scaleX = canvasElement.width / BASE_WIDTH;
-    canvas.setZoom(scaleX);
-    canvas.setDimensions({ width: canvasElement.width, height: canvasElement.height });
+    canvas.setZoom(scale);
+    canvas.setDimensions({
+        width: wrapperWidth,
+        height: BASE_HEIGHT * scale,
+    });
 
+    // Atualiza ao redimensionar a janela
     window.addEventListener("resize", () => {
-        const newWidth = container.offsetWidth;
-        const zoom = newWidth / BASE_WIDTH;
-        canvas.setZoom(zoom);
-        canvas.setDimensions({ width: newWidth, height: BASE_HEIGHT * zoom });
+        const newWidth = wrapper.offsetWidth;
+        const newScale = newWidth / BASE_WIDTH;
+
+        canvas.setZoom(newScale);
+        canvas.setDimensions({
+            width: newWidth,
+            height: BASE_HEIGHT * newScale,
+        });
+
+        canvasElement.width = newWidth;
+        canvasElement.height = BASE_HEIGHT * newScale;
     });
 
     return canvas;

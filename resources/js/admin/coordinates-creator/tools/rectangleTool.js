@@ -11,13 +11,13 @@ export function setupRectangleTool(canvas) {
         if (getCurrentTool() !== "rectangle" || rect) return;
 
         isDrawing = true;
-        startPoint = canvas.getViewportPoint(e.e);
+        startPoint = canvas.getPointer(e.e);
     });
 
     canvas.on("mouse:move", (e) => {
         if (!isDrawing || !startPoint || getCurrentTool() !== "rectangle") return;
 
-        const pointer = canvas.getViewportPoint(e.e);
+        const pointer = canvas.getPointer(e.e);
         const width = Math.abs(pointer.x - startPoint.x);
         const height = Math.abs(pointer.y - startPoint.y);
 
@@ -40,10 +40,18 @@ export function setupRectangleTool(canvas) {
         }
 
         if (rect) {
+            const left = Math.min(pointer.x, startPoint.x);
+            const top = Math.min(pointer.y, startPoint.y);
+            const width = Math.abs(pointer.x - startPoint.x);
+            const height = Math.abs(pointer.y - startPoint.y);
+
             rect.set({
+                left,
+                top,
                 width,
                 height,
             });
+
             canvas.renderAll();
         }
     });

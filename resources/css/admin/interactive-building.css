@@ -19,10 +19,6 @@
     @apply border-white/30 fill-red-500/20 stroke-red-600 stroke-2;
 }
 
-.interactive-building rect.actual-position {
-    @apply fill-green-500/20 stroke-2 stroke-green-600;
-}
-
 .interactive-building rect.reserved,
 .interactive-building polygon.reserved {
     @apply border-white/30 fill-yellow-500/20;
@@ -31,6 +27,13 @@
 .interactive-building rect.reserved:hover,
 .interactive-building polygon.reserved:hover {
     @apply stroke-yellow-600 stroke-2;
+}
+
+/** Tooltip **/
+#apartment-tooltip {
+    position: absolute;
+    z-index: 9999;
+    pointer-events: none;
 }
 
 .tooltip-card {
@@ -49,4 +52,28 @@
 
 .tooltip-card h3.label-tooltip {
     @apply font-bold;
+}
+
+/** Interactive Overlay (Admin) **/
+.interactive-overlay {
+    pointer-events: none;
+    z-index: 15;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.interactive-overlay rect[data-tooltip="true"],
+.interactive-overlay polygon[data-tooltip="true"] {
+    pointer-events: all;
+}
+
+.interactive-overlay rect.actual-position {
+    @apply fill-green-500/20 stroke-2 stroke-green-600;
+}
+
+.interactive-overlay rect.others-position {
+    @apply fill-red-500/20 stroke-red-600 stroke-2;
 }

@@ -8,9 +8,38 @@
     </div>
 
     <div class="video-background">
-        <video autoplay muted loop playsinline controlsList="nodownload nofullscreen noremoteplay" disablePictureInPicture>
-            <source src="{{ AssetHelper::assetURL('buildings', $overviewBackground) }}" type="video/mp4">
+        <video id="mainVideo" autoplay muted playsinline controlsList="nodownload nofullscreen noremoteplay"
+            disablePictureInPicture>
+            <source id="videoSource"
+                src="{{ $transition ? AssetHelper::assetURL('transitions', $transition->video_path) : AssetHelper::assetURL('buildings', $overviewBackground) }}"
+                type="video/mp4">
         </video>
         <div class="video-overlay"></div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const fromKey = document.cookie.match(/fromKey=([^;]+)/)?.[1];
+            const toKey = '{{ $currentSide }}';
+            document.cookie = "fromKey=" + toKey + "; path=/";
+
+            const video = document.getElementById('mainVideo');
+            const source = document.getElementById('videoSource');
+
+            if (fromKey && fromKey !== toKey && source.src.includes('transitions')) {
+                video.loop = false;
+                video.onended = () => {
+                    source.src = "{{ AssetHelper::assetURL('buildings', $overviewBackground) }}";
+                    video.loop = true;
+                    video.load();
+                    video.play();
+                };
+            } else {
+                video.loop = true;
+                video.load();
+                video.play();
+            }
+        });
+    </script>
+
 @endsection

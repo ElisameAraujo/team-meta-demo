@@ -19,6 +19,6 @@ class TransitionsController extends Controller
             return redirect()->back()->with('error', 'No file selected');
         }
 
-        return redirect()->back()->with('success', 'Complex transition added successfully.');
+        return redirect()->back()->with('success', 'Transition added successfully.');
     }
 }

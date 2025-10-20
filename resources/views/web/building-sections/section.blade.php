@@ -8,9 +8,43 @@
     </div>
 
     <div class="video-background">
-        <video autoplay muted loop playsinline controlsList="nodownload nofullscreen noremoteplay" disablePictureInPicture>
-            <source src="{{ AssetHelper::assetURL('buildings', $sectionImage->building_image) }}" type="video/mp4">
+        <video id="mainVideo" autoplay muted playsinline controlsList="nodownload nofullscreen noremoteplay"
+            disablePictureInPicture>
+            <source id="videoSource"
+                src="{{ $transition ? AssetHelper::assetURL('transitions', $transition->video_path) : AssetHelper::assetURL('buildings', $sectionImage->building_image) }}"
+                type="video/mp4">
         </video>
         <div class="video-overlay"></div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.cookie = "fromKey={{ $currentSide }}; path=/";
+
+            const transitionPath =
+                "{{ $transition ? AssetHelper::assetURL('transitions', $transition->video_path) : '' }}";
+            const loopPath = "{{ AssetHelper::assetURL('buildings', $sectionImage->building_image) }}";
+
+            const video = document.getElementById('mainVideo');
+            const source = document.getElementById('videoSource');
+
+            if (!transitionPath) {
+                video.loop = true;
+                video.load();
+                video.play();
+                return;
+            }
+
+            video.loop = false;
+            video.addEventListener('ended', () => {
+                source.src = loopPath;
+                video.load();
+                video.loop = true;
+                video.play();
+            });
+
+            video.load();
+            video.play();
+        });
+    </script>
 @endsection

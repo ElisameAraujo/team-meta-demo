@@ -22,6 +22,7 @@
         </div>
         @include('components.flash-messages')
         @include('components.admin.building-gallery')
+        @include('components.admin.new-transition')
         <div class="col-span-12 page-header">
             <h1>Building Details</h1>
             <form action="{{ route('admin.buildings.update-building', $building->id) }}" method="POST">
@@ -47,40 +48,119 @@
             </form>
         </div>
         <div class="col-span-12 page-header mt-4">
-            <h1>Building Overview Gallery</h1>
-            <div class="image-gallery">
-                @foreach ($sectionGallery as $item)
-                    @php
-                        $section = $item['section'];
-                        $image = $item['image'];
-                        $imagePath = $image?->building_image;
-                        $imageExists = AssetHelper::assetExists('buildings', $imagePath);
-                    @endphp
+            <h1>Building Gallery</h1>
+        </div>
+        <div class="col-span-12">
+            <div class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Type</th>
+                            <th>Video Path</th>
+                            <th>Created at</th>
+                            <th>Updated at</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($gallery as $item)
+                            <tr>
+                                <td>{{ $item->id }}</td>
+                                <td>{{ ucfirst($item->type) }}</td>
+                                <td>{{ $item->video_url_section }}</td>
+                                <td>{{ $item->created_at }}</td>
+                                <td>{{ $item->updated_at }}</td>
+                                <td>
+                                    <div class="join">
+                                        <a href="{{-- {{ route('admin.buildings.edit-building', ['building' => $building->id]) }} --}}"
+                                            class="btn btn-info btn-sm text-white join-item tooltip font-normal"
+                                            data-tip="Edit">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+                                        <form action="{{-- {{ route('admin.buildings.delete-building', $building->id) }} --}}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"
+                                                class="btn btn-error btn-sm text-white join-item tooltip font-normal"
+                                                data-tip="Remove">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
 
-                    <div class="image-item">
-                        <div class="image-thumb">
-                            @if ($imageExists)
-                                <img src="{{ AssetHelper::assetURL('buildings', $imagePath) }}" />
-                            @else
-                                <img src="{{ asset('img/placeholders/building-image-not-found.jpg') }}" />
-                            @endif
-                        </div>
-
-                        <div class="image-actions">
-                            <h1>{{ $section->section_name }}</h1>
-                            <button data-mode="update" data-target="building_gallery" data-building-id="{{ $building->id }}"
-                                data-section-id="{{ $section->id }}" data-section-slug="{{ $section->section_slug }}"
-                                data-image-url="{{ $imageExists ? AssetHelper::assetURL('buildings', $imagePath) : '' }}"
-                                data-gallery-id="{{ $image?->id }}" onclick="building_gallery.showModal()"
-                                class="open-gallery-modal">
-                                <i class="fa-solid fa-arrows-rotate"></i> Change Image/Video
-                            </button>
-
-                        </div>
-                    </div>
-                @endforeach
-
+                    </tbody>
+                </table>
             </div>
         </div>
+
+        <div class="col-span-12 page-header mt-4">
+            <h1>Building Transitions</h1>
+        </div>
+        <div class="page-actions">
+            <button class="btn btn-success" onclick="openTransitionModal(this)" data-type="{{ $building->building_slug }}">
+                <i class="fa-solid fa-plus"></i> New Transition
+            </button>
+        </div>
+
+        <div class="col-span-12">
+            <div class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Origin</th>
+                            <th>Destination</th>
+                            <th>Video Path</th>
+                            <th>Created at</th>
+                            <th>Updated at</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($transitions as $transition)
+                            <tr>
+                                <td>{{ $transition->id }}</td>
+                                <td>{{ $transition->origin }}</td>
+                                <td>{{ $transition->destination }}</td>
+                                <td>{{ $transition->video_url }}</td>
+                                <td>{{ $transition->created_at }}</td>
+                                <td>{{ $transition->updated_at }}</td>
+                                <td>
+                                    <div class="join">
+                                        <a href="{{-- {{ route('admin.buildings.edit-building', ['building' => $building->id]) }} --}}"
+                                            class="btn btn-info btn-sm text-white join-item tooltip font-normal"
+                                            data-tip="Edit">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+                                        <form action="{{-- {{ route('admin.buildings.delete-building', $building->id) }} --}}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"
+                                                class="btn btn-error btn-sm text-white join-item tooltip font-normal"
+                                                data-tip="Remove">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+
+                    </tbody>
+                </table>
+            </div>
+            {{ $transitions->links() }}
+        </div>
     </div>
+    <script>
+        function openTransitionModal(button) {
+            const type = button.getAttribute('data-type');
+            document.getElementById('type_transition').value = type;
+            document.getElementById('new_transition').showModal();
+        }
+    </script>
 @endsection

@@ -16,6 +16,13 @@ window.axios = axios;
 window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 
 /**
+ * AlpineJS
+ */
+import { Alpine } from "../../vendor/livewire/livewire/dist/livewire.esm";
+window.Alpine = Alpine;
+Alpine.start();
+
+/**
  * FontAwesome
  */
 import "@fortawesome/fontawesome-free/js/all.js";

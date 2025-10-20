@@ -3,7 +3,6 @@
 namespace App\Models\Admin;
 
 use App\Helpers\AssetHelper;
-use App\Helpers\DiskHelper;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
@@ -29,7 +28,15 @@ class TransitionsGallery extends Model
 
     public function getTypeTransitionAttribute(): string
     {
-        return Str::ucfirst($this->type);
+        $transitionName = Str::replace('-', ' ', $this->type);
+        $transition = Str::title($transitionName);
+
+        // Verifica se o último termo é um algarismo romano válido (até 100)
+        if (preg_match('/\b(m{0,3}(c{0,1}(xc|xl|l)?|x{0,3})(ix|iv|v?i{0,3})?)\b$/i', $transition, $match)) {
+            $transition = preg_replace('/' . preg_quote($match[0], '/') . '$/i', strtoupper($match[0]), $transition);
+        }
+
+        return $transition;
     }
 
     public function getVideoUrlAttribute(): string

@@ -4,6 +4,7 @@ namespace App\Repositories\Admin;
 
 use App\Helpers\DiskHelper;
 use App\Interfaces\Admin\TransitionInterface;
+use App\Models\Admin\Building;
 use App\Models\Admin\TransitionsGallery;
 
 class TransitionRepository implements TransitionInterface
@@ -27,7 +28,10 @@ class TransitionRepository implements TransitionInterface
 
     private function generateKey(string $type, string $key): string
     {
-        $allowedTypes = ['complex', 'building', 'floor', 'apartment'];
+        $baseTypes = ['complex', 'building', 'floor', 'apartment'];
+        $buildingSlugs = Building::pluck('building_slug')->toArray();
+
+        $allowedTypes = array_merge($baseTypes, $buildingSlugs);
 
         $type = strtolower(trim($type));
         if (!in_array($type, $allowedTypes)) {

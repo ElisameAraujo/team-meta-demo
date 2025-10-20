@@ -7,6 +7,7 @@ use App\Interfaces\Admin\BuildingInterface;
 use App\Models\Admin\Building;
 use App\Models\Admin\BuildingGallery;
 use App\Models\Admin\Section;
+use App\Models\Admin\TransitionsGallery;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -26,7 +27,7 @@ class BuildingController extends Controller
         return view('admin.buildings.new-building');
     }
 
-    public function editBuilding(Building $building)
+    /* public function editBuilding(Building $building)
     {
         $sections = Section::all();
         $gallery = BuildingGallery::where('building_id', $building->id)->get();
@@ -44,6 +45,15 @@ class BuildingController extends Controller
             'building' => $building,
             'sectionGallery' => $sectionGallery,
         ]);
+    } */
+
+    public function editBuilding(Building $building)
+    {
+        $sections = Section::all();
+        $gallery = BuildingGallery::where('building_id', $building->id)->get();
+        $transitions = TransitionsGallery::where('type', $building->building_slug)->paginate(20);
+
+        return view('admin.buildings.edit-building', compact('sections', 'gallery', 'building', 'transitions'));
     }
 
 

@@ -3,9 +3,9 @@ import { subMenu } from "./admin/nav/submenu";
 import { updateClock } from "./admin/clock";
 import { themeChange } from "theme-change";
 import { fileUploadPreview } from "./admin/fileUploadImagePreview";
-import { interactiveBuildingPolygon, interactiveBuildingRect } from "./admin/interactive-building";
 import { setupGalleryModal } from "./admin/dataFromGallery";
 import { hideNotifications } from "./admin/hideNotifications.js";
+import { interactiveBuildingAdminPolygon, interactiveBuildingAdminRect } from "./admin/apartments-limits.js";
 import "./admin/coordinates-creator/index.js";
 
 /**
@@ -46,8 +46,6 @@ themeChange();
  */
 fileUploadPreview();
 setupGalleryModal();
-interactiveBuildingPolygon();
-interactiveBuildingRect();
 hideNotifications();
 
 /**
@@ -56,3 +54,11 @@ hideNotifications();
 if (!document.startViewTransition) {
     document.body.classList.add("no-transitions");
 }
+
+/**
+ * Tooltips for Interactive Buildings
+ */
+document.addEventListener("DOMContentLoaded", () => {
+    interactiveBuildingAdminPolygon();
+    interactiveBuildingAdminRect();
+});

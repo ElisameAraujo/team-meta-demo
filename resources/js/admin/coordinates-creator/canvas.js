@@ -10,39 +10,39 @@ export function setupCanvas() {
     const container = canvasElement.parentElement;
     const wrapper = container.closest(".video-canvas-wrapper") || container;
 
-    // Define tamanho inicial do canvas com base no wrapper
-    const wrapperWidth = wrapper.offsetWidth;
-    const scale = wrapperWidth / BASE_WIDTH;
+    // Função para calcular escala e aplicar no canvas
+    const applyCanvasScale = () => {
+        const wrapperWidth = wrapper.offsetWidth;
+        const wrapperHeight = wrapper.offsetHeight;
 
-    canvasElement.width = wrapperWidth;
-    canvasElement.height = BASE_HEIGHT * scale;
+        const scaleX = wrapperWidth / BASE_WIDTH;
+        const scaleY = wrapperHeight / BASE_HEIGHT;
+        const scale = Math.min(scaleX, scaleY); // mantém proporção
 
+        const scaledWidth = BASE_WIDTH * scale;
+        const scaledHeight = BASE_HEIGHT * scale;
+
+        canvas.setZoom(scale);
+        canvas.setDimensions({
+            width: scaledWidth,
+            height: scaledHeight,
+        });
+
+        canvasElement.width = scaledWidth;
+        canvasElement.height = scaledHeight;
+    };
+
+    // Inicializa o canvas com base lógica fixa
     const canvas = new Canvas("draw-area", {
         selection: false,
         width: BASE_WIDTH,
         height: BASE_HEIGHT,
     });
 
-    canvas.setZoom(scale);
-    canvas.setDimensions({
-        width: wrapperWidth,
-        height: BASE_HEIGHT * scale,
-    });
+    applyCanvasScale();
 
     // Atualiza ao redimensionar a janela
-    window.addEventListener("resize", () => {
-        const newWidth = wrapper.offsetWidth;
-        const newScale = newWidth / BASE_WIDTH;
-
-        canvas.setZoom(newScale);
-        canvas.setDimensions({
-            width: newWidth,
-            height: BASE_HEIGHT * newScale,
-        });
-
-        canvasElement.width = newWidth;
-        canvasElement.height = BASE_HEIGHT * newScale;
-    });
+    window.addEventListener("resize", applyCanvasScale);
 
     return canvas;
 }

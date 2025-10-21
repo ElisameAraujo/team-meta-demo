@@ -1,14 +1,14 @@
 .coordinates-area {
-    @apply relative max-w-[1860px] m-0-auto;
+    @apply relative w-[100vw] h-[100vh] m-0-auto;
     margin: 0 auto;
 }
 
 #coordinates_modal .modal-box {
-    @apply p-0 h-auto max-w-screen w-full;
+    @apply p-0 h-[100vh] max-w-screen w-full;
 }
 
 .video-canvas-wrapper {
-    @apply relative w-full aspect-video max-w-[1860px] m-0-auto overflow-hidden;
+    @apply relative w-[100vw] h-[100vh] m-0-auto overflow-hidden;
 }
 
 #video-background {
@@ -16,11 +16,11 @@
 }
 
 .coordinates-area .interactive-draw {
-    @apply absolute top-0 left-0 w-full h-full z-10;
+    @apply absolute top-0 left-0 w-[100vw] h-[100vh] z-10;
 }
 
 .coordinates-area .interactive-draw canvas {
-    @apply pointer-events-auto z-10;
+    @apply pointer-events-auto z-10 w-[100vw] h-[100vh];
 }
 
 .coordinates-area img {

@@ -20,7 +20,7 @@
 }
 
 .coordinates-area .interactive-draw canvas {
-    @apply pointer-events-auto z-10 w-[100vw] h-[100vh];
+    @apply pointer-events-auto z-10;
 }
 
 .coordinates-area img {

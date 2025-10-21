@@ -100,7 +100,8 @@
                             <video id="video-background"
                                 src="{{ AssetHelper::assetURL('buildings', $buildingBackground?->building_image) }}"
                                 width="100%" height="100%" preload="auto" muted playsinline></video>
-                            <svg class="interactive-overlay" viewBox="0 0 1920 1080">
+                            <svg class="interactive-overlay" viewBox="0 0 1920 1080" preserveAspectRatio="xMinYMin meet"
+                                width="100%" height="100%">
                                 <g>
                                     @foreach ($apartmentsCoordinates as $coord)
                                         @php

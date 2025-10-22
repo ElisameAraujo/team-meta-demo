@@ -10,3 +10,7 @@ require base_path('routes/admin/transitions.php');
 require base_path('routes/web/home.php');
 require base_path('routes/web/complex.php');
 require base_path('routes/web/apartments.php');
+
+/** API **/
+
+require base_path('routes/api.php');

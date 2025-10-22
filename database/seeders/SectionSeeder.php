@@ -15,17 +15,11 @@ class SectionSeeder extends Seeder
     public function run(): void
     {
         Section::create([
-            'section_name' => 'East',
-            'section_slug' => 'east'
+            'section_name' => 'Front',
+            'section_slug' => 'front'
         ])->create([
-            'section_name' => 'West',
-            'section_slug' => 'west'
-        ])->create([
-            'section_name' => 'North',
-            'section_slug' => 'north'
-        ])->create([
-            'section_name' => 'South',
-            'section_slug' => 'south'
+            'section_name' => 'Back',
+            'section_slug' => 'back'
         ]);
     }
 }

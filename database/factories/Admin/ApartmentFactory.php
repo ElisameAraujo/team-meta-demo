@@ -20,15 +20,15 @@ class ApartmentFactory extends Factory
 
         static $counter = 1;
         return [
-            'unit_code' => 'BC' . Str::padLeft($counter++, 3, 0),
+            'unit_code' => 'TC' . Str::padLeft($counter++, 3, 0),
             'covered_area' => fake()->randomFloat(2, 50, 100),
             'ambients' => fake()->numberBetween(1, 4),
             'storage_size' => fake()->randomFloat(2, NULL, 10),
             'floor' => fake()->numberBetween(0, 4),
             'price' => fake()->randomFloat(2, 85000, 350000),
             'apartment_status_id' => fake()->numberBetween(1, 3),
-            'section_id' => fake()->numberBetween(1, 4),
-            'building_id' => fake()->numberBetween(1, 2),
+            'section_id' => fake()->numberBetween(1, 2),
+            'building_id' => fake()->numberBetween(1, 1),
         ];
     }
 }

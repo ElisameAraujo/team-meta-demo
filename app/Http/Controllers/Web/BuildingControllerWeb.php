@@ -46,7 +46,7 @@ class BuildingControllerWeb extends Controller
             'status',
             'overviewBackground',
             'currentSide',
-            'transition'
+            'transition',
         ));
     }
 
@@ -75,6 +75,7 @@ class BuildingControllerWeb extends Controller
         }
 
         $currentSide = $slug . ':' . $section;
+        $apartmentsCoordinates = $this->building->coordinates($slug, $section);
 
         return view('web.building-sections.section', compact(
             'building',
@@ -87,7 +88,8 @@ class BuildingControllerWeb extends Controller
             'currentSection',
             'sectionImage',
             'currentSide',
-            'transition'
+            'transition',
+            'apartmentsCoordinates'
         ));
     }
 }

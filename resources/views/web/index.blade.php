@@ -8,9 +8,13 @@
     </div>
 
     <div class="video-background">
-        <video id="mainVideo" autoplay muted playsinline controlsList="nodownload nofullscreen noremoteplay" disablePictureInPicture>
-            <source id="videoSource" src="{{ $transition ? AssetHelper::assetURL('transitions', $transition->video_path) : AssetHelper::assetURL('complex', $complexBackground) }}" type="video/mp4">
+        <video id="mainVideo" autoplay muted playsinline controlsList="nodownload nofullscreen noremoteplay"
+            disablePictureInPicture>
+            <source id="videoSource"
+                src="{{ $transition ? AssetHelper::assetURL('transitions', $transition->video_path) : AssetHelper::assetURL('complex', $complexBackground) }}"
+                type="video/mp4">
         </video>
+
         <div class="video-overlay"></div>
     </div>
 

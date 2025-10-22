@@ -1,4 +1,4 @@
-<div class="side-menu show">
+<div class="side-menu show" id="side-menu-apartment">
     <div class="menu-context" id="menu-toggle">
         <span class="arrow-menu left-arrow"></span>
         <p id="menu-label">Hide</p>
@@ -7,7 +7,7 @@
         <div class="apartment-container">
             <div class="apartment-header">
                 <h1>Details of Unit</h1>
-                @if($apartment->apartment_status_id !== 1)
+                @if ($apartment->apartment_status_id !== 1)
                 @else
                     <div class="actions">
                         <span class="tooltip" data-tip="Copy Link">
@@ -73,10 +73,12 @@
                 </div>
             </div>
             <div class="apartment-actions">
-                <div class="documentation">
-                    <span class="title">Documentation</span>
-                    <span class="download"><i class="fa-solid fa-download"></i> Download</span>
-                </div>
+                @if ($apartment->apartment_status_id == 1)
+                    <div class="documentation">
+                        <span class="title">Showcase</span>
+                        <span class="download"><i class="fa-solid fa-vr-cardboard"></i> 3D View</span>
+                    </div>
+                @endif
 
                 <div class="apartment-action">
                     @if ($apartment->apartment_status_id == 1)

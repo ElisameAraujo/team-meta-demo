@@ -17,7 +17,7 @@
 }
 
 .side-menu .menu-context {
-    @apply flex items-center gap-2 uppercase text-xs font-bold relative left-137 w-fit top-23 cursor-pointer;
+    @apply flex items-center gap-2 uppercase text-xs font-bold relative left-138 w-fit top-23 cursor-pointer;
 }
 
 .side-menu .arrow-menu {

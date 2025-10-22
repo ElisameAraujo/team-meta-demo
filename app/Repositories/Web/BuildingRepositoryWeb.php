@@ -4,6 +4,7 @@ namespace App\Repositories\Web;
 
 use App\Interfaces\Web\BuildingInterfaceWeb;
 use App\Models\Admin\Apartment;
+use App\Models\Admin\ApartmentCoordinate;
 use App\Models\Admin\Building;
 use App\Models\Admin\BuildingGallery;
 use App\Models\Admin\Section;
@@ -18,6 +19,22 @@ class BuildingRepositoryWeb implements BuildingInterfaceWeb
             return $building;
         }
     }
+
+    public function coordinates(string $slug, $section)
+    {
+        $building = Building::where('building_slug', $slug)->firstOrFail();
+        $sectionItem = Section::where('section_slug', $section)->firstOrFail();
+
+        $coordinates = ApartmentCoordinate::with(['apartment.status'])
+            ->whereHas('apartment', function ($query) use ($building, $sectionItem) {
+                $query->where('building_id', $building->id)
+                    ->where('section_id', $sectionItem->id);
+            })
+            ->get();
+
+        return $coordinates;
+    }
+
 
     public function apartments($slug)
     {

@@ -14,32 +14,35 @@
                 <i class="fa-solid fa-chevron-down {{ $filtersOpen ? 'rotate-180' : '' }}"></i>
             </div>
 
-
-            <div class="favorites">
+            {{-- <div class="favorites">
                 <i class="fa-regular fa-heart"></i> Favourites
                 <input type="checkbox" wire:model="favoritesOnly" class="toggle toggle-xs" />
-            </div>
+            </div> --}}
         </div>
 
         <div class="side-menu-filters {{ $filtersOpen ? 'open' : '' }}" id="filters-panel">
             <div class="col-span-6">
                 <h1>Floor</h1>
                 @foreach ($floors as $floor)
-                    <span class="tag-alt {{ $selectedFloor == $floor ? 'active' : '' }}" wire:click="$set('selectedFloor', '{{ $selectedFloor == $floor ? '' : $floor }}')"> {{ $floor }}</span>
+                    <span class="tag-alt {{ $selectedFloor == $floor ? 'active' : '' }}"
+                        wire:click="$set('selectedFloor', '{{ $selectedFloor == $floor ? '' : $floor }}')">
+                        {{ $floor }}</span>
                 @endforeach
             </div>
 
             <div class="col-span-6">
                 <h1>Ambients</h1>
                 @foreach ($ambients as $ambient)
-                    <span class="tag-alt {{ $selectedAmbient == $ambient ? 'active' : '' }}" wire:click="$set('selectedAmbient', '{{ $selectedAmbient == $ambient ? '' : $ambient }}')">{{ $ambient }}</span>
+                    <span class="tag-alt {{ $selectedAmbient == $ambient ? 'active' : '' }}"
+                        wire:click="$set('selectedAmbient', '{{ $selectedAmbient == $ambient ? '' : $ambient }}')">{{ $ambient }}</span>
                 @endforeach
             </div>
 
             <div class="col-span-6">
                 <h1>Status</h1>
                 @foreach ($status as $s)
-                    <span class="tag-alt {{ $selectedStatus == $s->id ? 'active' : '' }}" wire:click="$set('selectedStatus', '{{ $selectedStatus == $s->id ? '' : $s->id }}')">{{ $s->status_name }}</span>
+                    <span class="tag-alt {{ $selectedStatus == $s->id ? 'active' : '' }}"
+                        wire:click="$set('selectedStatus', '{{ $selectedStatus == $s->id ? '' : $s->id }}')">{{ $s->status_name }}</span>
                 @endforeach
             </div>
         </div>
@@ -48,13 +51,15 @@
             <h1>
                 <span class="content-header">
                     <p class="text-sm font-bold">Available</p>
-                    <span class="badge badge-xs bg-white">{{ $filteredApartments->where('apartment_status_id', 1)->count() }}</span>
+                    <span
+                        class="badge badge-xs bg-white">{{ $filteredApartments->where('apartment_status_id', 1)->count() }}</span>
                 </span>
 
                 <span class="content-header">
                     <div class="dropdown dropdown-end">
                         <a tabindex="0" role="button" class="btn-open">
-                            Order By: {{ ucfirst(str_replace('_', ' ', $orderBy)) }} <i class="fa-solid fa-chevron-down"></i>
+                            Order By: {{ ucfirst(str_replace('_', ' ', $orderBy)) }} <i
+                                class="fa-solid fa-chevron-down"></i>
                         </a>
                         <ul tabindex="0" class="dropdown-content menu rounded-box">
                             <li class="menu-header">Value</li>
@@ -78,7 +83,8 @@
                     <div class="apartment-item-no-results">No results found for this filter combination.</div>
                 @else
                     @foreach ($filteredApartments as $apartment)
-                        <a href="{{ route('web.buildings.apartments.overview', ['building' => $apartment->building->building_slug, 'unit' => $apartment->unit_code]) }}">
+                        <a
+                            href="{{ route('web.buildings.apartments.overview', ['building' => $apartment->building->building_slug, 'unit' => $apartment->unit_code]) }}">
                             <div class="apartment-item">
                                 <div class="details">
                                     <div class="detail-item">
@@ -103,7 +109,7 @@
                                     </div>
                                     <div class="detail-item">
                                         <p class="detail-label">Value</p>
-                                        @if($apartment->apartment_status_id != 1)
+                                        @if ($apartment->apartment_status_id != 1)
                                             <p class="detail-value">
                                                 <span class="tag">{{ $apartment->status->status_name }}</span>
                                             </p>

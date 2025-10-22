@@ -29,7 +29,7 @@ class ComplexControllerWeb extends Controller
 
         $complexBackground = $this->complex->complexOverviewImage();
 
-        $currentSide = 'complex:west';
+        $currentSide = 'complex:front';
 
         $fromKey = $_COOKIE['fromKey'] ?? null;
         $toKey = $currentSide;

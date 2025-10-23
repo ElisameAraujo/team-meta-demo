@@ -4,9 +4,14 @@
 import "@fortawesome/fontawesome-free/js/all.js";
 import "@fortawesome/fontawesome-free/css/all.css";
 
-if (!document.startViewTransition) {
-    document.body.classList.add("no-transitions");
-}
-
+/**
+ * Custom Functions
+ */
 import { sideMenu } from "./web/side-menu";
-new sideMenu();
+import { initInteractiveTooltips } from "./web/interactive-building";
+
+/**
+ * Function Calls 
+ */
+sideMenu();
+initInteractiveTooltips();

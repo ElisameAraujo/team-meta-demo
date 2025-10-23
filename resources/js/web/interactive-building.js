@@ -1,82 +1,66 @@
-function getBoundaryElement(element) {
-    const selector = element.closest("svg")?.dataset.boundary;
-    return selector ? document.querySelector(selector) : document.body;
+export const interactiveSVGElements = ["rect", "polygon", "path", "circle", "ellipse", "line", "polyline"];
+
+function buildTooltipContent(element) {
+    const label = element.dataset.label;
+    const tooltip = document.getElementById("apartment-tooltip");
+
+    let html = "";
+
+    if (label) {
+        html += `<h3 class="label-tooltip">${label}</h3>`;
+    }
+
+    Object.entries(element.dataset).forEach(([key, value]) => {
+        if (key === "label" || key === "tooltip") return;
+
+        html += `
+            <span class="flex gap-1 font-bold">
+                ${capitalize(key)}: <p class="font-normal">${value}</p>
+            </span>
+        `;
+    });
+
+    tooltip.innerHTML = html;
 }
 
-export function interactiveBuildingRect() {
+function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+export function interactiveBuildingElements(selectors = interactiveSVGElements) {
     const tooltip = document.getElementById("apartment-tooltip");
-    const label = document.getElementById("tooltip-label");
-    const price = document.getElementById("tooltip-price");
-    const area = document.getElementById("tooltip-area");
+    const wrapper = document.querySelector(".video-background");
 
-    document.querySelectorAll("svg rect").forEach((rect) => {
-        const shouldShowTooltip = rect.dataset.tooltip === "true";
+    if (!tooltip || !wrapper) return;
 
-        if (!shouldShowTooltip) return; // ignora se não for marcado como true
+    const container = document.querySelector(".interactive-building");
+    if (!container) return;
 
-        rect.addEventListener("mouseenter", (e) => {
-            label.textContent = rect.dataset.label || "";
-            price.textContent = rect.dataset.price || "";
-            area.textContent = rect.dataset.area || "";
+    selectors.forEach((selector) => {
+        container.querySelectorAll(selector).forEach((el) => {
+            if (el.dataset.tooltip !== "true") return;
 
-            tooltip.style.display = "block";
-        });
+            el.addEventListener("mouseenter", () => {
+                buildTooltipContent(el);
+                tooltip.style.display = "block";
+            });
 
-        rect.addEventListener("mousemove", (e) => {
-            const container = getBoundaryElement(rect);
-            const bounds = container.getBoundingClientRect();
+            el.addEventListener("mousemove", (e) => {
+                const bounds = wrapper.getBoundingClientRect();
+                const x = e.clientX - bounds.left;
+                const y = e.clientY - bounds.top;
 
-            const x = e.clientX - bounds.left;
-            const y = e.clientY - bounds.top;
+                tooltip.style.left = `${x + 15}px`;
+                tooltip.style.top = `${y + 15}px`;
+            });
 
-            tooltip.style.left = x + 15 + "px";
-            tooltip.style.top = y - 10 + "px";
-        });
-
-        rect.addEventListener("mouseleave", () => {
-            tooltip.style.display = "none";
+            el.addEventListener("mouseleave", () => {
+                tooltip.style.display = "none";
+            });
         });
     });
 }
 
-export function interactiveBuildingPolygon() {
-    const tooltip = document.getElementById("apartment-tooltip");
-    const label = document.getElementById("tooltip-label");
-    const price = document.getElementById("tooltip-price");
-    const area = document.getElementById("tooltip-area");
-
-    document.querySelectorAll("svg polygon").forEach((polygon) => {
-        const shouldShowTooltip = polygon.dataset.tooltip === "true";
-        if (!shouldShowTooltip) return;
-
-        polygon.addEventListener("mouseenter", () => {
-            label.textContent = polygon.dataset.label || "";
-            price.textContent = polygon.dataset.price || "";
-            area.textContent = polygon.dataset.area || "";
-
-            const bounds = polygon.getBoundingClientRect();
-            const tooltipWidth = tooltip.offsetWidth;
-            const tooltipHeight = tooltip.offsetHeight;
-
-            tooltip.style.left = bounds.left + window.scrollX + bounds.width / 2 - tooltipWidth / 2 + "px";
-            tooltip.style.top = bounds.top + window.scrollY - tooltipHeight - 12 + "px";
-
-            tooltip.classList.add("show");
-            tooltip.style.display = "block";
-        });
-
-        polygon.addEventListener("mousemove", (e) => {
-            const containerBounds = container.getBoundingClientRect();
-
-            const x = e.clientX - containerBounds.left;
-            const y = e.clientY - containerBounds.top;
-
-            tooltip.style.left = x + 15 + "px";
-            tooltip.style.top = y - 10 + "px";
-        });
-
-        polygon.addEventListener("mouseleave", () => {
-            tooltip.style.display = "none";
-        });
-    });
+export function initInteractiveTooltips() {
+    interactiveBuildingElements();
 }

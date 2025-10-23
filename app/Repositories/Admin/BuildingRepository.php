@@ -31,18 +31,10 @@ class BuildingRepository implements BuildingInterface
 
     public function updateSectionImage(Building $building, object $data): bool
     {
-        // Validação mínima dos dados esperados
-        if (!isset($data->building_section, $data->section_id, $data->type)) {
-            throw new \InvalidArgumentException('Dados incompletos para atualizar imagem da seção.');
-        }
-
-        // Busca o registro existente na galeria
         $sectionImage = BuildingGallery::find($data->gallery_id);
 
-        // Armazena nova imagem
         $newPath = $this->storeImage($data->building_section, 'buildings', $building->building_slug);
 
-        // Se não existe imagem anterior, cria novo registro
         if (!$sectionImage) {
             $building->gallery()->create([
                 'building_image' => $newPath,
@@ -53,12 +45,10 @@ class BuildingRepository implements BuildingInterface
             return true;
         }
 
-        // Remove imagem anterior se existir
         if (Storage::disk('buildings')->exists($sectionImage->building_image)) {
             Storage::disk('buildings')->delete($sectionImage->building_image);
         }
 
-        // Atualiza o registro existente
         $sectionImage->update([
             'building_image' => $newPath,
             'section_id' => $sectionImage->section_id,

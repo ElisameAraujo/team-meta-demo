@@ -58,9 +58,10 @@
                                             {{ $apartment->status->status_name }}
                                         </div>
                                     </td>
-                                    <td>@if ($apartment->mapped_coordinates)
-                                        <span class="badge badge-sm badge-success text-white">Mapped</span>
-                                    @else
+                                    <td>
+                                        @if ($apartment->mapped_coordinates)
+                                            <span class="badge badge-sm badge-success text-white">Mapped</span>
+                                        @else
                                             <span class="badge badge-sm badge-error text-white">Not Mapped</span>
                                         @endif
                                     </td>
@@ -100,7 +101,9 @@
                     </table>
                 </div>
 
-                {{ $apartments->links() }}
+                <div class="col-span-12 mt-4">
+                    {{ $apartments->links() }}
+                </div>
             </div>
         @endif
     </div>

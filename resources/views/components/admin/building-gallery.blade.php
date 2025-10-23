@@ -28,7 +28,7 @@
             </div>
 
             <input type="hidden" name="section_id" data-field="section-id">
-            <input type="hidden" name="type" data-field="section-slug">
+            <input type="hidden" name="type" data-field="section-slug" value="the-complex">
             <input type="hidden" name="gallery_id" data-field="gallery-id">
         </form>
     </div>

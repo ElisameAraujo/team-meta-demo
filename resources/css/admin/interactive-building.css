@@ -1,31 +1,37 @@
 /** Interactive Building **/
 .interactive-building rect,
-.interactive-building polygon {
-    @apply stroke-transparent cursor-pointer fill-white/15;
+.interactive-building polygon,
+.interactive-building path {
+    @apply stroke-black/10 stroke-2 cursor-pointer fill-white/50;
     z-index: 1000;
     pointer-events: all;
     transition: stroke 0.3s ease, fill 0.3s ease;
 }
 
 .interactive-building rect:hover,
-.interactive-building polygon:hover {
+.interactive-building polygon:hover,
+.interactive-building path:hover {
     @apply stroke-green-600 stroke-2 fill-green-400/50;
 }
 
 .interactive-building rect.sold,
 .interactive-building rect.sold:hover,
 .interactive-building polygon.sold,
-.interactive-building polygon.sold:hover {
+.interactive-building polygon.sold:hover,
+.interactive-building path.sold,
+.interactive-building path.sold:hover {
     @apply border-white/30 fill-red-500/20 stroke-red-600 stroke-2;
 }
 
 .interactive-building rect.reserved,
-.interactive-building polygon.reserved {
+.interactive-building polygon.reserved,
+.interactive-building path.reserved {
     @apply border-white/30 fill-yellow-500/20;
 }
 
 .interactive-building rect.reserved:hover,
-.interactive-building polygon.reserved:hover {
+.interactive-building polygon.reserved:hover,
+.interactive-building path.reserved:hover {
     @apply stroke-yellow-600 stroke-2;
 }
 

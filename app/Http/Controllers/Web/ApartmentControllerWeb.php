@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Interfaces\Web\ApartmentInterfaceWeb;
-use App\Models\Admin\{Building, Section};
 use App\Models\Admin\TransitionsGallery;
 use Illuminate\Http\Request;
 
@@ -16,6 +15,7 @@ class ApartmentControllerWeb extends Controller
         $apartment = $this->apartment->overview($unit);
         $building = $this->apartment->buildingOrigin($buildingSlug);
 
+        //Transitions
         if ($_COOKIE['fromKey'] === 'complex:front' ?? null) {
             $fromKey = $_COOKIE['fromKey'] ?? null;
             $toKey = 'complex:zoom-in-front';

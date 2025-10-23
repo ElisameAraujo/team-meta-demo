@@ -29,8 +29,8 @@ class ComplexControllerWeb extends Controller
 
         $complexBackground = $this->complex->complexOverviewImage();
 
+        //Transitions
         $currentSide = 'complex:front';
-
         $fromKey = $_COOKIE['fromKey'] ?? null;
         $toKey = $currentSide;
         $type = explode(':', $fromKey)[0] ?? null;
@@ -58,18 +58,6 @@ class ComplexControllerWeb extends Controller
 
     public function sectionComplexOverview($section)
     {
-        $fromKey = $_COOKIE['fromKey'] ?? null;
-        $toKey = 'complex:' . $section; // destino atual
-        $type = explode(':', $fromKey)[0] ?? null;
-
-        $transition = null;
-        if ($fromKey && $fromKey !== $toKey) {
-            $transition = TransitionsGallery::where('from_key', $fromKey)
-                ->where('to_key', $toKey)
-                ->where('type', $type)
-                ->first();
-        }
-
         $section = Section::where('section_slug', $section)->first();
         $buildings = Building::buildingsList();
 
@@ -82,7 +70,19 @@ class ComplexControllerWeb extends Controller
         $status = ApartmentStatus::all();
         $apartments = Apartment::all();
 
+        //Transitions
         $currentSide = 'complex:' . $section->section_slug;
+        $fromKey = $_COOKIE['fromKey'] ?? null;
+        $toKey = 'complex:' . $section;
+        $type = explode(':', $fromKey)[0] ?? null;
+
+        $transition = null;
+        if ($fromKey && $fromKey !== $toKey) {
+            $transition = TransitionsGallery::where('from_key', $fromKey)
+                ->where('to_key', $toKey)
+                ->where('type', $type)
+                ->first();
+        }
 
         return view('web.overview.section', compact(
             'section',

@@ -22,8 +22,8 @@ class BuildingControllerWeb extends Controller
         $ambients = $this->building->ambients($slug);
         $overviewBackground = $this->building->overviewImage($building->id);
 
+        //Transitions
         $currentSide = $slug . ':west';
-
         $fromKey = $_COOKIE['fromKey'] ?? null;
         $toKey = $currentSide;
         $type = explode(':', $fromKey)[0] ?? null;
@@ -61,9 +61,12 @@ class BuildingControllerWeb extends Controller
         $status = ApartmentStatus::all();
         $apartments = $this->building->apartmentsPerSection($slug, $section);
         $sectionImage = $this->building->sectionImage($building->id, $section);
+        $apartmentsCoordinates = $this->building->coordinates($slug, $section);
 
+        //Transitions
+        $currentSide = $slug . ':' . $section;
         $fromKey = $_COOKIE['fromKey'] ?? null;
-        $toKey = $slug . ':' . $section; // destino atual
+        $toKey = $slug . ':' . $section;
         $type = explode(':', $fromKey)[0] ?? null;
 
         $transition = null;
@@ -73,9 +76,6 @@ class BuildingControllerWeb extends Controller
                 ->where('type', $type)
                 ->first();
         }
-
-        $currentSide = $slug . ':' . $section;
-        $apartmentsCoordinates = $this->building->coordinates($slug, $section);
 
         return view('web.building-sections.section', compact(
             'building',

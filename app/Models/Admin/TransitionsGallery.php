@@ -31,7 +31,6 @@ class TransitionsGallery extends Model
         $transitionName = Str::replace('-', ' ', $this->type);
         $transition = Str::title($transitionName);
 
-        // Verifica se o último termo é um algarismo romano válido (até 100)
         if (preg_match('/\b(m{0,3}(c{0,1}(xc|xl|l)?|x{0,3})(ix|iv|v?i{0,3})?)\b$/i', $transition, $match)) {
             $transition = preg_replace('/' . preg_quote($match[0], '/') . '$/i', strtoupper($match[0]), $transition);
         }
@@ -41,6 +40,6 @@ class TransitionsGallery extends Model
 
     public function getVideoUrlAttribute(): string
     {
-        return Str::replace('http://127.0.0.1:8000', '', AssetHelper::assetURL('transitions', $this->video_path));
+        return Str::replace(config('app.url'), '', AssetHelper::assetURL('transitions', $this->video_path));
     }
 }

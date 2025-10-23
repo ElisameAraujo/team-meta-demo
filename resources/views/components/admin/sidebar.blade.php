@@ -24,7 +24,7 @@
                     </li>
                     <li>
                         <a>
-                            <i class="fa-solid fa-arrow-right-from-bracket"></i> Sair
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
                         </a>
                     </li>
                 </ul>

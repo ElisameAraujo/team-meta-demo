@@ -50,52 +50,64 @@
         <div class="col-span-12 page-header mt-4">
             <h1>Building Gallery</h1>
         </div>
-        <div class="col-span-12">
-            <div class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Type</th>
-                            <th>Video Path</th>
-                            <th>Created at</th>
-                            <th>Updated at</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($gallery as $item)
-                            <tr>
-                                <td>{{ $item->id }}</td>
-                                <td>{{ ucfirst($item->type) }}</td>
-                                <td>{{ $item->video_url_section }}</td>
-                                <td>{{ $item->created_at }}</td>
-                                <td>{{ $item->updated_at }}</td>
-                                <td>
-                                    <div class="join">
-                                        <a href="{{-- {{ route('admin.buildings.edit-building', ['building' => $building->id]) }} --}}"
-                                            class="btn btn-info btn-sm text-white join-item tooltip font-normal"
-                                            data-tip="Edit">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                        </a>
-                                        <form action="{{-- {{ route('admin.buildings.delete-building', $building->id) }} --}}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit"
-                                                class="btn btn-error btn-sm text-white join-item tooltip font-normal"
-                                                data-tip="Remove">
-                                                <i class="fa-solid fa-trash"></i>
-                                            </button>
-                                        </form>
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforeach
-
-                    </tbody>
-                </table>
-            </div>
+        <div class="page-actions">
+            <button class="btn btn-success" onclick="building_gallery.showModal()">
+                <i class="fa-solid fa-plus"></i> New Item
+            </button>
         </div>
+        @if ($gallery->count() < 1)
+            <div class="col-span-12 text-center">
+                <p>No items in the gallery found for this building. Create one using the <strong>'New Item'</strong> button.
+                </p>
+            </div>
+        @else
+            <div class="col-span-12">
+                <div class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Type</th>
+                                <th>Video Path</th>
+                                <th>Created at</th>
+                                <th>Updated at</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($gallery as $item)
+                                <tr>
+                                    <td>{{ $item->id }}</td>
+                                    <td>{{ ucfirst($item->type) }}</td>
+                                    <td>{{ $item->video_url_section }}</td>
+                                    <td>{{ $item->created_at }}</td>
+                                    <td>{{ $item->updated_at }}</td>
+                                    <td>
+                                        <div class="join">
+                                            <a href="{{-- {{ route('admin.buildings.edit-building', ['building' => $building->id]) }} --}}"
+                                                class="btn btn-info btn-sm text-white join-item tooltip font-normal"
+                                                data-tip="Edit">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </a>
+                                            <form action="{{-- {{ route('admin.buildings.delete-building', $building->id) }} --}}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    class="btn btn-error btn-sm text-white join-item tooltip font-normal"
+                                                    data-tip="Remove">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        @endif
 
         <div class="col-span-12 page-header mt-4">
             <h1>Building Transitions</h1>
@@ -106,55 +118,62 @@
             </button>
         </div>
 
-        <div class="col-span-12">
-            <div class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Origin</th>
-                            <th>Destination</th>
-                            <th>Video Path</th>
-                            <th>Created at</th>
-                            <th>Updated at</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($transitions as $transition)
-                            <tr>
-                                <td>{{ $transition->id }}</td>
-                                <td>{{ $transition->origin }}</td>
-                                <td>{{ $transition->destination }}</td>
-                                <td>{{ $transition->video_url }}</td>
-                                <td>{{ $transition->created_at }}</td>
-                                <td>{{ $transition->updated_at }}</td>
-                                <td>
-                                    <div class="join">
-                                        <a href="{{-- {{ route('admin.buildings.edit-building', ['building' => $building->id]) }} --}}"
-                                            class="btn btn-info btn-sm text-white join-item tooltip font-normal"
-                                            data-tip="Edit">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                        </a>
-                                        <form action="{{-- {{ route('admin.buildings.delete-building', $building->id) }} --}}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit"
-                                                class="btn btn-error btn-sm text-white join-item tooltip font-normal"
-                                                data-tip="Remove">
-                                                <i class="fa-solid fa-trash"></i>
-                                            </button>
-                                        </form>
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforeach
-
-                    </tbody>
-                </table>
+        @if ($transitions->count() < 1)
+            <div class="col-span-12 text-center">
+                <p>No transitions found for this building. Create one using the <strong>'New Transition'</strong> button.
+                </p>
             </div>
-            {{ $transitions->links() }}
-        </div>
+        @else
+            <div class="col-span-12">
+                <div class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Origin</th>
+                                <th>Destination</th>
+                                <th>Video Path</th>
+                                <th>Created at</th>
+                                <th>Updated at</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($transitions as $transition)
+                                <tr>
+                                    <td>{{ $transition->id }}</td>
+                                    <td>{{ $transition->origin }}</td>
+                                    <td>{{ $transition->destination }}</td>
+                                    <td>{{ $transition->video_url }}</td>
+                                    <td>{{ $transition->created_at }}</td>
+                                    <td>{{ $transition->updated_at }}</td>
+                                    <td>
+                                        <div class="join">
+                                            <a href="{{-- {{ route('admin.buildings.edit-building', ['building' => $building->id]) }} --}}"
+                                                class="btn btn-info btn-sm text-white join-item tooltip font-normal"
+                                                data-tip="Edit">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </a>
+                                            <form action="{{-- {{ route('admin.buildings.delete-building', $building->id) }} --}}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    class="btn btn-error btn-sm text-white join-item tooltip font-normal"
+                                                    data-tip="Remove">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+
+                        </tbody>
+                    </table>
+                </div>
+                {{ $transitions->links() }}
+            </div>
+        @endif
     </div>
     <script>
         function openTransitionModal(button) {

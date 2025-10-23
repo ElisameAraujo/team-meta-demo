@@ -13,13 +13,14 @@
         @include('components.admin.menu-mobile')
     </div>
     <div class="right-header">
-        <div class="search-button tooltip tooltip-accent tooltip-bottom" data-tip="Pesquisar">
+        {{-- <div class="btn bg-transparent hover:bg-gray-200 tooltip tooltip-primary tooltip-bottom border border-gray-300"
+            data-tip="Search">
             <button>
                 <i class="fa-solid fa-magnifying-glass"></i>
             </button>
         </div>
-
-        <div class="notifications">
+ --}}
+        {{-- <div class="notifications">
             <button class="total-notificacoes" popovertarget="notifications" style="anchor-name:--notifications-anchor">
                 <span class=" indicator-item badge badge-xs badge-primary">5</span>
                 <i class="fa-regular fa-bell"></i>
@@ -68,9 +69,9 @@
                 </footer>
 
             </ul>
-        </div>
+        </div> --}}
 
-        <section class="theme-selector tooltip tooltip-accent tooltip-left" data-tip="Modo Claro/Escuro">
+        <section class="theme-selector tooltip tooltip-primary tooltip-left" data-tip="Switch Light/Dark Theme">
             <label>
                 <!-- input que gerencia os estados claro/escuro -->
                 <input type="checkbox" value="ahh" data-toggle-theme="dark,light" data-act-class="ACTIVECLASS" />

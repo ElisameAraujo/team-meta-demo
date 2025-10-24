@@ -4,7 +4,7 @@
             <i class="fa-solid fa-bars"></i>
         </button>
         <div class="user-greeting">
-            <div class="username">Hello, Elisame!</div>
+            <div class="username">Hello, John Doe!</div>
             <div class="date">
                 Today is {{ DateHelper::currentDate() }}
             </div>

@@ -6,8 +6,8 @@
                     <img src="https://img.freepik.com/free-photo/portrait-father-his-backyard_23-2149489567.jpg"
                         alt="avatar" />
                     <div class="profile">
-                        <span class="username">Elisame Araújo</span>
-                        <p class="email">elisamearaujo@gmail.com</p>
+                        <span class="username">John Doe</span>
+                        <p class="email">johndoe@gmail.com</p>
                     </div>
                 </button>
                 <ul class="dropdown menu w-71 rounded-box bg-base-100 shadow-sm" popover id="profile-menu"

@@ -3,6 +3,7 @@
 namespace App\Models\Admin;
 
 use App\Helpers\AssetHelper;
+use App\Helpers\DetailsHelper;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
@@ -41,5 +42,13 @@ class TransitionsGallery extends Model
     public function getVideoUrlAttribute(): string
     {
         return Str::replace(config('app.url'), '', AssetHelper::assetURL('transitions', $this->video_path));
+    }
+
+    public function toDetails(): DetailsHelper
+    {
+        return (new DetailsHelper)
+            ->add('type', $this->type)
+            ->add('id', $this->id)
+            ->add('video_path', AssetHelper::assetURL('transitions', $this->video_path));
     }
 }

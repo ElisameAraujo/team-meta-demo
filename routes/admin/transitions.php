@@ -7,5 +7,6 @@ $middleware = ['verified'];
 
 Route::prefix('transitions')->group(function () {
 
-    Route::post('', [TransitionsController::class, 'addTransition'])->name('admin.transitions.add-transition');
+    Route::post('save-transition', [TransitionsController::class, 'addTransition'])->name('admin.transitions.add-transition');
+    Route::put('update-transition', [TransitionsController::class, 'updateTransition'])->name('admin.transitions.update-transition');
 });

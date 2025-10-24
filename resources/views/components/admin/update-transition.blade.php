@@ -1,9 +1,10 @@
-<dialog id="new_transition" class="modal">
+<dialog id="update_transition" class="modal">
     <div class="modal-box">
         <form x-data="{ fromKey: '' }" method="post" enctype="multipart/form-data"
-            action="{{ route('admin.transitions.add-transition') }}">
+            action="{{ route('admin.transitions.update-transition') }}">
+            @method('PUT')
             @csrf
-            <h1 class="text-xl">Add Transition</h1>
+            <h1 class="text-xl">Update Transition</h1>
 
             <fieldset class="fieldset">
                 <legend class="fieldset-legend">From</legend>
@@ -35,8 +36,8 @@
                 <input type="file" class="file-input w-full" name="video_path" />
             </fieldset>
 
-            <input type="hidden" name="type" id="type_transition">
-            <button type="submit" class="btn btn-primary mt-2">Save Transition</button>
+            <div id="hidden-inputs"></div>
+            <button type="submit" class="btn btn-primary mt-2">Update Transition</button>
         </form>
     </div>
     <form method="dialog" class="modal-backdrop">

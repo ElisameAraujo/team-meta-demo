@@ -24,6 +24,7 @@
         @include('components.admin.building-gallery-add')
         @include('components.admin.building-gallery-update')
         @include('components.admin.new-transition')
+        @include('components.admin.update-transition')
         <div class="col-span-12 page-header">
             <h1>Building Details</h1>
             <form action="{{ route('admin.buildings.update-building', $building->id) }}" method="POST">
@@ -153,11 +154,13 @@
                                     <td>{{ $transition->updated_at }}</td>
                                     <td>
                                         <div class="join">
-                                            <a href="{{-- {{ route('admin.buildings.edit-building', ['building' => $building->id]) }} --}}"
-                                                class="btn btn-info btn-sm text-white join-item tooltip font-normal"
-                                                data-tip="Edit">
+                                            <button
+                                                class="btn btn-info btn-sm text-white join-item tooltip font-normal open-gallery-modal"
+                                                data-tip="Edit" onclick="update_transition.showModal()" data-mode="update"
+                                                data-target="update_transition"
+                                                data-details='{{ $transition->toDetails()->toJson() }}'>
                                                 <i class="fa-solid fa-pen-to-square"></i>
-                                            </a>
+                                            </button>
                                             <form action="{{-- {{ route('admin.buildings.delete-building', $building->id) }} --}}" method="POST">
                                                 @csrf
                                                 @method('DELETE')

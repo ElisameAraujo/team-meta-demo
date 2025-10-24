@@ -2,10 +2,9 @@ import { mobileMenu } from "./admin/nav/mobile";
 import { subMenu } from "./admin/nav/submenu";
 import { updateClock } from "./admin/clock";
 import { themeChange } from "theme-change";
-import { fileUploadPreview } from "./admin/fileUploadImagePreview";
-import { setupGalleryModal } from "./admin/dataFromGallery";
 import { hideNotifications } from "./admin/hideNotifications.js";
 import { interactiveBuildingAdminPolygon, interactiveBuildingAdminRect } from "./admin/apartments-limits.js";
+import { universalPreviewer } from './admin/upload-previewer/universalPreviewer.js';
 import "./admin/coordinates-creator/index.js";
 
 /**
@@ -44,8 +43,9 @@ themeChange();
 /**
  * Global
  */
-fileUploadPreview();
-setupGalleryModal();
+document.addEventListener('DOMContentLoaded', () => {
+    universalPreviewer();
+});
 hideNotifications();
 
 /**

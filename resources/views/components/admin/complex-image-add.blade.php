@@ -17,20 +17,18 @@
                 <legend class="fieldset-legend">Image Complex</legend>
             </fieldset>
 
-            <div class="update-image-area" data-gallery>
-                <div class="current-image">
-                    <div class="p-8 no-image" data-preview>Image Not Selected</div>
+            <div class="update-image-area" data-add>
+                <div class="current-image" data-preview-current>
+                    <div class="p-8 no-image">Image/Video Not Selected</div>
                 </div>
 
-                <div class="image-preview hidden">
-                    <img data-preview-image>
-                </div>
+                <div class="image-preview hidden" data-preview></div>
 
                 <div class="change-current-image">
                     <button type="button" class="btn btn-primary w-full" data-change-trigger>
                         Select an Image/Video
                     </button>
-                    <input type="file" name="complex_overview" data-file-input data-gallery>
+                    <input type="file" name="complex_overview" data-file-input data-add>
                 </div>
 
                 <div class="upload-new-image hidden">

@@ -19,7 +19,8 @@
         @include('components.admin.new-transition')
 
         <div class="page-actions">
-            <button class="btn btn-success" onclick="complex_image_add.showModal()" data-mode="add">
+            <button class="btn btn-success" onclick="complex_image_add.showModal()" data-mode="add"
+                data-target="complex_image_add">
                 <i class="fa-solid fa-plus"></i> New Slide
             </button>
         </div>
@@ -46,11 +47,13 @@
                                 <td>{{ $item->updated_at }}</td>
                                 <td>
                                     <div class="join">
-                                        <a href="{{-- {{ route('admin.buildings.edit-building', ['building' => $building->id]) }} --}}"
-                                            class="btn btn-info btn-sm text-white join-item tooltip font-normal"
-                                            data-tip="Edit">
+                                        <button
+                                            class="btn btn-info btn-sm text-white join-item tooltip font-normal open-gallery-modal"
+                                            data-tip="Edit" onclick="complex_image_update.showModal()" data-mode="update"
+                                            data-target="complex_image_update"
+                                            data-details='{{ $item->toDetails()->toJson() }}'>
                                             <i class="fa-solid fa-pen-to-square"></i>
-                                        </a>
+                                        </button>
                                         <form action="{{-- {{ route('admin.buildings.delete-building', $building->id) }} --}}" method="POST">
                                             @csrf
                                             @method('DELETE')

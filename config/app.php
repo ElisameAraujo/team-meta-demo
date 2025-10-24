@@ -133,6 +133,7 @@ return [
         'DateHelper' => App\Helpers\DateHelper::class,
         'DiskHelper' => App\Helpers\DiskHelper::class,
         'CoordinateHelper' => App\Helpers\CoordinateHelper::class,
+        'DetailsHelper' => App\Helpers\DetailsHelper::class,
     ],
 
 

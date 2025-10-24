@@ -52,8 +52,6 @@ export function handleUpdatePreview(trigger) {
                 previewContainer.classList.remove("hidden");
                 if (previewPlaceholder) previewPlaceholder.classList.add("hidden");
                 if (uploadButtonContainer) uploadButtonContainer.classList.remove("hidden");
-
-                fileInput.value = "";
             };
         }
     });

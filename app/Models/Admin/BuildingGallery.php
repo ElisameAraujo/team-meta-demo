@@ -44,4 +44,14 @@ class BuildingGallery extends Model
             ->add('image_url', AssetHelper::assetURL('complex', $this->building_image))
             ->add('gallery_id', $this->id);
     }
+
+    public function toDetailsBuilding(): DetailsHelper
+    {
+        return (new DetailsHelper)
+            ->add('section_id', optional($this->section)->id)
+            ->add('section_slug', optional($this->section)->section_slug)
+            ->add('image_url', AssetHelper::assetURL('buildings', $this->building_image))
+            ->add('building_slug', optional($this->building)->building_slug)
+            ->add('gallery_id', $this->id);
+    }
 }

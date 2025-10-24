@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Admin;
 
+use App\Helpers\DiskHelper;
 use App\Interfaces\Admin\BuildingInterface;
 use App\Models\Admin\Building;
 use App\Models\Admin\BuildingGallery;
@@ -29,22 +30,29 @@ class BuildingRepository implements BuildingInterface
         return $building->update($dataArray);
     }
 
-    public function updateSectionImage(Building $building, object $data): bool
+    public function saveGalleryItem(object $data)
     {
-        $sectionImage = BuildingGallery::find($data->gallery_id);
+        $imagePath = DiskHelper::storeImage($data->building_section, 'buildings', $data->building_slug);
 
-        $newPath = $this->storeImage($data->building_section, 'buildings', $building->building_slug);
+        BuildingGallery::create([
+            'building_image' => $imagePath,
+            'type' => $data->building_slug,
+            'section_id' => $data->section_id,
+            'building_id' => $data->building_id,
+        ]);
 
-        if (!$sectionImage) {
-            $building->gallery()->create([
-                'building_image' => $newPath,
-                'section_id' => $data->section_id,
-                'type' => $data->type,
-            ]);
+        return true;
+    }
 
-            return true;
-        }
+    public function updateGalleryItem(object $data): bool
+    {
+        // Busca o registro existente na galeria
+        $sectionImage = BuildingGallery::findOrFail($data->gallery_id);
 
+        // Armazena nova imagem
+        $newPath = DiskHelper::storeImage($data->building_section, 'buildings', $data->building_slug);
+
+        // Remove imagem anterior se existir
         if (Storage::disk('buildings')->exists($sectionImage->building_image)) {
             Storage::disk('buildings')->delete($sectionImage->building_image);
         }
@@ -57,25 +65,6 @@ class BuildingRepository implements BuildingInterface
 
         return true;
     }
-
-
-    /**
-     * Summary of storeImage
-     * @param object $image Allow to create a complete name for the image that been stored in disks
-     * @param string $disk Name of disk where the image must be saved
-     * @param string $subfolder Allow to save the image in a subfolder of disk
-     * @return string
-     */
-    private function storeImage($image, string $disk, string $subfolder = ''): string
-    {
-        $filename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
-        $extension = $image->getClientOriginalExtension();
-        $slug = Str::slug($filename);
-        $finalName = "{$slug}-" . now()->format('YmdHis') . ".{$extension}";
-
-        return $image->storeAs($subfolder, $finalName, ['disk' => $disk]);
-    }
-
 
     public function deleteBuilding($building)
     {

@@ -27,26 +27,6 @@ class BuildingController extends Controller
         return view('admin.buildings.new-building');
     }
 
-    /* public function editBuilding(Building $building)
-    {
-        $sections = Section::all();
-        $gallery = BuildingGallery::where('building_id', $building->id)->get();
-
-        // Mapeia cada seção com sua imagem correspondente
-        $sectionGallery = $sections->map(function ($section) use ($gallery) {
-            $image = $gallery->firstWhere('section_id', $section->id);
-            return [
-                'section' => $section,
-                'image' => $image,
-            ];
-        });
-
-        return view('admin.buildings.edit-building', [
-            'building' => $building,
-            'sectionGallery' => $sectionGallery,
-        ]);
-    } */
-
     public function editBuilding(Building $building)
     {
         $sections = Section::all();
@@ -78,12 +58,25 @@ class BuildingController extends Controller
         return redirect()->back()->with('success', 'Building updated successfully.');
     }
 
-    public function buildingGalleryImageUpdate(Building $building, Request $request)
+    public function buildingGallerySave(Request $request)
     {
         $data = (object) $request->except('_token');
 
         if ($request->hasFile('building_section')) {
-            $this->building->updateSectionImage($building, $data);
+            $this->building->saveGalleryItem($data);
+        } else {
+            return redirect()->back()->with('error', 'No image file selected');
+        }
+
+        return redirect()->back()->with('update', 'Building image of ' . Str::ucfirst($request->type) . ' added successfully.');
+    }
+
+    public function buildingGalleryUpdate(Request $request)
+    {
+        $data = (object) $request->except('_token');
+
+        if ($request->hasFile('building_section')) {
+            $this->building->updateGalleryItem($data);
         } else {
             return redirect()->back()->with('error', 'No image file selected');
         }

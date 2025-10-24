@@ -18,6 +18,7 @@ Route::prefix('admin/buildings')->group(function () {
 
 Route::prefix('admin/buildings')->group(function () {
     Route::post('save-building', [BuildingController::class, 'saveBuilding'])->name('admin.buildings.save-building');
+    Route::post('save-building-gallery', [BuildingController::class, 'buildingGallerySave'])->name('admin.buildings.save-building-gallery');
 });
 
 /**
@@ -27,7 +28,7 @@ Route::prefix('admin/buildings')->group(function () {
 Route::prefix('admin/buildings')->group(function () {
     Route::put('update-building/{building}', [BuildingController::class, 'updateBuilding'])->name('admin.buildings.update-building');
 
-    Route::put('update-building-gallery/{building}', [BuildingController::class, 'buildingGalleryImageUpdate'])
+    Route::put('update-building-gallery', [BuildingController::class, 'buildingGalleryUpdate'])
         ->name('admin.buildings.update-building-gallery');
 });
 

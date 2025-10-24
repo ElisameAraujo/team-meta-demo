@@ -21,7 +21,8 @@
             </h1>
         </div>
         @include('components.flash-messages')
-        @include('components.admin.building-gallery')
+        @include('components.admin.building-gallery-add')
+        @include('components.admin.building-gallery-update')
         @include('components.admin.new-transition')
         <div class="col-span-12 page-header">
             <h1>Building Details</h1>
@@ -51,7 +52,8 @@
             <h1>Building Gallery</h1>
         </div>
         <div class="page-actions">
-            <button class="btn btn-success" onclick="building_gallery.showModal()">
+            <button class="btn btn-success" onclick="building_gallery_add.showModal()" data-mode="add"
+                data-target="building_gallery_add">
                 <i class="fa-solid fa-plus"></i> New Item
             </button>
         </div>
@@ -84,11 +86,13 @@
                                     <td>{{ $item->updated_at }}</td>
                                     <td>
                                         <div class="join">
-                                            <a href="{{-- {{ route('admin.buildings.edit-building', ['building' => $building->id]) }} --}}"
-                                                class="btn btn-info btn-sm text-white join-item tooltip font-normal"
-                                                data-tip="Edit">
+                                            <button
+                                                class="btn btn-info btn-sm text-white join-item tooltip font-normal open-gallery-modal"
+                                                data-tip="Edit" onclick="building_gallery_update.showModal()"
+                                                data-mode="update" data-target="building_gallery_update"
+                                                data-details='{{ $item->toDetailsBuilding()->toJson() }}'>
                                                 <i class="fa-solid fa-pen-to-square"></i>
-                                            </a>
+                                            </button>
                                             <form action="{{-- {{ route('admin.buildings.delete-building', $building->id) }} --}}" method="POST">
                                                 @csrf
                                                 @method('DELETE')

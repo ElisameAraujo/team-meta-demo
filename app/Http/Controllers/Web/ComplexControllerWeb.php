@@ -73,7 +73,7 @@ class ComplexControllerWeb extends Controller
         //Transitions
         $currentSide = 'complex:' . $section->section_slug;
         $fromKey = $_COOKIE['fromKey'] ?? null;
-        $toKey = 'complex:' . $section;
+        $toKey = 'complex:' . $section->section_slug;
         $type = explode(':', $fromKey)[0] ?? null;
 
         $transition = null;

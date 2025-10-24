@@ -75,11 +75,13 @@
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </a>
 
-                                            <a href="{{ route('admin.buildings.apartments.edit-coordinates', ['building' => $building->id, 'apartment' => $apartment->id]) }}"
-                                                class="btn btn-warning btn-sm text-white join-item tooltip font-normal"
-                                                data-tip="Edit Coordinates">
-                                                <i class="fa-solid fa-location-dot"></i>
-                                            </a>
+                                            @if ($apartment->floorPlan?->floor_plan_image)
+                                                <a href="{{ route('admin.buildings.apartments.edit-coordinates', ['building' => $building->id, 'apartment' => $apartment->id]) }}"
+                                                    class="btn btn-warning btn-sm text-white join-item tooltip font-normal"
+                                                    data-tip="Edit Coordinates">
+                                                    <i class="fa-solid fa-location-dot"></i>
+                                                </a>
+                                            @endif
 
                                             <form
                                                 action="{{ route('admin.buildings.apartments.delete-apartment', ['apartment' => $apartment->id]) }}"

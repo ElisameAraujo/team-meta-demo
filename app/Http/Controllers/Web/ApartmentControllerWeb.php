@@ -16,11 +16,11 @@ class ApartmentControllerWeb extends Controller
         $building = $this->apartment->buildingOrigin($buildingSlug);
 
         //Transitions
-        if ($_COOKIE['fromKey'] === 'complex:front' ?? null) {
+        if ($_COOKIE['fromKey'] === 'the-complex:front' ?? null) {
             $fromKey = $_COOKIE['fromKey'] ?? null;
             $toKey = 'complex:zoom-in-front';
         } else {
-            $fromKey = $_COOKIE['fromKey'] ?? null;
+            $fromKey = 'the-complex:back' ?? null;
             $toKey = 'complex:zoom-in-back';
         }
 
@@ -28,7 +28,7 @@ class ApartmentControllerWeb extends Controller
         if ($fromKey && $fromKey !== $toKey) {
             $transition = TransitionsGallery::where('from_key', $fromKey)
                 ->where('to_key', $toKey)
-                ->where('type', 'complex')
+                ->where('type', 'the-complex')
                 ->first();
         }
 

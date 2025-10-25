@@ -1,0 +1,27 @@
+[data-theme="dark"] aside > .sticky-menu > .sticky-menu-header > .profile-menu .dropdown li a {
+    @apply text-gray-400;
+}
+
+[data-theme="dark"] aside > .sticky-menu > .sticky-menu-header > .profile-menu > button {
+    @apply border-gray-500;
+}
+
+[data-theme="dark"] aside > .sticky-menu > .sticky-menu-header > .profile-menu > button:hover {
+    @apply bg-gray-700;
+}
+
+[data-theme="dark"] main .main-content .header .right-header label {
+    @apply border-gray-500;
+}
+
+[data-theme="dark"] main .main-content .header {
+    @apply border-b-gray-500;
+}
+
+[data-theme="dark"] .page-content > .page-header > h1 > .breadcrumbs li a {
+    @apply text-gray-500;
+}
+
+[data-theme="dark"] .page-content > .page-header > h1 > .breadcrumbs li a:hover {
+    @apply text-white;
+}

@@ -236,7 +236,7 @@ main .main-content .header .right-header .tooltip {
 }
 
 .page-content {
-    @apply p-2 col-span-12 grid-default gap-4 z-100;
+    @apply p-2 col-span-12 grid-default gap-4;
 }
 
 /** Cabeçalho **/

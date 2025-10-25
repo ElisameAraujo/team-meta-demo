@@ -94,15 +94,6 @@
                                                 data-details='{{ $item->toDetailsBuilding()->toJson() }}'>
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </button>
-                                            <form action="{{-- {{ route('admin.buildings.delete-building', $building->id) }} --}}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit"
-                                                    class="btn btn-error btn-sm text-white join-item tooltip font-normal"
-                                                    data-tip="Remove">
-                                                    <i class="fa-solid fa-trash"></i>
-                                                </button>
-                                            </form>
                                         </div>
                                     </td>
                                 </tr>

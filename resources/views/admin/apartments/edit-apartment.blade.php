@@ -30,12 +30,13 @@
         </div>
         <div class="col-span-12 mb-4">
             @include('components.flash-messages')
-            <form action="{{ route('admin.buildings.apartments.update-apartment', ['apartment' => $apartment->id]) }}" method="POST">
+            <form action="{{ route('admin.buildings.apartments.update-apartment', ['apartment' => $apartment->id]) }}"
+                method="POST">
                 @csrf
                 @method('PUT')
                 <div class="grid-default">
 
-                    <fieldset class="fieldset col-span-6">
+                    <fieldset class="fieldset col-span-12">
                         <legend class="fieldset-legend">Unit Code</legend>
                         <label class="input w-full">
                             <span class="label"><i class="fa-solid fa-barcode"></i></span>
@@ -43,15 +44,61 @@
                         </label>
                     </fieldset>
 
-                    <fieldset class="fieldset col-span-6">
-                        <legend class="fieldset-legend">Covered Area (m²)</legend>
+                    <fieldset class="fieldset col-span-2">
+                        <legend class="fieldset-legend">Total Area (m²)</legend>
                         <label class="input w-full">
                             <span class="label"><i class="fa-solid fa-ruler-combined"></i></span>
-                            <input type="number" step="0.01" name="covered_area" value="{{ old('covered_area', $apartment->covered_area) }}" />
+                            <input type="number" step="0.01" name="total_area"
+                                value="{{ old('total_area', $apartment->total_area) }}" />
                         </label>
                     </fieldset>
 
-                    <fieldset class="fieldset col-span-3">
+                    <fieldset class="fieldset col-span-2">
+                        <legend class="fieldset-legend">Covered Area (m²)</legend>
+                        <label class="input w-full">
+                            <span class="label"><i class="fa-solid fa-ruler-combined"></i></span>
+                            <input type="number" step="0.01" name="covered_area"
+                                value="{{ old('covered_area', $apartment->covered_area) }}" />
+                        </label>
+                    </fieldset>
+
+                    <fieldset class="fieldset col-span-2">
+                        <legend class="fieldset-legend">Semicovered Area (m²)</legend>
+                        <label class="input w-full">
+                            <span class="label"><i class="fa-solid fa-ruler-combined"></i></span>
+                            <input type="number" step="0.01" name="semi_covered_area"
+                                value="{{ old('semi_covered_area', $apartment->semi_covered_area) }}" />
+                        </label>
+                    </fieldset>
+
+                    <fieldset class="fieldset col-span-2">
+                        <legend class="fieldset-legend">Uncovered Area (m²)</legend>
+                        <label class="input w-full">
+                            <span class="label"><i class="fa-solid fa-ruler-combined"></i></span>
+                            <input type="number" step="0.01" name="uncovered_area"
+                                value="{{ old('uncovered_area', $apartment->uncovered_area) }}" />
+                        </label>
+                    </fieldset>
+
+                    <fieldset class="fieldset col-span-2">
+                        <legend class="fieldset-legend">Common Area (m²)</legend>
+                        <label class="input w-full">
+                            <span class="label"><i class="fa-solid fa-ruler-combined"></i></span>
+                            <input type="number" step="0.01" name="common_area"
+                                value="{{ old('common_area', $apartment->common_area) }}" />
+                        </label>
+                    </fieldset>
+
+                    <fieldset class="fieldset col-span-2">
+                        <legend class="fieldset-legend">Storage Size (m²)</legend>
+                        <label class="input w-full">
+                            <span class="label"><i class="fa-solid fa-warehouse"></i></span>
+                            <input type="number" step="0.01" name="storage_size"
+                                value="{{ old('storage_size', $apartment->storage_size) }}" />
+                        </label>
+                    </fieldset>
+
+                    <fieldset class="fieldset col-span-4">
                         <legend class="fieldset-legend">Ambients</legend>
                         <label class="input w-full">
                             <span class="label"><i class="fa-solid fa-bed"></i></span>
@@ -59,15 +106,7 @@
                         </label>
                     </fieldset>
 
-                    <fieldset class="fieldset col-span-3">
-                        <legend class="fieldset-legend">Storage Size (m²)</legend>
-                        <label class="input w-full">
-                            <span class="label"><i class="fa-solid fa-warehouse"></i></span>
-                            <input type="number" step="0.01" name="storage_size" value="{{ old('storage_size', $apartment->storage_size) }}" />
-                        </label>
-                    </fieldset>
-
-                    <fieldset class="fieldset col-span-3">
+                    <fieldset class="fieldset col-span-4">
                         <legend class="fieldset-legend">Floor</legend>
                         <label class="input w-full">
                             <span class="label"><i class="fa-solid fa-elevator"></i></span>
@@ -75,37 +114,28 @@
                         </label>
                     </fieldset>
 
-                    <fieldset class="fieldset col-span-3">
+                    <fieldset class="fieldset col-span-4">
                         <legend class="fieldset-legend">Price</legend>
                         <label class="input w-full">
                             <span class="label">US$</span>
-                            <input type="number" step="0.01" name="price" value="{{ old('price', $apartment->price) }}" />
+                            <input type="number" step="0.01" name="price"
+                                value="{{ old('price', $apartment->price) }}" />
                         </label>
                     </fieldset>
 
-                    <fieldset class="fieldset col-span-6">
+                    <fieldset class="fieldset col-span-12">
                         <legend class="fieldset-legend">Unit Status</legend>
                         <select class="select w-full" name="apartment_status_id">
                             <option disabled selected>-- Select an Option --</option>
                             @foreach ($apartmentStatus as $status)
-                                <option value="{{ $status->id }}" {{ $apartment->apartment_status_id == $status->id ? 'selected' : '' }}>
+                                <option value="{{ $status->id }}"
+                                    {{ $apartment->apartment_status_id == $status->id ? 'selected' : '' }}>
                                     {{ $status->status_name }}
                                 </option>
                             @endforeach
                         </select>
                     </fieldset>
 
-                    <fieldset class="fieldset col-span-6">
-                        <legend class="fieldset-legend">Section</legend>
-                        <select class="select w-full" name="section_id">
-                            <option disabled selected>-- Select an Option --</option>
-                            @foreach ($sections as $section)
-                                <option value="{{ $section->id }}" {{ $apartment->section_id == $section->id ? 'selected' : '' }}>
-                                    {{ $section->section_name }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </fieldset>
                 </div>
 
                 <button class="btn btn-primary mt-2" type="submit">
@@ -124,11 +154,15 @@
 
                 <div class="image-item">
                     <div class="image-thumb">
-                        <img src="{{ AssetHelper::assetURL('apartments', $apartment->floorPlan?->floor_plan_image, 'img/placeholders/building-image-not-found.jpg')}}" />
+                        <img
+                            src="{{ AssetHelper::assetURL('apartments', $apartment->floorPlan?->floor_plan_image, 'img/placeholders/building-image-not-found.jpg') }}" />
                     </div>
 
                     <div class="image-actions mt-4">
-                        <button data-mode="update" data-target="floor_plan" data-image-url="{{ AssetHelper::assetURL('apartments', $apartment->floorPlan?->floor_plan_image) }}" data-gallery-id="{{ $apartment->floorPlan?->id }}" onclick="floor_plan.showModal()" class="open-gallery-modal">
+                        <button data-mode="update" data-target="floor_plan"
+                            data-image-url="{{ AssetHelper::assetURL('apartments', $apartment->floorPlan?->floor_plan_image) }}"
+                            data-gallery-id="{{ $apartment->floorPlan?->id }}" onclick="floor_plan.showModal()"
+                            class="open-gallery-modal">
                             <i class="fa-solid fa-arrows-rotate"></i> Change Image/Video
                         </button>
                     </div>

@@ -20,8 +20,7 @@ class ApartmentController extends Controller
     public function __construct(private ApartmentInterface $apartment) {}
     public function index(Building $building)
     {
-        $apartments = Apartment::with('section')
-            ->where('building_id', $building->id)
+        $apartments = Apartment::where('building_id', $building->id)
             ->paginate(10);
 
         return view('admin.apartments.index', compact(

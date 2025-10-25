@@ -24,7 +24,6 @@ return new class extends Migration
             $table->integer('floor');
             $table->decimal('price', 20, 2);
             $table->integer('apartment_status_id');
-            $table->integer('section_id');
 
             $table->foreignId('building_id')
                 ->constrained('buildings')

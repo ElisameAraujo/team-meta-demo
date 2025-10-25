@@ -22,18 +22,12 @@ class Apartment extends Model
         'floor',
         'price',
         'apartment_status_id',
-        'section_id',
         'building_id'
     ];
 
     public function building()
     {
         return $this->belongsTo(Building::class);
-    }
-
-    public function section()
-    {
-        return $this->belongsTo(Section::class);
     }
 
     public function status()

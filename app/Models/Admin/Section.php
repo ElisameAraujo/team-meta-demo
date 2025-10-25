@@ -9,8 +9,8 @@ class Section extends Model
     protected $table = "sections";
     public $timestamps = false;
 
-    public function apartments()
+    public function building()
     {
-        $this->hasMany(Apartment::class);
+        return $this->belongsTo(Building::class);
     }
 }

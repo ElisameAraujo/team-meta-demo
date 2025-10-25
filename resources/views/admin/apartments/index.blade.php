@@ -33,7 +33,6 @@
                                 <th>Ambients</th>
                                 <th>Storage Size</th>
                                 <th>Floor</th>
-                                <th>Section</th>
                                 <th>Price</th>
                                 <th>Unit Status</th>
                                 <th>Mapped</th>
@@ -51,7 +50,6 @@
                                     <td>{{ $apartment->ambients }}</td>
                                     <td>{{ $apartment->formatted_storage_size }}</td>
                                     <td>{{ $apartment->floor }}</td>
-                                    <td>{{ $apartment->section->section_name }}</td>
                                     <td>{{ $apartment->formatted_price }}</td>
                                     <td>
                                         <div class="badge badge-sm {{ $apartment->status->css_class }} text-white">

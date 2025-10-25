@@ -29,77 +29,101 @@
                 method="POST">
                 @csrf
                 <div class="grid-default">
-                    <fieldset class="fieldset col-span-6">
+                    <fieldset class="fieldset col-span-12">
                         <legend class="fieldset-legend">Unit Code</legend>
                         <label class="input w-full">
                             <span class="label"><i class="fa-solid fa-barcode"></i></span>
-                            <input type="text" name="unit_code" />
+                            <input type="text" name="unit_code" value="{{ old('unit_code') }}" />
                         </label>
                     </fieldset>
 
-                    <fieldset class="fieldset col-span-6">
+                    <fieldset class="fieldset col-span-2">
+                        <legend class="fieldset-legend">Total Area (m²)</legend>
+                        <label class="input w-full">
+                            <span class="label"><i class="fa-solid fa-ruler-combined"></i></span>
+                            <input type="number" step="0.01" name="total_area" value="{{ old('total_area') }}" />
+                        </label>
+                    </fieldset>
+
+                    <fieldset class="fieldset col-span-2">
                         <legend class="fieldset-legend">Covered Area (m²)</legend>
                         <label class="input w-full">
                             <span class="label"><i class="fa-solid fa-ruler-combined"></i></span>
-                            <input type="number" step="0.01" name="covered_area" />
+                            <input type="number" step="0.01" name="covered_area" value="{{ old('covered_area') }}" />
                         </label>
                     </fieldset>
 
-                    <fieldset class="fieldset col-span-3">
-                        <legend class="fieldset-legend">Ambients</legend>
+                    <fieldset class="fieldset col-span-2">
+                        <legend class="fieldset-legend">Semicovered Area (m²)</legend>
                         <label class="input w-full">
-                            <span class="label"><i class="fa-solid fa-bed"></i></span>
-                            <input type="number" name="ambients" />
+                            <span class="label"><i class="fa-solid fa-ruler-combined"></i></span>
+                            <input type="number" step="0.01" name="semi_covered_area"
+                                value="{{ old('semi_covered_area') }}" />
                         </label>
                     </fieldset>
 
-                    <fieldset class="fieldset col-span-3">
+                    <fieldset class="fieldset col-span-2">
+                        <legend class="fieldset-legend">Uncovered Area (m²)</legend>
+                        <label class="input w-full">
+                            <span class="label"><i class="fa-solid fa-ruler-combined"></i></span>
+                            <input type="number" step="0.01" name="uncovered_area"
+                                value="{{ old('uncovered_area') }}" />
+                        </label>
+                    </fieldset>
+
+                    <fieldset class="fieldset col-span-2">
+                        <legend class="fieldset-legend">Common Area (m²)</legend>
+                        <label class="input w-full">
+                            <span class="label"><i class="fa-solid fa-ruler-combined"></i></span>
+                            <input type="number" step="0.01" name="common_area" value="{{ old('common_area') }}" />
+                        </label>
+                    </fieldset>
+
+                    <fieldset class="fieldset col-span-2">
                         <legend class="fieldset-legend">Storage Size (m²)</legend>
                         <label class="input w-full">
                             <span class="label"><i class="fa-solid fa-warehouse"></i></span>
-                            <input type="number" step="0.01" name="storage_size" />
+                            <input type="number" step="0.01" name="storage_size" value="{{ old('storage_size') }}" />
                         </label>
                     </fieldset>
 
-                    <fieldset class="fieldset col-span-3">
+                    <fieldset class="fieldset col-span-4">
+                        <legend class="fieldset-legend">Ambients</legend>
+                        <label class="input w-full">
+                            <span class="label"><i class="fa-solid fa-bed"></i></span>
+                            <input type="number" name="ambients" value="{{ old('ambients') }}" />
+                        </label>
+                    </fieldset>
+
+                    <fieldset class="fieldset col-span-4">
                         <legend class="fieldset-legend">Floor</legend>
                         <label class="input w-full">
                             <span class="label"><i class="fa-solid fa-elevator"></i></span>
-                            <input type="number" name="floor" />
+                            <input type="number" name="floor" value="{{ old('floor') }}" />
                         </label>
                     </fieldset>
 
-                    <fieldset class="fieldset col-span-3">
+                    <fieldset class="fieldset col-span-4">
                         <legend class="fieldset-legend">Price</legend>
                         <label class="input w-full">
                             <span class="label">US$</span>
-                            <input type="number" step="0.01" name="price" />
+                            <input type="number" step="0.01" name="price" value="{{ old('price') }}" />
                         </label>
                     </fieldset>
 
-                    <fieldset class="fieldset col-span-6">
+                    <fieldset class="fieldset col-span-12">
                         <legend class="fieldset-legend">Unit Status</legend>
                         <select class="select w-full" name="apartment_status_id">
                             <option disabled selected>-- Select an Option --</option>
                             @foreach ($apartmentStatus as $status)
-                                <option value="{{ $status->id }}">
+                                <option value="{{ $status->id }}"
+                                    {{ old('apartment_status_id') == $status->id ? 'selected' : '' }}>
                                     {{ $status->status_name }}
                                 </option>
                             @endforeach
                         </select>
                     </fieldset>
 
-                    <fieldset class="fieldset col-span-6">
-                        <legend class="fieldset-legend">Section</legend>
-                        <select class="select w-full" name="section_id">
-                            <option disabled selected>-- Select an Option --</option>
-                            @foreach ($sections as $section)
-                                <option value="{{ $section->id }}">
-                                    {{ $section->section_name }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </fieldset>
                 </div>
 
                 <button class="btn btn-primary mt-2" type="submit">

@@ -21,7 +21,11 @@ class ApartmentFactory extends Factory
         static $counter = 1;
         return [
             'unit_code' => 'TC' . Str::padLeft($counter++, 3, 0),
+            'total_area' => fake()->randomFloat(2, 50, 100),
             'covered_area' => fake()->randomFloat(2, 50, 100),
+            'semi_covered_area' => fake()->randomFloat(2, 50, 100),
+            'uncovered_area' => fake()->randomFloat(2, 50, 100),
+            'common_area' => fake()->randomFloat(2, 50, 100),
             'ambients' => fake()->numberBetween(1, 4),
             'storage_size' => fake()->randomFloat(2, NULL, 10),
             'floor' => fake()->numberBetween(0, 4),

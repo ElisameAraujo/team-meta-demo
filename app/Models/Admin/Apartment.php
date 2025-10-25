@@ -12,9 +12,13 @@ class Apartment extends Model
     protected $table = "apartments";
     protected $fillable = [
         'unit_code',
+        'total_area',
         'covered_area',
-        'ambients',
+        'semi_covered_area',
+        'uncovered_area',
+        'common_area',
         'storage_size',
+        'ambients',
         'floor',
         'price',
         'apartment_status_id',
@@ -65,6 +69,32 @@ class Apartment extends Model
     public function getFormattedCoveredAreaAttribute()
     {
         return number_format($this->covered_area, 2, ',', '.') . ' m²';
+    }
+
+    public function getFormattedTotalAreaAttribute()
+    {
+        $coveredArea = $this->covered_area ?? 0;
+        $semiCoveredArea = $this->semi_covered_area ?? 0;
+        $uncoveredArea = $this->uncovered_area ?? 0;
+        $commonArea = $this->common_area ?? 0;
+        $this->total_area = $coveredArea + $semiCoveredArea + $uncoveredArea + $commonArea;
+
+        return number_format($this->total_area, 2, ',', '.') . ' m²';
+    }
+
+    public function getFormattedUncoveredAreaAttribute()
+    {
+        return number_format($this->uncovered_area, 2, ',', '.') . ' m²';
+    }
+
+    public function getFormattedSemiCoveredAreaAttribute()
+    {
+        return number_format($this->semi_covered_area, 2, ',', '.') . ' m²';
+    }
+
+    public function getFormattedCommonAreaAttribute()
+    {
+        return number_format($this->common_area, 2, ',', '.') . ' m²';
     }
 
     public function getFormattedStorageSizeAttribute()

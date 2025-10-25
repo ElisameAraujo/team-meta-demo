@@ -35,7 +35,7 @@
                     </div>
 
                     <div class="detail-item">
-                        <p class="detail-label">Storage</p>
+                        <p class="detail-label">Price</p>
                         <p class="detail-value">{{ $apartment->formatted_price }}</p>
                     </div>
                 </div>
@@ -44,30 +44,30 @@
                 <div class="ambients-columns">
                     <div class="ambient-column gap-0!">
                         <span class="title">Total Area</span>
-                        <span class="size">134,23 m²</span>
+                        <span class="size">{{ $apartment->formatted_total_area }}</span>
                     </div>
                     <div class="ambient-column">
                         <div class="size-area">
                             <span class="title">Covered Area</span>
-                            <span class="size">69,97 m²</span>
+                            <span class="size">{{ $apartment->formatted_covered_area }}</span>
                         </div>
                         <div class="size-area">
                             <span class="title">Uncovered Area</span>
-                            <span class="size">38,35 m²</span>
+                            <span class="size">{{ $apartment->formatted_uncovered_area }}</span>
                         </div>
                         <div class="size-area">
                             <span class="title">Storage Size</span>
-                            <span class="size">3,18 m²</span>
+                            <span class="size">{{ $apartment->formatted_storage_size }}</span>
                         </div>
                     </div>
                     <div class="ambient-column">
                         <div class="size-area">
                             <span class="title">Semi-Covered Area</span>
-                            <span class="size">22,91 m²</span>
+                            <span class="size">{{ $apartment->formatted_semi_covered_area }}</span>
                         </div>
                         <div class="size-area">
                             <span class="title">Common Area</span>
-                            <span class="size">33,57 m²</span>
+                            <span class="size">{{ $apartment->formatted_common_area }}</span>
                         </div>
                     </div>
                 </div>

@@ -14,9 +14,13 @@ return new class extends Migration
         Schema::create('apartments', function (Blueprint $table) {
             $table->id();
             $table->string('unit_code')->unique();
+            $table->decimal('total_area', 10, 2);
             $table->decimal('covered_area', 10, 2);
-            $table->integer('ambients');
+            $table->decimal('semi_covered_area', 10, 2);
+            $table->decimal('uncovered_area', 10, 2);
+            $table->decimal('common_area', 10, 2);
             $table->decimal('storage_size', 10, 2)->nullable();
+            $table->integer('ambients');
             $table->integer('floor');
             $table->decimal('price', 20, 2);
             $table->integer('apartment_status_id');

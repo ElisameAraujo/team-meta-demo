@@ -21,7 +21,7 @@ body {
 
 /*** Navigation ***/
 .navigation {
-    @apply w-fit text-white z-10 top-10 left-20 pl-20 pt-10;
+    @apply w-fit text-white z-10 top-10 left-20 pl-20 pt-10 pointer-events-auto;
 }
 
 .navigation h1 {
@@ -97,7 +97,7 @@ body {
 }
 
 .page-background .side-content {
-    @apply w-5/12 h-screen bg-transparent absolute z-1000;
+    @apply w-5/12 h-screen bg-transparent absolute top-0 left-0 z-10 pointer-events-none;
 }
 
 .page-background img {
@@ -112,6 +112,7 @@ body {
     height: 100vh;
     overflow: hidden;
     z-index: 1;
+    aspect-ratio: 16 / 9;
 }
 
 .video-background .video-overlay {
@@ -126,19 +127,15 @@ body {
 }
 
 .video-background video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    pointer-events: none;
-    user-select: none;
-}
-
-.svg-container {
     position: absolute;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
+    object-fit: cover;
+    pointer-events: none;
+    user-select: none;
+    z-index: 1;
 }
 
 .fade-in-bg {

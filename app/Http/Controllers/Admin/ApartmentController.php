@@ -73,13 +73,10 @@ class ApartmentController extends Controller
     public function editCoordinates(Building $building, Apartment $apartment)
     {
         $apartmentsCoordinates = ApartmentCoordinate::with('apartment')
-            ->whereHas('apartment', function ($query) use ($apartment) {
-                $query->where('section_id', $apartment->section_id)
-                    ->where('building_id', $apartment->building_id);
-            })
+            ->where('apartment_id', $apartment->id)
             ->get();
 
-        $buildingBackground = $this->apartment->buildingBackground($building->id, $apartment->section_id);
+        $buildingBackground = $this->apartment->buildingBackground($building->id);
 
         return view('admin.apartments.edit-coordinates', compact('building', 'apartment', 'apartmentsCoordinates', 'buildingBackground'));
     }

@@ -12,6 +12,6 @@ interface ApartmentInterface
     public function updateApartment(Apartment $apartment, array $data);
     public function updateCoordinates(array $coordinates);
     public function deleteApartment(Apartment $apartment);
-    public function buildingBackground($building, $section);
+    public function buildingBackground($building);
     public function floorPlanImage(object $data);
 }

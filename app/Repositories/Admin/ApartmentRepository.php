@@ -27,11 +27,10 @@ class ApartmentRepository implements ApartmentInterface
         return $apartment->update($data);
     }
 
-    public function buildingBackground($building, $section): BuildingGallery
+    public function buildingBackground($building): BuildingGallery
     {
 
         $image = BuildingGallery::where('building_id', $building)
-            ->where('section_id', $section)
             ->first();
 
         return $image;

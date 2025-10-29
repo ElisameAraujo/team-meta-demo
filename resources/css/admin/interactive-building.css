@@ -1,20 +1,33 @@
 /** Interactive Building **/
 .interactive-building {
-    @apply absolute top-0 left-0 w-full h-full pointer-events-none z-20;
+    @apply absolute top-0 left-0 w-[100vw] h-[100vh] pointer-events-none z-2;
 }
+
 .interactive-building rect,
 .interactive-building polygon,
 .interactive-building path {
-    @apply stroke-black/10 stroke-2 cursor-pointer fill-white/50;
+    @apply stroke-black/10 stroke-2 cursor-pointer fill-white/20;
     z-index: 1000;
     pointer-events: all;
     transition: stroke 0.3s ease, fill 0.3s ease;
 }
 
+.interactive-building rect.available,
+.interactive-building polygon.available,
+.interactive-building path.available {
+    @apply stroke-green-600 fill-green-400/50;
+}
+
+.interactive-building rect.available:hover,
+.interactive-building polygon.available:hover,
+.interactive-building path.available:hover {
+    @apply stroke-green-600 fill-green-400/50;
+}
+
 .interactive-building rect:hover,
 .interactive-building polygon:hover,
 .interactive-building path:hover {
-    @apply stroke-green-600 stroke-2 fill-green-400/50;
+    @apply stroke-black/10 stroke-2 fill-white/35;
 }
 
 .interactive-building rect.sold,
@@ -23,40 +36,32 @@
 .interactive-building polygon.sold:hover,
 .interactive-building path.sold,
 .interactive-building path.sold:hover {
-    @apply border-white/30 fill-red-500/20 stroke-red-600 stroke-2;
+    @apply fill-red-500/20 stroke-red-600 stroke-2;
 }
 
 .interactive-building rect.reserved,
 .interactive-building polygon.reserved,
 .interactive-building path.reserved {
-    @apply border-white/30 fill-yellow-500/20;
+    @apply stroke-yellow-700 fill-yellow-500/50;
 }
 
 .interactive-building rect.reserved:hover,
 .interactive-building polygon.reserved:hover,
 .interactive-building path.reserved:hover {
-    @apply stroke-yellow-600 stroke-2;
+    @apply stroke-yellow-700 stroke-2;
 }
 
 #front-overview,
 #back-overview {
-    display: none;
     opacity: 0;
+    visibility: hidden;
     transition: opacity 0.3s ease-in-out;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 20;
 }
 
 #front-overview.show,
 #back-overview.show {
-    display: block;
     opacity: 1;
-    pointer-events: auto;
+    visibility: visible;
 }
 
 /** Tooltip **/

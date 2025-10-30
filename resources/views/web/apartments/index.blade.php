@@ -17,12 +17,13 @@
             <svg class="interactive-building" width="100%" height="100%" viewBox="0 0 1866 917"
                 preserveAspectRatio="xMinYMin meet">
                 <g transform="translate(0, -50)">
-                    <image x="0%" y="0%" xlink:href="{{ asset('videos/project/top.png') }}" />
+                    <image x="0%" y="0%"
+                        xlink:href="{{ AssetHelper::assetURL('apartments', $apartment->floorPlan->floor_plan_image) }}" />
                     <a xlink:href="https://virtualexperience.metaoriginal.com/icon_beach_residence_05/" target="_blank">
                         <polygon points="1224,979 1224,577 893,577 893,979" data-label="Apartament 05"
                             data-tooltip="true" />
                     </a>
-                    <a target="_blank">
+                    <a xlink:href="https://virtualexperience.metaoriginal.com/icon_beach_residence_10" target="_blank">
                         <path
                             d="M1869 599.79l-212.43 -1.05 0 -37.5 -8.79 0 0 -45.43 -56.06 0 0 -8.27 -45.71 0 0 -103.5 -102.87 0 0 -343.21 258.59 -0.52c54.89,-0.11 93.2,32.73 99.21,73.83l68.06 465.65z"
                             data-label="Apartament 10" data-tooltip="true" />

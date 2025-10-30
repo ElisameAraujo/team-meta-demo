@@ -3,11 +3,11 @@
         <div class="flex justify-between flex-1 sm:block md:block lg:hidden">
             @if ($paginator->onFirstPage())
                 <span class="join-item btn">
-                    {!! __('pagination.previous') !!}
+                    <i class="fa-solid fa-chevron-left"></i>
                 </span>
             @else
                 <a href="{{ $paginator->previousPageUrl() }}" class="join-item btn">
-                    {!! __('pagination.previous') !!}
+                    <i class="fa-solid fa-chevron-left"></i>
                 </a>
             @endif
 
@@ -45,21 +45,13 @@
                     @if ($paginator->onFirstPage())
                         <span aria-disabled="true" aria-label="{{ __('pagination.previous') }}">
                             <span class="join-item btn" aria-hidden="true">
-                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd"
-                                        d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                                        clip-rule="evenodd" />
-                                </svg>
+                                <i class="fa-solid fa-chevron-left"></i>
                             </span>
                         </span>
                     @else
                         <a href="{{ $paginator->previousPageUrl() }}" rel="prev" class="join-item btn"
                             aria-label="{{ __('pagination.previous') }}">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd"
-                                    d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                                    clip-rule="evenodd" />
-                            </svg>
+                            <i class="fa-solid fa-chevron-left"></i>
                         </a>
                     @endif
 
@@ -93,7 +85,7 @@
                     @if ($paginator->hasMorePages())
                         <a href="{{ $paginator->nextPageUrl() }}" rel="next" class="join-item btn"
                             aria-label="{{ __('pagination.next') }}">
-                            <i class="fa-solid fa-chevron-left"></i>
+                            <i class="fa-solid fa-chevron-right"></i>
                         </a>
                     @else
                         <span aria-disabled="true" aria-label="{{ __('pagination.next') }}">

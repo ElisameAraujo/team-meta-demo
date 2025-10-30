@@ -33,7 +33,7 @@
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.woff2"
   },
   "resources/css/admin.css": {
-    "file": "assets/admin-BRCJ6kQy.css",
+    "file": "assets/admin-DeOKw0Zk.css",
     "src": "resources/css/admin.css",
     "isEntry": true,
     "names": [
@@ -41,7 +41,7 @@
     ]
   },
   "resources/css/web.css": {
-    "file": "assets/web-RPol2Yx8.css",
+    "file": "assets/web-Bt3o3M2w.css",
     "src": "resources/css/web.css",
     "isEntry": true,
     "names": [

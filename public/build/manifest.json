@@ -1,0 +1,69 @@
+{
+  "_all-D6m5kTcE.js": {
+    "file": "assets/all-D6m5kTcE.js",
+    "name": "all",
+    "css": [
+      "assets/all-DFINFX-U.css"
+    ],
+    "assets": [
+      "assets/fa-brands-400-BfBXV7Mm.woff2",
+      "assets/fa-regular-400-BVHPE7da.woff2",
+      "assets/fa-solid-900-8GirhLYJ.woff2",
+      "assets/fa-v4compatibility-DnhYSyY-.woff2"
+    ]
+  },
+  "_all-DFINFX-U.css": {
+    "file": "assets/all-DFINFX-U.css",
+    "src": "_all-DFINFX-U.css"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2": {
+    "file": "assets/fa-brands-400-BfBXV7Mm.woff2",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2": {
+    "file": "assets/fa-regular-400-BVHPE7da.woff2",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2": {
+    "file": "assets/fa-solid-900-8GirhLYJ.woff2",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.woff2": {
+    "file": "assets/fa-v4compatibility-DnhYSyY-.woff2",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.woff2"
+  },
+  "resources/css/admin.css": {
+    "file": "assets/admin-BRCJ6kQy.css",
+    "src": "resources/css/admin.css",
+    "isEntry": true,
+    "names": [
+      "admin.css"
+    ]
+  },
+  "resources/css/web.css": {
+    "file": "assets/web-RPol2Yx8.css",
+    "src": "resources/css/web.css",
+    "isEntry": true,
+    "names": [
+      "web.css"
+    ]
+  },
+  "resources/js/admin.js": {
+    "file": "assets/admin-Clv6cXqE.js",
+    "name": "admin",
+    "src": "resources/js/admin.js",
+    "isEntry": true,
+    "imports": [
+      "_all-D6m5kTcE.js"
+    ]
+  },
+  "resources/js/web.js": {
+    "file": "assets/web-BAi6iwUQ.js",
+    "name": "web",
+    "src": "resources/js/web.js",
+    "isEntry": true,
+    "imports": [
+      "_all-D6m5kTcE.js"
+    ]
+  }
+}

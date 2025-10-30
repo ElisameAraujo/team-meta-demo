@@ -42,13 +42,13 @@
 .interactive-building rect.reserved,
 .interactive-building polygon.reserved,
 .interactive-building path.reserved {
-    @apply stroke-yellow-700 fill-yellow-500/50;
+    @apply stroke-[#fcb700] fill-[#fcb70065];
 }
 
 .interactive-building rect.reserved:hover,
 .interactive-building polygon.reserved:hover,
 .interactive-building path.reserved:hover {
-    @apply stroke-yellow-700 stroke-2;
+    @apply stroke-[#fcb700] fill-[#fcb70065] stroke-2;
 }
 
 #front-overview,

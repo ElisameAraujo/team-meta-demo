@@ -23,5 +23,6 @@
         </main>
     </div>
 </body>
+@livewireScripts
 
 </html>

@@ -81,6 +81,32 @@ Use o MySQL Workbench com:
 
 ---
 
+## Gerar a chave da aplicação
+
+Entre no bash do container com:
+
+```bash
+docker exec -it team-meta-demo bash
+```
+
+Em seguida rode o comando...
+
+```php
+php artisan key:generate
+```
+
+Esse comando irá preencher automaticamente a chave `APP_KEY` dentro do `.env`.
+
+Gerando a confirmação no console:
+
+<div style="display: flex; gap: 5px; font-family: Consolas; background-color: #F6F8FA; padding: 1rem; font-size: 85%; border-radius: 6px; line-height: 1.45; margin-bottom: 10px">
+<span style="background-color: #78dce8; padding: 0 4px; color: white">INFO</span>Application key set successfully.
+</div>
+
+Com isso a chave da aplicação do Laravel está concluída.
+
+---
+
 ## 🛠️ Scripts internos
 
 ### `entrypoint.sh` (executado ao iniciar o container PHP)

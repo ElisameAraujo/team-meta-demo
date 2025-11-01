@@ -140,8 +140,7 @@
                                         <label tabindex=0 class="btn glass-effect text-white rounded-md">
                                             Menu
                                         </label>
-                                        <ul tabIndex="0"
-                                            class="menu bg-base-200 w-72 rounded-box dropdown-content z-[1]">
+                                        <ul tabIndex="0" class="menu bg-base-200 w-72 rounded-box dropdown-content z-1">
                                             <li>
                                                 <details>
                                                     <summary>
@@ -196,7 +195,7 @@
                     <button>close</button>
                 </form>
                 <div id="tool-toast-container"
-                    class="toast toast-end fixed z-[9999] bottom-4 right-4 flex flex-col items-end gap-2 pointer-events-none">
+                    class="toast toast-end fixed z-9999 bottom-4 right-4 flex flex-col items-end gap-2 pointer-events-none">
                 </div>
             </dialog>
         </div>

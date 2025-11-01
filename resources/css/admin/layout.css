@@ -3,7 +3,7 @@ body {
 }
 
 .main-container {
-    @apply grid-default min-h-[100vh] relative;
+    @apply grid-default min-h-screen relative;
 }
 
 /*** Menu Lateral ***/
@@ -41,7 +41,7 @@ aside > .sticky-menu > .sticky-menu-header > .profile-menu > button img {
 }
 
 aside > .sticky-menu > .sticky-menu-header > .profile-menu button .profile {
-    @apply text-start max-w-[160px] overflow-hidden;
+    @apply text-start max-w-40 overflow-hidden;
 }
 
 aside > .sticky-menu > .sticky-menu-header > .profile-menu button .profile .username {
@@ -50,7 +50,7 @@ aside > .sticky-menu > .sticky-menu-header > .profile-menu button .profile .user
 
 aside > .sticky-menu > .sticky-menu-header > .profile-menu button .profile .username,
 aside > .sticky-menu > .sticky-menu-header > .profile-menu button .profile .email {
-    @apply max-w-[100%] whitespace-nowrap overflow-hidden text-ellipsis block w-full;
+    @apply max-w-full whitespace-nowrap overflow-hidden text-ellipsis block w-full;
 }
 aside > .sticky-menu > .sticky-menu-header > .profile-menu button .profile .email {
     @apply text-xs block text-gray-500;
@@ -224,7 +224,7 @@ main .main-content .header .right-header .tooltip {
 .notifications .drop-content footer.dropdown-footer::before {
     @apply content-empty 
     block w-[150%] 
-    h-[1px] mb-2 mt-[-16px] ml-[-25%]
+    h-px mb-2 -mt-4 ml-[-25%]
     bg-gray-200;
 }
 
@@ -339,7 +339,7 @@ main .main-content .header .right-header .tooltip {
 }
 
 .page-tabs .tabs a.tab {
-    @apply border-b border-b-gray-300 border-t-1 border-t-transparent;
+    @apply border-b border-b-gray-300 border-t border-t-transparent;
 }
 
 .page-tabs .tabs a.tab {
@@ -359,7 +359,7 @@ main .main-content .header .right-header .tooltip {
 }
 
 .page-tabs .tabs a.tab.tab-active {
-    @apply border-b-none border-x-1 border-x-gray-200 border-t-1 border-t-gray-200;
+    @apply border-b-none border-x border-x-gray-200 border-t border-t-gray-200;
 }
 
 .page-tabs .tabs a.tab.tab-active::before {
@@ -448,4 +448,25 @@ main .main-content .header .right-header .tooltip {
 
 .image-gallery .image-item button {
     @apply btn btn-primary w-full;
+}
+
+/*** Disk Page ***/
+.storage-info {
+    @apply col-span-12 grid-default;
+}
+
+.storage-info .info-data {
+    @apply col-span-2;
+}
+
+.storage-info .info-data > .stats {
+    @apply w-full;
+}
+
+.storage-info .info-data > .stats .stat-title {
+    @apply text-sm;
+}
+
+.storage-info .info-data > .stats .stat-value {
+    @apply text-xl;
 }

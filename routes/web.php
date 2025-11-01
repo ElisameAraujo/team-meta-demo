@@ -5,6 +5,7 @@ require base_path('routes/admin/complex-configuration.php');
 require base_path('routes/admin/apartments.php');
 require base_path('routes/admin/buildings.php');
 require base_path('routes/admin/transitions.php');
+require base_path('routes/admin/file-manager.php');
 
 /** Web **/
 require base_path('routes/web/home.php');

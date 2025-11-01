@@ -52,6 +52,14 @@
                         <span>Buildings</span>
                     </a>
                 </li>
+
+                <li
+                    class="menu-item {{ request()->is('admin/file-manager') || request()->is('admin/file-manager/*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.file-manager') }}">
+                        <i class="fa-solid fa-folder-tree"></i>
+                        <span>File Manager</span>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>

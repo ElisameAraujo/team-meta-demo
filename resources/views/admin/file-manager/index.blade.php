@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'File Manager')
+@section('title', 'Clean Orphaned Files')
 
 @section('content')
     <div class="page-content">
@@ -11,7 +11,7 @@
         <div class="page-actions">
             <a class="btn btn-success" onclick="document.getElementById('cleanOrphans').showModal()">
                 <i class="fa-solid fa-broom"></i>
-                Clean Orphans Files
+                Clean Orphaned Files
             </a>
         </div>
         @livewire('storage-stats')

@@ -14,12 +14,12 @@ class DateHelper
     public static function currentDate()
     {
         $currentDate = Carbon::today();
-        $formattedDate = self::extendedDate($currentDate);
+        $formattedDate = self::extendedDateUS($currentDate);
 
         return $formattedDate;
     }
 
-    public static function extendedDate($data)
+    public static function extendedDatePTBR($data)
     {
         $pt_BR = 'pt_BR';
         $translator = Translator::get($pt_BR);
@@ -33,5 +33,21 @@ class DateHelper
         return Carbon::parse($data)
             ->locale($pt_BR)
             ->translatedFormat('l, d \d\e F \d\e Y');
+    }
+
+    public static function extendedDateUS($data)
+    {
+        $en_US = 'en_US';
+        $translator = Translator::get($en_US);
+        $translator->setTranslations([
+            'months' => ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            'months_short' => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            'weekdays' => ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+            'weekdays_short' => ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'],
+        ]);
+
+        return Carbon::parse($data)
+            ->locale($en_US)
+            ->translatedFormat('l, F jS, Y');
     }
 }
